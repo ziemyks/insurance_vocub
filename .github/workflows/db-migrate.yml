@@ -1,0 +1,49 @@
+name: Database migrations
+
+# Applies Prisma migrations to the Supabase database of the environment that matches the branch:
+#   test  -> GitHub environment "test"        (seed content + demo users loaded every time)
+#   main  -> GitHub environment "production"  (seed only when run manually with "seed" ticked)
+# Each GitHub environment needs the secrets DATABASE_URL, DIRECT_URL and optionally DATABASE_CA_CERT.
+# Seeding is idempotent: it adds missing concepts and never overwrites what was edited in the app.
+
+on:
+  push:
+    branches: [main, test]
+    paths:
+      - "packages/db/prisma/**"
+      - "content/seed/**"
+  workflow_dispatch:
+    inputs:
+      seed:
+        description: "Also load seed content (new concepts only)"
+        type: boolean
+        default: false
+
+concurrency:
+  group: db-${{ github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  migrate:
+    if: github.ref_name == 'main' || github.ref_name == 'test'
+    runs-on: ubuntu-latest
+    environment: ${{ github.ref_name == 'main' && 'production' || 'test' }}
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      DIRECT_URL: ${{ secrets.DIRECT_URL }}
+      DATABASE_CA_CERT: ${{ secrets.DATABASE_CA_CERT }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run db:generate
+      - name: Apply migrations
+        run: npm run db:deploy
+      - name: Load seed content
+        if: github.ref_name == 'test' || inputs.seed
+        env:
+          SEED_DEMO_USERS: ${{ github.ref_name == 'test' && 'true' || 'false' }}
+        run: npm run db:seed

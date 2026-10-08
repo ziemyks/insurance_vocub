@@ -2,6 +2,9 @@
 const lv = {
   appName: "Biznesa vārdnīca",
   appTagline: "Apdrošināšanas termini un rādītāji",
+  env: {
+    test: "TESTA VIDE: dati var tikt mainīti vai dzēsti. Neievadiet konfidenciālu informāciju.",
+  },
   nav: {
     browse: "Jomas",
     changes: "Izmaiņu pieprasījumi",
@@ -214,7 +217,8 @@ const lv = {
     title: "Pieteikties",
     entra: "Pieteikties ar uzņēmuma kontu (Microsoft)",
     dev: "Izstrādes režīms: pieteikties kā demo lietotājam",
-    demoHosted: "Koncepcijas pārbaudes vide: ievadiet piekļuves kodu un izvēlieties demo lietotāju.",
+    demoHosted:
+      "Koncepcijas pārbaudes vide: ievadiet piekļuves kodu un izvēlieties demo lietotāju.",
     code: "Piekļuves kods",
     badCode: "Nepareizs piekļuves kods.",
     noProviders:
@@ -237,6 +241,9 @@ type Messages = typeof lv;
 const en: Messages = {
   appName: "Business Vocabulary",
   appTagline: "Insurance terms and metrics",
+  env: {
+    test: "TEST ENVIRONMENT: data may be changed or reset. Do not enter confidential information.",
+  },
   nav: {
     browse: "Domains",
     changes: "Change requests",
@@ -444,7 +451,8 @@ const en: Messages = {
     demoHosted: "Proof-of-concept environment: enter the access code and pick a demo user.",
     code: "Access code",
     badCode: "Wrong access code.",
-    noProviders: "No sign-in method is configured. Set up Entra ID, AUTH_DEV_LOGIN or DEMO_ACCESS_CODE.",
+    noProviders:
+      "No sign-in method is configured. Set up Entra ID, AUTH_DEV_LOGIN or DEMO_ACCESS_CODE.",
   },
   common: {
     lv: "LV",

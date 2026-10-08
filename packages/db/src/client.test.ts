@@ -14,8 +14,15 @@ describe("poolConfig", () => {
   });
 
   it("verifies the server certificate when a CA is given", () => {
-    const cfg = poolConfig(`${url}&uselibpqcompat=true`, { DATABASE_CA_CERT: "-----BEGIN CERTIFICATE-----\\nabc\\n-----END CERTIFICATE-----" });
-    expect(cfg.ssl).toEqual({ ca: "-----BEGIN CERTIFICATE-----\nabc\n-----END CERTIFICATE-----", rejectUnauthorized: true });
-    expect(cfg.connectionString).toBe("postgresql://u:p@aws-0-eu-central-1.pooler.supabase.com:6543/postgres");
+    const cfg = poolConfig(`${url}&uselibpqcompat=true`, {
+      DATABASE_CA_CERT: "-----BEGIN CERTIFICATE-----\\nabc\\n-----END CERTIFICATE-----",
+    });
+    expect(cfg.ssl).toEqual({
+      ca: "-----BEGIN CERTIFICATE-----\nabc\n-----END CERTIFICATE-----",
+      rejectUnauthorized: true,
+    });
+    expect(cfg.connectionString).toBe(
+      "postgresql://u:p@aws-0-eu-central-1.pooler.supabase.com:6543/postgres",
+    );
   });
 });

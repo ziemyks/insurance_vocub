@@ -6,6 +6,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { auth } from "@/auth";
 import { setLocaleAction, signOutAction } from "@/app/actions";
+import { appEnv } from "@/lib/env";
 import { getI18n } from "@/lib/i18n";
 import "./globals.css";
 
@@ -15,8 +16,11 @@ const sourceSans = Source_Sans_3({
   display: "swap",
 });
 
+const isTest = appEnv() === "test";
+const appTitle = `${isTest ? "[TEST] " : ""}Business Vocabulary`;
+
 export const metadata: Metadata = {
-  title: { default: "Business Vocabulary", template: "%s · Business Vocabulary" },
+  title: { default: appTitle, template: `%s · ${appTitle}` },
   description: "Insurance business terms and metrics (LV/EN)",
   robots: { index: false, follow: false },
 };
@@ -30,6 +34,11 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
   return (
     <html lang={locale} className={sourceSans.variable}>
       <body>
+        {isTest && (
+          <div className="env-banner" role="status" data-testid="env-banner">
+            {t.env.test}
+          </div>
+        )}
         <header className="header">
           <div className="header-inner">
             <Link href="/" className="brand">

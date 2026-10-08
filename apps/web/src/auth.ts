@@ -16,7 +16,8 @@ declare module "next-auth" {
  * - hosted proof of concept (e.g. Vercel): DEMO_ACCESS_CODE set (min. 12 characters), and every
  *   sign-in must present that code.
  */
-const localDevLogin = process.env.AUTH_DEV_LOGIN === "true" && process.env.NODE_ENV !== "production";
+const localDevLogin =
+  process.env.AUTH_DEV_LOGIN === "true" && process.env.NODE_ENV !== "production";
 const demoAccessCode = process.env.DEMO_ACCESS_CODE?.trim() ?? "";
 const hostedDemo = demoAccessCode.length >= 12;
 export const devLoginEnabled = localDevLogin || hostedDemo;

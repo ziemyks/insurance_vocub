@@ -9,7 +9,11 @@ import { getI18n } from "@/lib/i18n";
 
 export const metadata: Metadata = { title: "Sign in" };
 
-export default async function SignInPage({ searchParams }: { searchParams: Promise<{ error?: string }> }) {
+export default async function SignInPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ error?: string }>;
+}) {
   if ((await auth())?.user?.id) redirect("/");
   const { error } = await searchParams;
   const { t, locale } = await getI18n();
@@ -32,7 +36,11 @@ export default async function SignInPage({ searchParams }: { searchParams: Promi
       {devLoginEnabled && (
         <form action={devSignInAction} className="stack" style={{ marginTop: "1.5rem" }}>
           <p className="banner">{demoCodeRequired ? t.signin.demoHosted : t.signin.dev}</p>
-          {error && <p className="banner error" role="alert">{t.signin.badCode}</p>}
+          {error && (
+            <p className="banner error" role="alert">
+              {t.signin.badCode}
+            </p>
+          )}
           {demoCodeRequired && (
             <div className="field">
               <label>
@@ -58,7 +66,12 @@ export default async function SignInPage({ searchParams }: { searchParams: Promi
                       : label(ROLE, "VIEWER", locale)}
                   </div>
                 </div>
-                <button name="email" value={u.email} className="btn secondary small" data-testid={`login-${u.email}`}>
+                <button
+                  name="email"
+                  value={u.email}
+                  className="btn secondary small"
+                  data-testid={`login-${u.email}`}
+                >
                   {t.signin.title}
                 </button>
               </li>
