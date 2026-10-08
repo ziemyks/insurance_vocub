@@ -6,8 +6,9 @@ import { fileURLToPath } from "node:url";
 config({ path: fileURLToPath(new URL("../../.env", import.meta.url)), quiet: true });
 
 const nextConfig: NextConfig = {
-  // Self-contained server bundle for Azure App Service (node apps/web/server.js).
-  output: "standalone",
+  // Vercel builds natively. BUILD_STANDALONE=true produces a self-contained server bundle
+  // (node apps/web/server.js) for Azure App Service or containers.
+  output: process.env.BUILD_STANDALONE === "true" ? "standalone" : undefined,
   outputFileTracingRoot: fileURLToPath(new URL("../../", import.meta.url)),
   transpilePackages: ["@vocab/core", "@vocab/db"],
   serverExternalPackages: ["exceljs", "pg", "@prisma/client", "@prisma/adapter-pg"],

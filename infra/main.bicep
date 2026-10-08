@@ -138,7 +138,7 @@ resource web 'Microsoft.Web/sites@2023-12-01' = {
     httpsOnly: true
     siteConfig: {
       linuxFxVersion: 'NODE|22-lts'
-      appCommandLine: 'node apps/web/server.js'
+      appCommandLine: 'node apps/web/server.js' // build with BUILD_STANDALONE=true
       alwaysOn: true
       minTlsVersion: '1.2'
       ftpsState: 'Disabled'

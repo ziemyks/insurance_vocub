@@ -1,3 +1,4 @@
+import { createHash, timingSafeEqual } from "node:crypto";
 import { db, upsertUserFromLogin } from "@vocab/db";
 import NextAuth, { type NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
@@ -9,9 +10,23 @@ declare module "next-auth" {
   }
 }
 
-/** Dev login as a seeded demo user. Refuses to switch on in production builds. */
-export const devLoginEnabled =
-  process.env.AUTH_DEV_LOGIN === "true" && process.env.NODE_ENV !== "production";
+/**
+ * Demo login as a seeded demo user:
+ * - local development: AUTH_DEV_LOGIN=true (never honoured in production builds);
+ * - hosted proof of concept (e.g. Vercel): DEMO_ACCESS_CODE set (min. 12 characters), and every
+ *   sign-in must present that code.
+ */
+const localDevLogin = process.env.AUTH_DEV_LOGIN === "true" && process.env.NODE_ENV !== "production";
+const demoAccessCode = process.env.DEMO_ACCESS_CODE?.trim() ?? "";
+const hostedDemo = demoAccessCode.length >= 12;
+export const devLoginEnabled = localDevLogin || hostedDemo;
+export const demoCodeRequired = !localDevLogin && hostedDemo;
+
+const digest = (value: string) => createHash("sha256").update(value).digest();
+function validDemoCode(code: unknown): boolean {
+  if (!demoCodeRequired) return true;
+  return timingSafeEqual(digest(String(code ?? "")), digest(demoAccessCode));
+}
 export const entraEnabled = Boolean(process.env.AUTH_MICROSOFT_ENTRA_ID_ID);
 
 const providers: NextAuthConfig["providers"] = [];
@@ -29,8 +44,9 @@ if (devLoginEnabled) {
     Credentials({
       id: "dev",
       name: "Demo user",
-      credentials: { email: { label: "Email" } },
+      credentials: { email: { label: "Email" }, code: { label: "Access code", type: "password" } },
       async authorize(credentials) {
+        if (!validDemoCode(credentials?.code)) return null;
         const email = String(credentials?.email ?? "").toLowerCase();
         if (!email.endsWith("@demo.local")) return null;
         const user = await db().user.findUnique({ where: { email } });

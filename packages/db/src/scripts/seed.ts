@@ -1,7 +1,8 @@
 /**
  * Loads domains, starter concepts (as Candidates) and code lists. Idempotent: existing concepts
  * are never overwritten, so it is safe to re-run after content has been edited in the app.
- * With AUTH_DEV_LOGIN=true it also creates demo users with one role each, for local testing.
+ * With AUTH_DEV_LOGIN=true (local) or SEED_DEMO_USERS=true (hosted proof of concept) it also
+ * creates demo users with one role each.
  */
 import "./env";
 import { DOMAINS, type Role } from "@vocab/core";
@@ -108,7 +109,10 @@ for (const list of codeLists) {
 }
 console.log(`✓ ${codeLists.length} code lists`);
 
-if (process.env.AUTH_DEV_LOGIN === "true" && process.env.NODE_ENV !== "production") {
+const seedDemoUsers =
+  process.env.SEED_DEMO_USERS === "true" ||
+  (process.env.AUTH_DEV_LOGIN === "true" && process.env.NODE_ENV !== "production");
+if (seedDemoUsers) {
   for (const u of DEMO_USERS) {
     const user = await prisma.user.upsert({
       where: { email: u.email },

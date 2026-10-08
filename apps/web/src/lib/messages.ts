@@ -214,8 +214,11 @@ const lv = {
     title: "Pieteikties",
     entra: "Pieteikties ar uzņēmuma kontu (Microsoft)",
     dev: "Izstrādes režīms: pieteikties kā demo lietotājam",
+    demoHosted: "Koncepcijas pārbaudes vide: ievadiet piekļuves kodu un izvēlieties demo lietotāju.",
+    code: "Piekļuves kods",
+    badCode: "Nepareizs piekļuves kods.",
     noProviders:
-      "Nav konfigurēta neviena pieteikšanās metode. Iestatiet Entra ID vai AUTH_DEV_LOGIN.",
+      "Nav konfigurēta neviena pieteikšanās metode. Iestatiet Entra ID, AUTH_DEV_LOGIN vai DEMO_ACCESS_CODE.",
   },
   common: {
     lv: "LV",
@@ -438,7 +441,10 @@ const en: Messages = {
     title: "Sign in",
     entra: "Sign in with your company account (Microsoft)",
     dev: "Development mode: sign in as a demo user",
-    noProviders: "No sign-in method is configured. Set up Entra ID or AUTH_DEV_LOGIN.",
+    demoHosted: "Proof-of-concept environment: enter the access code and pick a demo user.",
+    code: "Access code",
+    badCode: "Wrong access code.",
+    noProviders: "No sign-in method is configured. Set up Entra ID, AUTH_DEV_LOGIN or DEMO_ACCESS_CODE.",
   },
   common: {
     lv: "LV",

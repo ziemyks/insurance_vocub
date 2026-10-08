@@ -11,7 +11,7 @@
   },
   "scripts": {
     "dev": "npm run dev -w @vocab/web",
-    "build": "npm run db:generate && npm run build -w @vocab/web",
+    "build": "npm run build -w @vocab/web",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "test": "vitest run",
     "test:e2e": "npm run test:e2e -w @vocab/web",

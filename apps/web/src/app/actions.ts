@@ -22,6 +22,7 @@ import {
   updateChange,
   type ImportReport,
 } from "@vocab/db";
+import { AuthError } from "next-auth";
 import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -72,7 +73,13 @@ export async function entraSignInAction() {
 }
 
 export async function devSignInAction(fd: FormData) {
-  await signIn("dev", { email: str(fd, "email"), redirectTo: "/" });
+  try {
+    await signIn("dev", { email: str(fd, "email"), code: str(fd, "code"), redirectTo: "/" });
+  } catch (e) {
+    // A wrong access code surfaces as an AuthError; success is a redirect and is rethrown.
+    if (e instanceof AuthError) redirect("/signin?error=demo");
+    throw e;
+  }
 }
 
 /** Creates a change request (new concept or edit) or saves an existing draft. */

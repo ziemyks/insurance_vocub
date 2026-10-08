@@ -90,4 +90,6 @@ All endpoints require a signed-in session.
 
 ## Deployment
 
-[infra/main.bicep](infra/main.bicep) provisions an App Service (Linux, Node 22), PostgreSQL Flexible Server, Key Vault and Application Insights. Production settings are listed in `.env.example`. Never set `AUTH_DEV_LOGIN` in Azure. Run `npm run db:deploy` as a release step before swapping slots. When scaling out to more than one instance, set `NEXT_SERVER_ACTIONS_ENCRYPTION_KEY` to the same value on every instance.
+**Proof of concept: Vercel + Supabase.** Follow [docs/deploy-vercel.md](docs/deploy-vercel.md). Set the Vercel project root to `apps/web`, use Supabase's transaction pooler for `DATABASE_URL`, and run migrations from your machine through `DIRECT_URL`. Hosted demo sign-in is protected by `DEMO_ACCESS_CODE`.
+
+**Production target: Azure.** [infra/main.bicep](infra/main.bicep) provisions an App Service (Linux, Node 22), PostgreSQL Flexible Server, Key Vault and Application Insights. Build with `BUILD_STANDALONE=true`. Production settings are listed in `.env.example`. Never set `AUTH_DEV_LOGIN` or `DEMO_ACCESS_CODE` in production. Run `npm run db:deploy` as a release step before swapping slots. When scaling out to more than one instance, set `NEXT_SERVER_ACTIONS_ENCRYPTION_KEY` to the same value on every instance.
