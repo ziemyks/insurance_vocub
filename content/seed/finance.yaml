@@ -1,0 +1,927 @@
+domain: finance
+concepts:
+  # ---------------------------------------------------------------------------
+  # IFRS 17 terms
+  # ---------------------------------------------------------------------------
+  - slug: insurance-contract
+    type: TERM
+    labels:
+      lv: { preferred: "Apdrošināšanas līgums", alt: [], abbrev: [] }
+      en: { preferred: "Insurance contract", alt: [], abbrev: [] }
+    definition:
+      lv: "Līgums, saskaņā ar kuru viena puse (emitents) uzņemas būtisku apdrošināšanas risku no otras puses (polises turētāja), piekrītot kompensēt polises turētājam, ja konkrēts nenoteikts nākotnes notikums (apdrošināšanas gadījums) nelabvēlīgi ietekmē polises turētāju."
+      en: "A contract under which one party (the issuer) accepts significant insurance risk from another party (the policyholder) by agreeing to compensate the policyholder if a specified uncertain future event (the insured event) adversely affects the policyholder."
+    notes:
+      lv: "Šī ir 17. SFPS grāmatvedības definīcija. Viena polise juridiski ir viens dokuments, bet 17. SFPS uzskaitē tā var tikt sadalīta vairākos komponentos vai apvienota ar citiem līgumiem; tādēļ polišu skaits un 17. SFPS līgumu skaits var atšķirties."
+      en: "This is the IFRS 17 accounting definition. A policy is one legal document, but for IFRS 17 measurement it may be split into components or combined with other contracts, so the number of policies and the number of IFRS 17 contracts can differ."
+    relations:
+      - { type: RELATED, target: insurance-policy }
+      - { type: RELATED, target: policyholder }
+      - { type: PART_OF, target: portfolio-of-contracts }
+    sources:
+      - { title: "IFRS 17 Insurance Contracts", reference: "Appendix A" }
+    tags: [ifrs17, accounting]
+
+  - slug: portfolio-of-contracts
+    type: TERM
+    labels:
+      lv: { preferred: "Apdrošināšanas līgumu portfelis", alt: ["Līgumu portfelis"], abbrev: [] }
+      en: { preferred: "Portfolio of insurance contracts", alt: ["Portfolio of contracts"], abbrev: [] }
+    definition:
+      lv: "Apdrošināšanas līgumu kopums, kuri ir pakļauti līdzīgiem riskiem un tiek pārvaldīti kopā."
+      en: "A set of insurance contracts that are subject to similar risks and are managed together."
+    notes:
+      lv: "17. SFPS portfelis ir uzskaites vienība, nevis pārdošanas „portfelis“ vai produktu kopums. Parasti viena portfeļa līgumi pieder vienam darbības virzienam (piem., OCTA, KASKO, īpašums). Portfeli tālāk sadala līgumu grupās."
+      en: "An IFRS 17 portfolio is an accounting unit, not a sales 'portfolio' or a set of products. Contracts in one portfolio usually belong to one line of business (e.g. MTPL, motor own damage, property). Portfolios are further divided into groups of contracts."
+    relations:
+      - { type: RELATED, target: group-of-contracts }
+      - { type: RELATED, target: line-of-business }
+    sources:
+      - { title: "IFRS 17 Insurance Contracts", reference: "Appendix A" }
+    tags: [ifrs17, accounting]
+
+  - slug: group-of-contracts
+    type: TERM
+    labels:
+      lv: { preferred: "Apdrošināšanas līgumu grupa", alt: ["Līgumu grupa"], abbrev: [] }
+      en: { preferred: "Group of insurance contracts", alt: ["Group of contracts"], abbrev: [] }
+    definition:
+      lv: "Apdrošināšanas līgumu kopums, kas iegūts, sadalot līgumu portfeli pēc gada kohortas un pēc rentabilitātes sākotnējās atzīšanas brīdī: apgrūtinošie līgumi, līgumi bez būtiskas iespējas kļūt apgrūtinošiem un pārējie līgumi."
+      en: "A set of insurance contracts obtained by dividing a portfolio by annual cohort and by profitability at initial recognition: onerous contracts, contracts with no significant possibility of becoming onerous, and all remaining contracts."
+    notes:
+      lv: "Līgumu grupa ir 17. SFPS mērīšanas vienība: zaudējumu komponentu un līgumisko pakalpojumu peļņas normu nosaka grupas līmenī. Grupas sastāvu nosaka sākotnējās atzīšanas brīdī, un vēlāk tas netiek pārskatīts."
+      en: "The group is the IFRS 17 unit of account: the loss component and the contractual service margin are determined at group level. Group composition is fixed at initial recognition and is not reassessed later."
+    relations:
+      - { type: PART_OF, target: portfolio-of-contracts }
+      - { type: RELATED, target: annual-cohort }
+      - { type: RELATED, target: onerous-contract }
+    sources:
+      - { title: "IFRS 17 Insurance Contracts", reference: "Appendix A" }
+    tags: [ifrs17, accounting]
+
+  - slug: annual-cohort
+    type: TERM
+    labels:
+      lv: { preferred: "Gada kohorta", alt: [], abbrev: [] }
+      en: { preferred: "Annual cohort", alt: [], abbrev: [] }
+    definition:
+      lv: "Apdrošināšanas līgumu kopums vienā portfelī, kas izdoti ne vairāk kā viena gada laikā un tāpēc var tikt iekļauti vienā līgumu grupā."
+      en: "A set of insurance contracts within one portfolio that were issued no more than one year apart and may therefore be included in the same group of contracts."
+    notes:
+      lv: "Līgumus, kas izdoti ar vairāk nekā viena gada starpību, nedrīkst iekļaut vienā grupā. Gada kohorta parasti sakrīt ar parakstīšanas gadu, taču to nedrīkst jaukt ar negadījuma gadu. ES apstiprinātais izņēmums attiecībā uz gada kohortām attiecas uz līgumiem ar starppaaudžu savstarpējo dalīšanu (galvenokārt dzīvības apdrošināšanā) un nedzīvības apdrošinātājam parasti nav būtisks."
+      en: "Contracts issued more than one year apart may not be placed in the same group. An annual cohort usually coincides with the underwriting year and must not be confused with the accident year. The EU-endorsed exemption from annual cohorts covers contracts with intergenerational mutualisation (mainly life insurance) and is normally not relevant for a non-life insurer."
+    relations:
+      - { type: PART_OF, target: group-of-contracts }
+      - { type: RELATED, target: underwriting-year }
+    sources:
+      - { title: "IFRS 17 Insurance Contracts", reference: "paragraph 22" }
+    tags: [ifrs17, accounting]
+
+  - slug: premium-allocation-approach
+    type: TERM
+    labels:
+      lv: { preferred: "Prēmiju sadalījuma pieeja", alt: ["Vienkāršotā mērīšanas pieeja"], abbrev: ["PAA"] }
+      en: { preferred: "Premium allocation approach", alt: ["Simplified approach"], abbrev: ["PAA"] }
+    definition:
+      lv: "17. SFPS atļauta vienkāršota atlikušā seguma saistību mērīšanas metode, kurā saistības nosaka, balstoties uz saņemtajām prēmijām, kas tiek atzītas ieņēmumos seguma perioda laikā, un līgumiskā pakalpojumu peļņas norma netiek aprēķināta atsevišķi."
+      en: "A simplified IFRS 17 method for measuring the liability for remaining coverage based on premiums received, which are recognised as revenue over the coverage period, without separately calculating a contractual service margin."
+    notes:
+      lv: "PAA drīkst piemērot, ja katra līguma seguma periods nepārsniedz vienu gadu vai ja rezultāts būtiski neatšķiras no vispārējā mērīšanas modeļa (GMM). Lielākā daļa nedzīvības apdrošināšanas līgumu atbilst PAA. PAA attiecas tikai uz atlikušā seguma saistībām: radušos prasījumu saistības arī PAA gadījumā mēra ar izpildes naudas plūsmām (diskontētām aplēsēm un korekciju nefinanšu riskam). Ja seguma periods nepārsniedz vienu gadu, iegūšanas naudas plūsmas var atzīt izdevumos uzreiz."
+      en: "The PAA may be used when each contract's coverage period is one year or less, or when the result would not differ materially from the general measurement model (GMM). Most non-life contracts qualify. The PAA applies only to the liability for remaining coverage: the liability for incurred claims is still measured with fulfilment cash flows (discounted estimates plus a risk adjustment for non-financial risk). With coverage of one year or less, acquisition cash flows may be expensed when incurred."
+    relations:
+      - { type: RELATED, target: liability-for-remaining-coverage }
+      - { type: RELATED, target: contractual-service-margin }
+      - { type: RELATED, target: unearned-premium-reserve }
+    sources:
+      - { title: "IFRS 17 Insurance Contracts", reference: "paragraphs 53–59" }
+    tags: [ifrs17, accounting, measurement]
+
+  - slug: liability-for-remaining-coverage
+    type: TERM
+    labels:
+      lv: { preferred: "Atlikušā seguma saistības", alt: [], abbrev: ["LRC"] }
+      en: { preferred: "Liability for remaining coverage", alt: [], abbrev: ["LRC"] }
+    definition:
+      lv: "Apdrošinātāja pienākums izmeklēt un izmaksāt pamatotus prasījumus par esošo apdrošināšanas līgumu apdrošināšanas gadījumiem, kas vēl nav notikuši, un sniegt citus vēl nesniegtus apdrošināšanas līguma pakalpojumus (t. i., saistības par vēl neizbeigušos seguma daļu)."
+      en: "An insurer's obligation to investigate and pay valid claims under existing insurance contracts for insured events that have not yet occurred, and to provide other insurance contract services not yet provided (i.e. the obligation relating to the unexpired portion of coverage)."
+    notes:
+      lv: "Pēc PAA atlikušā seguma saistības ekonomiski ir tuvas nenopelnīto prēmiju rezervei, no kuras atskaitītas atliktās iegūšanas izmaksas, taču atšķiras ar to, ka balstās uz saņemtajām (nevis parakstītajām) prēmijām; tāpēc prēmiju debitori LRC samazina. Ja līgumu grupa ir apgrūtinoša, LRC ietver zaudējumu komponentu."
+      en: "Under the PAA the LRC is economically close to the unearned premium reserve less deferred acquisition costs, but it is based on premiums received (not written), so premium receivables reduce the LRC. If a group is onerous, the LRC includes a loss component."
+    relations:
+      - { type: RELATED, target: unearned-premium-reserve }
+      - { type: RELATED, target: liability-for-incurred-claims }
+      - { type: RELATED, target: loss-component }
+      - { type: RELATED, target: premium-receivable }
+    sources:
+      - { title: "IFRS 17 Insurance Contracts", reference: "Appendix A" }
+    tags: [ifrs17, accounting, liabilities]
+
+  - slug: liability-for-incurred-claims
+    type: TERM
+    labels:
+      lv: { preferred: "Radušos prasījumu saistības", alt: [], abbrev: ["LIC"] }
+      en: { preferred: "Liability for incurred claims", alt: [], abbrev: ["LIC"] }
+    definition:
+      lv: "Apdrošinātāja pienākums izmeklēt un izmaksāt pamatotus prasījumus par apdrošināšanas gadījumiem, kas jau ir notikuši, tostarp par notikušiem, bet vēl nepieteiktiem gadījumiem, un citus jau radušos apdrošināšanas izdevumus."
+      en: "An insurer's obligation to investigate and pay valid claims for insured events that have already occurred, including events that have occurred but have not been reported, and other insurance expenses already incurred."
+    notes:
+      lv: "LIC = nākotnes naudas plūsmu pašreizējā vērtība (pieteiktie un nepieteiktie zaudējumi, regulēšanas izdevumi) + korekcija nefinanšu riskam. Tā aptuveni atbilst vadības uzskaites atlīdzību rezervēm (RBNS + IBNR), taču atšķiras ar diskontēšanu un korekciju nefinanšu riskam. Maksātspējas II tehniskajās rezervēs atbilstošā daļa ir atlīdzību rezervju labākā aplēse, bet riska rezerve tiek aprēķināta citādi."
+      en: "LIC = present value of future cash flows (reported and unreported claims, claims handling costs) + risk adjustment for non-financial risk. It roughly corresponds to management claims reserves (RBNS + IBNR) but differs through discounting and the risk adjustment. The Solvency II counterpart is the best estimate of claims provisions within technical provisions, where the risk margin is calculated differently."
+    relations:
+      - { type: RELATED, target: liability-for-remaining-coverage }
+      - { type: RELATED, target: case-reserve }
+      - { type: RELATED, target: ibnr }
+      - { type: RELATED, target: rbns }
+      - { type: RELATED, target: risk-adjustment }
+      - { type: RELATED, target: technical-provisions }
+    sources:
+      - { title: "IFRS 17 Insurance Contracts", reference: "Appendix A" }
+    tags: [ifrs17, accounting, liabilities, reserving]
+
+  - slug: risk-adjustment
+    type: TERM
+    labels:
+      lv: { preferred: "Korekcija nefinanšu riskam", alt: ["Riska korekcija"], abbrev: ["RA"] }
+      en: { preferred: "Risk adjustment for non-financial risk", alt: ["Risk adjustment"], abbrev: ["RA"] }
+    definition:
+      lv: "Kompensācija, ko apdrošinātājs pieprasa par nenoteiktības uzņemšanos attiecībā uz naudas plūsmu apmēru un laiku, kas izriet no nefinanšu riska, apdrošinātājam izpildot apdrošināšanas līgumus."
+      en: "The compensation an insurer requires for bearing the uncertainty about the amount and timing of cash flows that arises from non-financial risk as the insurer fulfils insurance contracts."
+    notes:
+      lv: "Nejaukt ar Maksātspējas II riska rezervi: korekciju nefinanšu riskam nosaka uzņēmums pats (piem., ar ticamības līmeņa metodi) un atklāj atbilstošo ticamības līmeni, bet riska rezervi aprēķina ar normatīvi noteiktu kapitāla izmaksu metodi."
+      en: "Do not confuse with the Solvency II risk margin: the risk adjustment is set by the entity (e.g. with a confidence-level technique) and the corresponding confidence level is disclosed, whereas the risk margin is calculated with a prescribed cost-of-capital method."
+    relations:
+      - { type: PART_OF, target: liability-for-incurred-claims }
+      - { type: RELATED, target: risk-margin }
+    sources:
+      - { title: "IFRS 17 Insurance Contracts", reference: "Appendix A" }
+    tags: [ifrs17, accounting, reserving]
+
+  - slug: onerous-contract
+    type: TERM
+    labels:
+      lv: { preferred: "Apgrūtinošs līgums", alt: ["Zaudējumus nesošs līgums"], abbrev: [] }
+      en: { preferred: "Onerous contract", alt: ["Loss-making contract"], abbrev: [] }
+    definition:
+      lv: "Apdrošināšanas līgums, kuram sākotnējās atzīšanas brīdī vai vēlāk sagaidāmās izejošās naudas plūsmas (ieskaitot korekciju nefinanšu riskam un iegūšanas naudas plūsmas) pārsniedz ienākošās naudas plūsmas, t. i., līgums ir zaudējumus nesošs."
+      en: "An insurance contract for which, at initial recognition or later, the expected cash outflows (including the risk adjustment for non-financial risk and acquisition cash flows) exceed the expected cash inflows, i.e. the contract is loss-making."
+    notes:
+      lv: "Saskaņā ar PAA pieņem, ka līgumi nav apgrūtinoši, ja vien fakti un apstākļi neliecina par pretējo (piem., plānotais kombinētais rādītājs pārsniedz 100 %). Zaudējumus no apgrūtinošiem līgumiem atzīst uzreiz peļņas vai zaudējumu aprēķinā, izveidojot zaudējumu komponentu."
+      en: "Under the PAA contracts are assumed not to be onerous unless facts and circumstances indicate otherwise (e.g. a planned combined ratio above 100%). Losses on onerous contracts are recognised immediately in profit or loss by establishing a loss component."
+    relations:
+      - { type: RELATED, target: loss-component }
+      - { type: RELATED, target: group-of-contracts }
+    sources:
+      - { title: "IFRS 17 Insurance Contracts", reference: "paragraph 47" }
+    tags: [ifrs17, accounting]
+
+  - slug: loss-component
+    type: TERM
+    labels:
+      lv: { preferred: "Zaudējumu komponents", alt: [], abbrev: ["LC"] }
+      en: { preferred: "Loss component", alt: [], abbrev: ["LC"] }
+    definition:
+      lv: "Atlikušā seguma saistību daļa, kas apgrūtinošai līgumu grupai atspoguļo jau atzītos zaudējumus un nosaka, kuras summas tiek uzrādītas kā zaudējumu apvērse un netiek iekļautas apdrošināšanas ieņēmumos."
+      en: "The part of the liability for remaining coverage that, for an onerous group of contracts, depicts the losses already recognised and determines the amounts presented as reversals of losses and excluded from insurance revenue."
+    notes:
+      lv: "Zaudējumu komponenta izveide un apvērse tiek uzrādīta apdrošināšanas pakalpojumu izdevumos, nevis samazina apdrošināšanas ieņēmumus."
+      en: "Establishing and reversing the loss component is presented within insurance service expense; it does not reduce insurance revenue."
+    relations:
+      - { type: PART_OF, target: liability-for-remaining-coverage }
+      - { type: RELATED, target: onerous-contract }
+      - { type: RELATED, target: insurance-service-expense }
+    sources:
+      - { title: "IFRS 17 Insurance Contracts", reference: "paragraph 49" }
+    tags: [ifrs17, accounting]
+
+  - slug: contractual-service-margin
+    type: TERM
+    labels:
+      lv: { preferred: "Līgumiskā pakalpojumu peļņas norma", alt: [], abbrev: ["CSM"] }
+      en: { preferred: "Contractual service margin", alt: [], abbrev: ["CSM"] }
+    definition:
+      lv: "Atlikušā seguma saistību sastāvdaļa, kas atspoguļo līgumu grupas vēl nenopelnīto peļņu, ko apdrošinātājs atzīs, sniedzot apdrošināšanas līguma pakalpojumus nākotnē."
+      en: "A component of the liability for remaining coverage that represents the unearned profit of a group of contracts, which the insurer will recognise as it provides insurance contract services in the future."
+    notes:
+      lv: "CSM aprēķina tikai vispārējā mērīšanas modelī (GMM) un mainīgās atlīdzības pieejā; PAA gadījumā tā netiek atsevišķi noteikta. Nedzīvības apdrošinātājam CSM parasti ir būtiska tikai daudzgadu līgumiem un dažiem pārapdrošināšanas līgumiem. CSM nevar būt negatīva: zaudējumi tiek atzīti uzreiz kā zaudējumu komponents."
+      en: "The CSM is calculated only under the general measurement model (GMM) and the variable fee approach; it is not determined separately under the PAA. For a non-life insurer it is usually material only for multi-year contracts and some reinsurance contracts. The CSM cannot be negative: losses are recognised immediately as a loss component."
+    relations:
+      - { type: PART_OF, target: liability-for-remaining-coverage }
+      - { type: RELATED, target: premium-allocation-approach }
+    sources:
+      - { title: "IFRS 17 Insurance Contracts", reference: "Appendix A" }
+    tags: [ifrs17, accounting]
+
+  # ---------------------------------------------------------------------------
+  # Expense terms
+  # ---------------------------------------------------------------------------
+  - slug: acquisition-costs
+    type: TERM
+    labels:
+      lv: { preferred: "Klientu piesaistīšanas izmaksas", alt: ["Iegūšanas izmaksas", "Apdrošināšanas iegūšanas naudas plūsmas"], abbrev: [] }
+      en: { preferred: "Acquisition costs", alt: ["Insurance acquisition cash flows"], abbrev: [] }
+    definition:
+      lv: "Izmaksas, kas rodas, pārdodot, parakstot un uzsākot apdrošināšanas līgumus, piemēram, komisijas starpniekiem, pārdošanas personāla atlīdzība, mārketings un polišu izsniegšanas izmaksas."
+      en: "Costs arising from selling, underwriting and starting insurance contracts, such as commissions to intermediaries, sales staff remuneration, marketing and policy issuance costs."
+    notes:
+      lv: "17. SFPS tās sauc par apdrošināšanas iegūšanas naudas plūsmām un ietver tikai tieši attiecināmās izmaksas; vadības uzskaitē jēdziens var būt plašāks (piem., zīmola mārketings). Summu periodā rāda rādītājs „Klientu piesaistīšanas izdevumi“."
+      en: "IFRS 17 calls them insurance acquisition cash flows and includes only directly attributable costs; in management reporting the scope may be wider (e.g. brand marketing). The period amount is measured by the metric 'Acquisition expenses'."
+    relations:
+      - { type: PART_OF, target: operating-expenses }
+      - { type: RELATED, target: commission }
+      - { type: RELATED, target: acquisition-expenses }
+    sources:
+      - { title: "IFRS 17 Insurance Contracts", reference: "Appendix A" }
+    tags: [expenses, accounting]
+
+  - slug: operating-expenses
+    type: TERM
+    labels:
+      lv: { preferred: "Darbības izdevumi", alt: ["Darbības izmaksas"], abbrev: ["OPEX"] }
+      en: { preferred: "Operating expenses", alt: ["Operating costs"], abbrev: ["OPEX"] }
+    definition:
+      lv: "Apdrošinātāja izdevumi par uzņēmējdarbības veikšanu, kurus veido klientu piesaistīšanas izdevumi, administratīvie izdevumi un atlīdzību regulēšanas izdevumi, bet neveido atlīdzību izmaksas un ieguldījumu pārvaldības izdevumi."
+      en: "An insurer's costs of running the business, comprising acquisition expenses, administrative expenses and claims handling expenses, but excluding claim payments and investment management expenses."
+    notes:
+      lv: "Vadības uzskaitē atlīdzību regulēšanas izdevumi (ALAE un ULAE) tiek iekļauti radušos atlīdzību summā, tāpēc izdevumu rādītājā tos neieskaita, lai izvairītos no dubultas uzskaites. 17. SFPS pārskatos izdevumus iedala attiecināmajos (iekļauj apdrošināšanas pakalpojumu izdevumos) un neattiecināmajos (uzrāda atsevišķi kā citus darbības izdevumus)."
+      en: "In management reporting claims handling expenses (ALAE and ULAE) are included in claims incurred, so they are left out of the expense ratio to avoid double counting. IFRS 17 reporting splits expenses into directly attributable (included in insurance service expense) and non-attributable (shown separately as other operating expenses)."
+    relations:
+      - { type: RELATED, target: acquisition-expenses }
+      - { type: RELATED, target: administrative-expenses }
+      - { type: RELATED, target: ulae }
+    tags: [expenses]
+
+  # ---------------------------------------------------------------------------
+  # Management P&L metrics
+  # ---------------------------------------------------------------------------
+  - slug: acquisition-expenses
+    type: METRIC
+    labels:
+      lv: { preferred: "Klientu piesaistīšanas izdevumi", alt: ["Iegūšanas izdevumi"], abbrev: [] }
+      en: { preferred: "Acquisition expenses", alt: ["Acquisition expense"], abbrev: [] }
+    definition:
+      lv: "Summa, kas pārskata periodā atzīta izdevumos par apdrošināšanas līgumu pārdošanu, parakstīšanu un uzsākšanu, ieskaitot komisijas un atlikto klientu piesaistīšanas izmaksu izmaiņas."
+      en: "The amount recognised as expense in the reporting period for selling, underwriting and starting insurance contracts, including commissions and the change in deferred acquisition costs."
+    notes:
+      lv: "Vadības definīcija: summa ir bruto, t. i., pārapdrošinātāju komisijas no tās netiek atskaitītas. Tāpat tā ir „nopelnītā“ summa (pēc atlikto izmaksu izmaiņām), nevis periodā samaksātās komisijas."
+      en: "Management definition: the amount is gross, i.e. reinsurance commissions received are not deducted. It is also the 'earned' amount (after the change in deferred costs), not the commissions paid in the period."
+    relations:
+      - { type: RELATED, target: acquisition-costs }
+      - { type: RELATED, target: commission-expense }
+      - { type: PART_OF, target: operating-expenses }
+    tags: [expenses, management-pl]
+    metric:
+      formula: "Commission expense + Other acquisition costs − Change in deferred acquisition costs"
+      unit: AMOUNT_EUR
+      aggregation: SUM
+      additivity: ADDITIVE
+      polarity: LOWER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: GROSS
+        premiumBasis: EARNED
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Month × line of business × sales channel"
+      dimensions: ["Line of business", "Product", "Sales channel", "Cost type"]
+      components:
+        - { role: COMPONENT, metric: commission-expense }
+      refreshFrequency: MONTHLY
+      example:
+        lv: "Komisijas 11,8 milj. EUR + citas izmaksas 4,0 milj. EUR − atlikto izmaksu pieaugums 0,5 milj. EUR = 15,3 milj. EUR"
+        en: "Commissions EUR 11.8m + other costs EUR 4.0m − increase in deferred costs EUR 0.5m = EUR 15.3m"
+
+  - slug: administrative-expenses
+    type: METRIC
+    labels:
+      lv: { preferred: "Administratīvie izdevumi", alt: ["Administrācijas izdevumi"], abbrev: [] }
+      en: { preferred: "Administrative expenses", alt: ["Admin expenses"], abbrev: [] }
+    definition:
+      lv: "Summa, kas pārskata periodā atzīta izdevumos par apdrošināšanas darbības uzturēšanu un vadību (personāls, IT, telpas, polišu apkalpošana), izņemot klientu piesaistīšanas, atlīdzību regulēšanas un ieguldījumu pārvaldības izdevumus."
+      en: "The amount recognised as expense in the reporting period for running and managing the insurance business (staff, IT, premises, policy servicing), excluding acquisition, claims handling and investment management expenses."
+    notes:
+      lv: "Atlīdzību regulēšanas izdevumi šeit nav iekļauti, jo vadības uzskaitē tie ir daļa no radušos atlīdzību summas. Izmaksu sadales atslēgas starp administratīvajiem un citiem izdevumiem jāapstiprina Kontrolinga nodaļai."
+      en: "Claims handling expenses are excluded because in management reporting they form part of claims incurred. The allocation keys between administrative and other expenses must be approved by Controlling."
+    relations:
+      - { type: PART_OF, target: operating-expenses }
+    tags: [expenses, management-pl]
+    metric:
+      formula: "Total operating expenses − Acquisition expenses − Claims handling expenses − Investment management expenses"
+      unit: AMOUNT_EUR
+      aggregation: SUM
+      additivity: ADDITIVE
+      polarity: LOWER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: GROSS
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Month × cost centre"
+      dimensions: ["Cost centre", "Line of business (allocated)", "Cost type"]
+      refreshFrequency: MONTHLY
+      example:
+        lv: "Personāls 4,6 milj. EUR + IT 2,4 milj. EUR + telpas un pārējie 1,5 milj. EUR = 8,5 milj. EUR"
+        en: "Staff EUR 4.6m + IT EUR 2.4m + premises and other EUR 1.5m = EUR 8.5m"
+
+  - slug: gross-loss-ratio
+    type: METRIC
+    labels:
+      lv: { preferred: "Bruto zaudējumu rādītājs", alt: ["Bruto zaudējumu koeficients", "Bruto atlīdzību rādītājs"], abbrev: [] }
+      en: { preferred: "Gross loss ratio", alt: ["Gross claims ratio"], abbrev: ["GLR"] }
+    definition:
+      lv: "Bruto radušos atlīdzību attiecība pret bruto nopelnītajām prēmijām pārskata periodā pirms pārapdrošināšanas."
+      en: "The ratio of gross claims incurred to gross earned premium in the reporting period, before reinsurance."
+    notes:
+      lv: "Radušās atlīdzības ietver regulēšanas izdevumus (ALAE un ULAE) un ir samazinātas par regresiem un atgūtajām summām. Kalendārā perioda rādītājs ietver arī iepriekšējo gadu rezervju noregulējuma rezultātu; negadījuma gada skatījumam izmanto galīgo zaudējumu rādītāju."
+      en: "Claims incurred include claims handling expenses (ALAE and ULAE) and are net of subrogation and salvage recoveries. The calendar-period ratio also contains the run-off of prior-year reserves; for an accident-year view use the ultimate loss ratio."
+    relations:
+      - { type: RELATED, target: net-loss-ratio }
+      - { type: RELATED, target: ultimate-loss-ratio }
+      - { type: PART_OF, target: gross-combined-ratio }
+    tags: [kpi, profitability, claims]
+    metric:
+      formula: "Gross claims incurred / Gross earned premium"
+      unit: PERCENT
+      aggregation: RATIO
+      additivity: NON_ADDITIVE
+      polarity: LOWER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: GROSS
+        premiumBasis: EARNED
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+        inclusions:
+          largeLosses: INCLUDED
+          catastropheLosses: INCLUDED
+          alae: INCLUDED
+          ulae: INCLUDED
+          recoveries: INCLUDED
+      grain: "Month × line of business"
+      dimensions: ["Line of business", "Product", "Sales channel", "Region", "Customer segment"]
+      components:
+        - { role: NUMERATOR, metric: gross-claims-incurred }
+        - { role: DENOMINATOR, metric: gross-earned-premium }
+      refreshFrequency: MONTHLY
+      example:
+        lv: "62,0 milj. EUR / 100,0 milj. EUR = 62,0 %"
+        en: "EUR 62.0m / EUR 100.0m = 62.0%"
+
+  - slug: net-loss-ratio
+    type: METRIC
+    labels:
+      lv: { preferred: "Neto zaudējumu rādītājs", alt: ["Neto zaudējumu koeficients", "Zaudējumu rādītājs"], abbrev: [] }
+      en: { preferred: "Net loss ratio", alt: ["Loss ratio", "Net claims ratio"], abbrev: ["NLR"] }
+    definition:
+      lv: "Neto radušos atlīdzību (pēc pārapdrošināšanas) attiecība pret neto nopelnītajām prēmijām pārskata periodā."
+      en: "The ratio of net claims incurred (after reinsurance) to net earned premium in the reporting period."
+    notes:
+      lv: "Šis ir kombinētā rādītāja zaudējumu komponents. Ja ziņojumā rakstīts tikai „zaudējumu rādītājs“, jāprecizē, vai tas ir bruto vai neto: lielu zaudējumu gadījumā atšķirība var būt būtiska. Iekļaušanas nosacījumi ir tādi paši kā bruto zaudējumu rādītājam."
+      en: "This is the loss component of the combined ratio. When a report just says 'loss ratio', clarify whether it is gross or net: with large losses the difference can be material. Inclusion rules are the same as for the gross loss ratio."
+    relations:
+      - { type: RELATED, target: gross-loss-ratio }
+      - { type: PART_OF, target: combined-ratio }
+      - { type: RELATED, target: reinsurance-result }
+    tags: [kpi, profitability, claims]
+    metric:
+      formula: "Net claims incurred / Net earned premium"
+      unit: PERCENT
+      aggregation: RATIO
+      additivity: NON_ADDITIVE
+      polarity: LOWER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NET
+        premiumBasis: EARNED
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+        inclusions:
+          largeLosses: INCLUDED
+          catastropheLosses: INCLUDED
+          alae: INCLUDED
+          ulae: INCLUDED
+          recoveries: INCLUDED
+      grain: "Month × line of business"
+      dimensions: ["Line of business", "Product", "Sales channel", "Region"]
+      components:
+        - { role: NUMERATOR, metric: net-claims-incurred }
+        - { role: DENOMINATOR, metric: net-earned-premium }
+      refreshFrequency: MONTHLY
+      example:
+        lv: "51,0 milj. EUR / 85,0 milj. EUR = 60,0 %"
+        en: "EUR 51.0m / EUR 85.0m = 60.0%"
+
+  - slug: acquisition-cost-ratio
+    type: METRIC
+    labels:
+      lv: { preferred: "Klientu piesaistīšanas izdevumu rādītājs", alt: ["Iegūšanas izdevumu rādītājs"], abbrev: [] }
+      en: { preferred: "Acquisition cost ratio", alt: ["Acquisition expense ratio"], abbrev: [] }
+    definition:
+      lv: "Klientu piesaistīšanas izdevumu attiecība pret neto nopelnītajām prēmijām pārskata periodā."
+      en: "The ratio of acquisition expenses to net earned premium in the reporting period."
+    notes:
+      lv: "Vadības definīcija, kas saskan ar izdevumu rādītāju (tas pats saucējs). Daži ziņojumi izmanto bruto nopelnītās vai bruto parakstītās prēmijas; tad rezultāts nav salīdzināms. Nejaukt ar komisijas rādītāju, kas ietver tikai komisijas."
+      en: "Management definition, consistent with the expense ratio (same denominator). Some reports use gross earned or gross written premium, in which case results are not comparable. Do not confuse with the commission ratio, which covers commissions only."
+    relations:
+      - { type: PART_OF, target: expense-ratio }
+      - { type: RELATED, target: commission-ratio }
+    tags: [kpi, expenses]
+    metric:
+      formula: "Acquisition expenses / Net earned premium"
+      unit: PERCENT
+      aggregation: RATIO
+      additivity: NON_ADDITIVE
+      polarity: LOWER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NET
+        premiumBasis: EARNED
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Month × line of business × sales channel"
+      dimensions: ["Line of business", "Product", "Sales channel"]
+      components:
+        - { role: NUMERATOR, metric: acquisition-expenses }
+        - { role: DENOMINATOR, metric: net-earned-premium }
+      refreshFrequency: MONTHLY
+      example:
+        lv: "15,3 milj. EUR / 85,0 milj. EUR = 18,0 %"
+        en: "EUR 15.3m / EUR 85.0m = 18.0%"
+
+  - slug: expense-ratio
+    type: METRIC
+    labels:
+      lv: { preferred: "Izdevumu rādītājs", alt: ["Izdevumu koeficients", "Neto izdevumu rādītājs"], abbrev: [] }
+      en: { preferred: "Expense ratio", alt: ["Net expense ratio"], abbrev: [] }
+    definition:
+      lv: "Klientu piesaistīšanas un administratīvo izdevumu summas attiecība pret neto nopelnītajām prēmijām pārskata periodā."
+      en: "The ratio of the sum of acquisition and administrative expenses to net earned premium in the reporting period."
+    notes:
+      lv: "Šī ir vadības definīcija. Daži ziņojumi (piem., bruto kombinētajam rādītājam vai tirgus salīdzinājumiem) dala ar bruto nopelnītajām prēmijām, kas dod zemāku rezultātu. Atlīdzību regulēšanas izdevumi nav iekļauti (tie ir zaudējumu rādītājā). Pārapdrošinātāju komisijas šajā definīcijā izdevumus nesamazina; ja Kontrolings tās atskaita, jāreģistrē atsevišķs rādītājs."
+      en: "This is the management definition. Some reports (e.g. the gross combined ratio or market comparisons) divide by gross earned premium, which gives a lower figure. Claims handling expenses are excluded (they are in the loss ratio). Reinsurance commissions received do not reduce expenses in this definition; if Controlling nets them off, register a separate metric."
+    relations:
+      - { type: PART_OF, target: combined-ratio }
+      - { type: RELATED, target: acquisition-cost-ratio }
+    tags: [kpi, expenses]
+    metric:
+      formula: "(Acquisition expenses + Administrative expenses) / Net earned premium"
+      unit: PERCENT
+      aggregation: RATIO
+      additivity: NON_ADDITIVE
+      polarity: LOWER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NET
+        premiumBasis: EARNED
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+        inclusions:
+          alae: EXCLUDED
+          ulae: EXCLUDED
+      grain: "Month × line of business"
+      dimensions: ["Line of business", "Product", "Sales channel"]
+      components:
+        - { role: NUMERATOR, metric: acquisition-expenses }
+        - { role: NUMERATOR, metric: administrative-expenses }
+        - { role: DENOMINATOR, metric: net-earned-premium }
+      refreshFrequency: MONTHLY
+      example:
+        lv: "(15,3 milj. EUR + 8,5 milj. EUR) / 85,0 milj. EUR = 28,0 %"
+        en: "(EUR 15.3m + EUR 8.5m) / EUR 85.0m = 28.0%"
+
+  - slug: combined-ratio
+    type: METRIC
+    labels:
+      lv: { preferred: "Kombinētais rādītājs", alt: ["Neto kombinētais rādītājs", "Kombinētais koeficients"], abbrev: ["COR"] }
+      en: { preferred: "Combined ratio", alt: ["Net combined ratio"], abbrev: ["COR", "CoR"] }
+    definition:
+      lv: "Neto zaudējumu rādītāja un izdevumu rādītāja summa, kas parāda, cik liela daļa no neto nopelnītajām prēmijām tiek izlietota atlīdzībām un izdevumiem."
+      en: "The sum of the net loss ratio and the expense ratio, showing what share of net earned premium is consumed by claims and expenses."
+    notes:
+      lv: "Vadības (neto) definīcija. Zem 100 % nozīmē apdrošināšanas peļņu pirms ieguldījumu ienākumiem. Nejaukt ar 17. SFPS kombinēto rādītāju, kura saucējs ir apdrošināšanas ieņēmumi un skaitītājs — apdrošināšanas pakalpojumu izdevumi (ietver arī attiecināmos administratīvos izdevumus un apgrūtinošo līgumu zaudējumus, kā arī diskontēšanas ietekmi); abi rādītāji var atšķirties par vairākiem procentpunktiem. Bruto variantam skatīt bruto kombinēto rādītāju."
+      en: "Management (net) definition. Below 100% indicates an underwriting profit before investment income. Do not confuse with the IFRS 17 combined ratio, whose denominator is insurance revenue and whose numerator is insurance service expense (which also contains attributable overheads, onerous-contract losses and discounting effects); the two can differ by several percentage points. For the gross view see gross combined ratio."
+    relations:
+      - { type: RELATED, target: ifrs17-combined-ratio }
+      - { type: RELATED, target: gross-combined-ratio }
+      - { type: RELATED, target: underwriting-result }
+    tags: [kpi, profitability]
+    metric:
+      formula: "Net loss ratio + Expense ratio"
+      unit: PERCENT
+      aggregation: CUSTOM
+      additivity: NON_ADDITIVE
+      polarity: LOWER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NET
+        premiumBasis: EARNED
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+        inclusions:
+          largeLosses: INCLUDED
+          catastropheLosses: INCLUDED
+          alae: INCLUDED
+          ulae: INCLUDED
+          recoveries: INCLUDED
+      grain: "Month × line of business"
+      dimensions: ["Line of business", "Product", "Sales channel", "Region"]
+      components:
+        - { role: COMPONENT, metric: net-loss-ratio }
+        - { role: COMPONENT, metric: expense-ratio }
+      refreshFrequency: MONTHLY
+      example:
+        lv: "60,0 % + 28,0 % = 88,0 %"
+        en: "60.0% + 28.0% = 88.0%"
+
+  - slug: gross-combined-ratio
+    type: METRIC
+    labels:
+      lv: { preferred: "Bruto kombinētais rādītājs", alt: [], abbrev: [] }
+      en: { preferred: "Gross combined ratio", alt: [], abbrev: [] }
+    definition:
+      lv: "Bruto radušos atlīdzību, klientu piesaistīšanas izdevumu un administratīvo izdevumu summas attiecība pret bruto nopelnītajām prēmijām pārskata periodā pirms pārapdrošināšanas."
+      en: "The ratio of the sum of gross claims incurred, acquisition expenses and administrative expenses to gross earned premium in the reporting period, before reinsurance."
+    notes:
+      lv: "Izmanto, lai novērtētu tiešās apdrošināšanas rentabilitāti bez pārapdrošināšanas ietekmes. Starpība starp bruto un neto kombinēto rādītāju parāda pārapdrošināšanas aizsardzības ietekmi. Izdevumu daļa šeit dalīta ar bruto, nevis neto nopelnītajām prēmijām."
+      en: "Used to assess direct-business profitability without the effect of reinsurance. The gap between gross and net combined ratio shows the impact of reinsurance protection. Here the expense part is divided by gross, not net, earned premium."
+    relations:
+      - { type: RELATED, target: combined-ratio }
+      - { type: RELATED, target: gross-loss-ratio }
+    tags: [kpi, profitability]
+    metric:
+      formula: "(Gross claims incurred + Acquisition expenses + Administrative expenses) / Gross earned premium"
+      unit: PERCENT
+      aggregation: RATIO
+      additivity: NON_ADDITIVE
+      polarity: LOWER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: GROSS
+        premiumBasis: EARNED
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+        inclusions:
+          largeLosses: INCLUDED
+          catastropheLosses: INCLUDED
+          alae: INCLUDED
+          ulae: INCLUDED
+          recoveries: INCLUDED
+      grain: "Month × line of business"
+      dimensions: ["Line of business", "Product", "Sales channel", "Region"]
+      components:
+        - { role: NUMERATOR, metric: gross-claims-incurred }
+        - { role: NUMERATOR, metric: acquisition-expenses }
+        - { role: NUMERATOR, metric: administrative-expenses }
+        - { role: DENOMINATOR, metric: gross-earned-premium }
+      refreshFrequency: MONTHLY
+      example:
+        lv: "(62,0 + 15,3 + 8,5) milj. EUR / 100,0 milj. EUR = 85,8 %"
+        en: "(EUR 62.0m + 15.3m + 8.5m) / EUR 100.0m = 85.8%"
+
+  - slug: underwriting-result
+    type: METRIC
+    labels:
+      lv: { preferred: "Apdrošināšanas tehniskais rezultāts", alt: ["Parakstīšanas rezultāts", "Tehniskais rezultāts"], abbrev: [] }
+      en: { preferred: "Underwriting result", alt: ["Technical result"], abbrev: [] }
+    definition:
+      lv: "Summa, ko iegūst, no neto nopelnītajām prēmijām atņemot neto radušās atlīdzības, klientu piesaistīšanas izdevumus un administratīvos izdevumus, neieskaitot ieguldījumu ienākumus."
+      en: "The amount obtained by deducting net claims incurred, acquisition expenses and administrative expenses from net earned premium, excluding investment income."
+    notes:
+      lv: "Vadības definīcija; atbilst (1 − kombinētais rādītājs) × neto nopelnītās prēmijas. Nejaukt ar 17. SFPS apdrošināšanas pakalpojumu rezultātu, kas balstās uz apdrošināšanas ieņēmumiem un ietver diskontēšanas un korekcijas nefinanšu riskam ietekmi."
+      en: "Management definition; equals (1 − combined ratio) × net earned premium. Do not confuse with the IFRS 17 insurance service result, which is based on insurance revenue and includes discounting and risk adjustment effects."
+    relations:
+      - { type: RELATED, target: combined-ratio }
+      - { type: RELATED, target: insurance-service-result }
+    tags: [kpi, profitability, management-pl]
+    metric:
+      formula: "Net earned premium − Net claims incurred − Acquisition expenses − Administrative expenses"
+      unit: AMOUNT_EUR
+      aggregation: SUM
+      additivity: ADDITIVE
+      polarity: HIGHER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NET
+        premiumBasis: EARNED
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+        inclusions:
+          largeLosses: INCLUDED
+          catastropheLosses: INCLUDED
+          alae: INCLUDED
+          ulae: INCLUDED
+          recoveries: INCLUDED
+      grain: "Month × line of business"
+      dimensions: ["Line of business", "Product", "Sales channel", "Region"]
+      components:
+        - { role: COMPONENT, metric: net-earned-premium }
+        - { role: COMPONENT, metric: net-claims-incurred }
+        - { role: COMPONENT, metric: acquisition-expenses }
+        - { role: COMPONENT, metric: administrative-expenses }
+      refreshFrequency: MONTHLY
+      example:
+        lv: "85,0 − 51,0 − 15,3 − 8,5 = 10,2 milj. EUR"
+        en: "85.0 − 51.0 − 15.3 − 8.5 = EUR 10.2m"
+
+  # ---------------------------------------------------------------------------
+  # IFRS 17 P&L metrics
+  # ---------------------------------------------------------------------------
+  - slug: insurance-revenue
+    type: METRIC
+    labels:
+      lv: { preferred: "Apdrošināšanas ieņēmumi", alt: [], abbrev: [] }
+      en: { preferred: "Insurance revenue", alt: [], abbrev: [] }
+    definition:
+      lv: "17. SFPS peļņas vai zaudējumu aprēķina postenis, kas atspoguļo apdrošināšanas līguma pakalpojumu sniegšanu pārskata periodā summā, kas atbilst atlīdzībai, ko apdrošinātājs sagaida saņemt apmaiņā pret šiem pakalpojumiem."
+      en: "The IFRS 17 profit or loss line item that depicts the provision of insurance contract services in the reporting period at an amount reflecting the consideration the insurer expects to receive in exchange for those services."
+    notes:
+      lv: "Pēc PAA apdrošināšanas ieņēmumi = sagaidāmās prēmiju iemaksas, kas sadalītas seguma periodam (parasti laika proporcionāli), tāpēc tie ir tuvi bruto nopelnītajām prēmijām, bet var atšķirties (piem., par prēmiju neatgūstamības korekcijām un ieguldījumu komponentiem). Ieņēmumi ir bruto: nodotās prēmijas tiek uzrādītas atsevišķi turēto pārapdrošināšanas līgumu rezultātā."
+      en: "Under the PAA insurance revenue = expected premium receipts allocated to the coverage period (usually on a time basis), so it is close to gross earned premium but can differ (e.g. for premium credit-risk adjustments and investment components). Revenue is gross: ceded premium is presented separately within the result from reinsurance contracts held."
+    relations:
+      - { type: RELATED, target: gross-earned-premium }
+      - { type: PART_OF, target: insurance-service-result }
+    sources:
+      - { title: "IFRS 17 Insurance Contracts" }
+    tags: [kpi, ifrs17, accounting]
+    metric:
+      formula: "Expected premium receipts allocated to the period (PAA) + Revenue released from the liability for remaining coverage (GMM)"
+      unit: AMOUNT_EUR
+      aggregation: SUM
+      additivity: ADDITIVE
+      polarity: HIGHER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: GROSS
+        premiumBasis: EARNED
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: IFRS17
+      grain: "Month × IFRS 17 portfolio × annual cohort"
+      dimensions: ["IFRS 17 portfolio", "Line of business", "Annual cohort", "Measurement model"]
+      refreshFrequency: MONTHLY
+      example:
+        lv: "Gada apdrošināšanas ieņēmumi 100,0 milj. EUR"
+        en: "Annual insurance revenue EUR 100.0m"
+
+  - slug: insurance-service-expense
+    type: METRIC
+    labels:
+      lv: { preferred: "Apdrošināšanas pakalpojumu izdevumi", alt: [], abbrev: ["ISE"] }
+      en: { preferred: "Insurance service expense", alt: ["Insurance service expenses"], abbrev: ["ISE"] }
+    definition:
+      lv: "17. SFPS peļņas vai zaudējumu aprēķina postenis, kas ietver periodā radušās atlīdzības un citus tieši attiecināmos apdrošināšanas pakalpojumu izdevumus, iegūšanas naudas plūsmu amortizāciju, radušos prasījumu saistību izmaiņas par pagātnes pakalpojumiem un apgrūtinošo līgumu zaudējumus un to apvērses."
+      en: "The IFRS 17 profit or loss line item comprising claims and other directly attributable insurance service expenses incurred in the period, amortisation of acquisition cash flows, changes in the liability for incurred claims relating to past service, and losses on onerous contracts and their reversals."
+    notes:
+      lv: "Uzrāda bruto, pirms pārapdrošināšanas. Neattiecināmie (vispārējie) izdevumi šeit nav iekļauti. Atšķirībā no vadības uzskaites atlīdzību summas tā ietver diskontēšanas ietekmi un korekcijas nefinanšu riskam izmaiņas, bet neietver apdrošināšanas finanšu izdevumus (diskonta atritināšanu)."
+      en: "Presented gross, before reinsurance. Non-attributable (general) overheads are excluded. Unlike management claims incurred, it reflects discounting and changes in the risk adjustment for non-financial risk, but excludes insurance finance expenses (unwinding of discount)."
+    relations:
+      - { type: PART_OF, target: insurance-service-result }
+      - { type: RELATED, target: gross-claims-incurred }
+      - { type: RELATED, target: loss-component }
+    sources:
+      - { title: "IFRS 17 Insurance Contracts" }
+    tags: [ifrs17, accounting]
+    metric:
+      formula: "Incurred claims and other attributable expenses + Amortisation of acquisition cash flows + Changes in liability for incurred claims (past service) + Onerous contract losses and reversals"
+      unit: AMOUNT_EUR
+      aggregation: SUM
+      additivity: ADDITIVE
+      polarity: LOWER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: GROSS
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: IFRS17
+        inclusions:
+          largeLosses: INCLUDED
+          catastropheLosses: INCLUDED
+          alae: INCLUDED
+          ulae: INCLUDED
+          recoveries: INCLUDED
+      grain: "Month × IFRS 17 portfolio × annual cohort"
+      dimensions: ["IFRS 17 portfolio", "Line of business", "Annual cohort", "Expense type"]
+      refreshFrequency: MONTHLY
+      example:
+        lv: "Atlīdzības 64,0 + attiecināmie izdevumi 6,5 + iegūšanas amortizācija 15,0 + apgrūtinošo līgumu zaudējumi 0,5 = 86,0 milj. EUR"
+        en: "Claims 64.0 + attributable expenses 6.5 + acquisition amortisation 15.0 + onerous losses 0.5 = EUR 86.0m"
+
+  - slug: insurance-service-result
+    type: METRIC
+    labels:
+      lv: { preferred: "Apdrošināšanas pakalpojumu rezultāts", alt: [], abbrev: ["ISR"] }
+      en: { preferred: "Insurance service result", alt: [], abbrev: ["ISR"] }
+    definition:
+      lv: "17. SFPS rezultāta rādītājs, ko iegūst, no apdrošināšanas ieņēmumiem atņemot apdrošināšanas pakalpojumu izdevumus (bruto, pirms pārapdrošināšanas)."
+      en: "The IFRS 17 result measure obtained by deducting insurance service expense from insurance revenue (gross, before reinsurance)."
+    notes:
+      lv: "Šajā reģistrā rādītājs definēts bruto. Daudzos pārskatos (arī grupas līmenī) „apdrošināšanas pakalpojumu rezultāts“ tiek uzrādīts pēc turēto pārapdrošināšanas līgumu neto rezultāta; tādā gadījumā tas jāsauc par neto apdrošināšanas pakalpojumu rezultātu. Rādītājs neietver ieguldījumu rezultātu un apdrošināšanas finanšu ieņēmumus vai izdevumus."
+      en: "In this registry the metric is defined gross. Many reports (including at group level) present the 'insurance service result' after the net result from reinsurance contracts held; in that case it should be called the net insurance service result. The metric excludes investment result and insurance finance income or expenses."
+    relations:
+      - { type: RELATED, target: underwriting-result }
+      - { type: RELATED, target: reinsurance-held-result }
+    sources:
+      - { title: "IFRS 17 Insurance Contracts", reference: "paragraph 80" }
+    tags: [kpi, ifrs17, profitability]
+    metric:
+      formula: "Insurance revenue − Insurance service expense"
+      unit: AMOUNT_EUR
+      aggregation: SUM
+      additivity: ADDITIVE
+      polarity: HIGHER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: GROSS
+        premiumBasis: EARNED
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: IFRS17
+        inclusions:
+          largeLosses: INCLUDED
+          catastropheLosses: INCLUDED
+          alae: INCLUDED
+          ulae: INCLUDED
+          recoveries: INCLUDED
+      grain: "Month × IFRS 17 portfolio × annual cohort"
+      dimensions: ["IFRS 17 portfolio", "Line of business", "Annual cohort"]
+      components:
+        - { role: COMPONENT, metric: insurance-revenue }
+        - { role: COMPONENT, metric: insurance-service-expense }
+      refreshFrequency: MONTHLY
+      example:
+        lv: "100,0 milj. EUR − 86,0 milj. EUR = 14,0 milj. EUR"
+        en: "EUR 100.0m − EUR 86.0m = EUR 14.0m"
+
+  - slug: reinsurance-held-result
+    type: METRIC
+    labels:
+      lv: { preferred: "Turēto pārapdrošināšanas līgumu neto rezultāts", alt: ["Neto ieņēmumi vai izdevumi no turētajiem pārapdrošināšanas līgumiem"], abbrev: [] }
+      en: { preferred: "Net result from reinsurance contracts held", alt: ["Net income or expense from reinsurance contracts held"], abbrev: [] }
+    definition:
+      lv: "17. SFPS peļņas vai zaudējumu aprēķina postenis, kas parāda no pārapdrošinātājiem atgūstamo summu un pārapdrošinātājiem samaksāto prēmiju daļas sadalījuma starpību pārskata periodā; pozitīva vērtība ir ieņēmumi, negatīva — izdevumi."
+      en: "The IFRS 17 profit or loss line item showing the difference between amounts recovered from reinsurers and the allocation of premiums paid to reinsurers in the reporting period; a positive value is income, a negative value is expense."
+    notes:
+      lv: "Konvencija šajā reģistrā: zīme ar „+“ nozīmē ieņēmumus apdrošinātājam. Parasti rezultāts ir negatīvs (pārapdrošināšanas aizsardzības cena). Nejaukt ar vadības uzskaites pārapdrošināšanas rezultātu, kura zīmes konvencija un sastāvs var atšķirties."
+      en: "Convention in this registry: a '+' sign means income to the insurer. The result is normally negative (the cost of reinsurance protection). Do not confuse with the management reinsurance result, whose sign convention and composition may differ."
+    relations:
+      - { type: RELATED, target: reinsurance-result }
+      - { type: RELATED, target: ifrs17-combined-ratio }
+    sources:
+      - { title: "IFRS 17 Insurance Contracts" }
+    tags: [ifrs17, reinsurance, accounting]
+    metric:
+      formula: "Amounts recovered from reinsurers − Allocation of reinsurance premiums paid"
+      unit: AMOUNT_EUR
+      aggregation: SUM
+      additivity: ADDITIVE
+      polarity: NEUTRAL
+      qualifiers:
+        reinsuranceBasis: CEDED
+        premiumBasis: EARNED
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: IFRS17
+        inclusions:
+          largeLosses: INCLUDED
+          catastropheLosses: INCLUDED
+      grain: "Month × reinsurance contract held"
+      dimensions: ["Reinsurance treaty", "Line of business", "Annual cohort"]
+      refreshFrequency: MONTHLY
+      example:
+        lv: "Atgūtās summas 9,0 milj. EUR − pārapdrošināšanas prēmiju sadalījums 13,0 milj. EUR = −4,0 milj. EUR"
+        en: "Recoveries EUR 9.0m − allocation of reinsurance premiums EUR 13.0m = −EUR 4.0m"
+
+  - slug: ifrs17-combined-ratio
+    type: METRIC
+    labels:
+      lv: { preferred: "Kombinētais rādītājs (17. SFPS)", alt: ["17. SFPS kombinētais rādītājs"], abbrev: [] }
+      en: { preferred: "IFRS 17 combined ratio", alt: ["Combined ratio (IFRS 17)"], abbrev: [] }
+    definition:
+      lv: "Apdrošināšanas pakalpojumu izdevumu un turēto pārapdrošināšanas līgumu neto izdevumu summas attiecība pret apdrošināšanas ieņēmumiem pārskata periodā."
+      en: "The ratio of the sum of insurance service expense and the net expense from reinsurance contracts held to insurance revenue in the reporting period."
+    notes:
+      lv: "Konvencija: skaitītājs ir neto (pēc pārapdrošināšanas) — no apdrošināšanas pakalpojumu izdevumiem atņem turēto pārapdrošināšanas līgumu neto rezultātu (kas parasti ir negatīvs, tāpēc izdevumi pieaug), bet saucējs paliek bruto apdrošināšanas ieņēmumi. Bruto variants = apdrošināšanas pakalpojumu izdevumi / apdrošināšanas ieņēmumi. Nav tieši salīdzināms ar vadības kombinēto rādītāju, kura saucējs ir neto nopelnītās prēmijas. Salīdzinot ar grupas (PZU) publicētajiem rādītājiem, jāpārbauda grupas konvencija."
+      en: "Convention: the numerator is net of reinsurance — the net result from reinsurance contracts held is subtracted from insurance service expense (it is normally negative, so expense increases), while the denominator remains gross insurance revenue. The gross variant = insurance service expense / insurance revenue. Not directly comparable with the management combined ratio, whose denominator is net earned premium. When comparing with figures published by the group (PZU), check the group convention."
+    relations:
+      - { type: RELATED, target: combined-ratio }
+      - { type: RELATED, target: insurance-service-result }
+    tags: [kpi, ifrs17, profitability]
+    metric:
+      formula: "(Insurance service expense − Net result from reinsurance contracts held) / Insurance revenue"
+      unit: PERCENT
+      aggregation: RATIO
+      additivity: NON_ADDITIVE
+      polarity: LOWER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NET
+        premiumBasis: EARNED
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: IFRS17
+        inclusions:
+          largeLosses: INCLUDED
+          catastropheLosses: INCLUDED
+          alae: INCLUDED
+          ulae: INCLUDED
+          recoveries: INCLUDED
+      grain: "Month × IFRS 17 portfolio"
+      dimensions: ["IFRS 17 portfolio", "Line of business", "Annual cohort"]
+      components:
+        - { role: NUMERATOR, metric: insurance-service-expense }
+        - { role: NUMERATOR, metric: reinsurance-held-result }
+        - { role: DENOMINATOR, metric: insurance-revenue }
+      refreshFrequency: MONTHLY
+      example:
+        lv: "(86,0 − (−4,0)) milj. EUR / 100,0 milj. EUR = 90,0 %"
+        en: "(EUR 86.0m − (−EUR 4.0m)) / EUR 100.0m = 90.0%"
+
+  # ---------------------------------------------------------------------------
+  # Profit and return
+  # ---------------------------------------------------------------------------
+  - slug: net-profit
+    type: METRIC
+    labels:
+      lv: { preferred: "Tīrā peļņa", alt: ["Pārskata perioda peļņa", "Peļņa pēc nodokļiem"], abbrev: [] }
+      en: { preferred: "Net profit", alt: ["Profit for the period", "Profit after tax"], abbrev: [] }
+    definition:
+      lv: "Uzņēmuma peļņa vai zaudējumi pārskata periodā pēc visu ieņēmumu, izdevumu un uzņēmumu ienākuma nodokļa atzīšanas, kā uzrādīts finanšu pārskatos saskaņā ar SFPS."
+      en: "The company's profit or loss for the reporting period after recognising all income, expenses and corporate income tax, as presented in the IFRS financial statements."
+    notes:
+      lv: "Latvijā uzņēmumu ienākuma nodokli galvenokārt maksā no sadalītās peļņas, tāpēc peļņa pirms un pēc nodokļiem var būt gandrīz vienāda, kamēr dividendes netiek izmaksātas. Grupas (PZU) pārskatos peļņa var atšķirties konsolidācijas korekciju dēļ."
+      en: "In Latvia corporate income tax is mainly payable on distributed profit, so profit before and after tax can be almost equal while no dividends are paid. In group (PZU) reporting the figure may differ because of consolidation adjustments."
+    relations:
+      - { type: RELATED, target: insurance-service-result }
+      - { type: RELATED, target: investment-income }
+    tags: [kpi, profitability, accounting]
+    metric:
+      formula: "Insurance service result + Net result from reinsurance contracts held + Net investment result − Insurance finance expenses − Other expenses + Other income − Income tax"
+      unit: AMOUNT_EUR
+      aggregation: SUM
+      additivity: ADDITIVE
+      polarity: HIGHER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NET
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: IFRS17
+      grain: "Month × legal entity"
+      dimensions: ["Legal entity", "Country branch"]
+      components:
+        - { role: COMPONENT, metric: insurance-service-result }
+        - { role: COMPONENT, metric: reinsurance-held-result }
+        - { role: COMPONENT, metric: investment-income }
+      refreshFrequency: MONTHLY
+      example:
+        lv: "14,0 − 4,0 + 9,0 − 3,0 − 3,5 + 0,5 − 1,0 = 12,0 milj. EUR"
+        en: "14.0 − 4.0 + 9.0 − 3.0 − 3.5 + 0.5 − 1.0 = EUR 12.0m"
+
+  - slug: average-equity
+    type: METRIC
+    labels:
+      lv: { preferred: "Vidējais pašu kapitāls", alt: [], abbrev: [] }
+      en: { preferred: "Average equity", alt: ["Average shareholders' equity"], abbrev: [] }
+    definition:
+      lv: "Kopējā pašu kapitāla (aktīvi mīnus saistības saskaņā ar SFPS bilanci) vidējā vērtība pārskata periodā, aprēķināta no perioda sākuma un beigu atlikumiem vai no mēneša beigu atlikumiem."
+      en: "The average value of total equity (assets minus liabilities in the IFRS balance sheet) over the reporting period, calculated from opening and closing balances or from month-end balances."
+    notes:
+      lv: "Pašu kapitāls pēc SFPS nav tas pats, kas Maksātspējas II pašu līdzekļi: pašu līdzekļi balstās uz Maksātspējas II bilanci (cits tehnisko rezervju novērtējums, nemateriālo aktīvu izslēgšana, paredzamās dividendes u. c.)."
+      en: "IFRS equity is not the same as Solvency II own funds: own funds are based on the Solvency II balance sheet (different valuation of technical provisions, exclusion of intangibles, foreseeable dividends, etc.)."
+    relations:
+      - { type: RELATED, target: own-funds }
+    tags: [accounting, capital]
+    metric:
+      formula: "(Equity at start of period + Equity at end of period) / 2"
+      unit: AMOUNT_EUR
+      aggregation: AVERAGE
+      additivity: SEMI_ADDITIVE
+      polarity: NEUTRAL
+      qualifiers:
+        reinsuranceBasis: NOT_APPLICABLE
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: IFRS17
+      grain: "Month × legal entity"
+      dimensions: ["Legal entity"]
+      refreshFrequency: MONTHLY
+      example:
+        lv: "(95,0 milj. EUR + 105,0 milj. EUR) / 2 = 100,0 milj. EUR"
+        en: "(EUR 95.0m + EUR 105.0m) / 2 = EUR 100.0m"
+
+  - slug: return-on-equity
+    type: METRIC
+    labels:
+      lv: { preferred: "Pašu kapitāla atdeve", alt: ["Pašu kapitāla rentabilitāte"], abbrev: ["ROE"] }
+      en: { preferred: "Return on equity", alt: [], abbrev: ["ROE"] }
+    definition:
+      lv: "Tīrās peļņas (gada izteiksmē) attiecība pret vidējo pašu kapitālu pārskata periodā."
+      en: "The ratio of net profit (annualised) to average equity over the reporting period."
+    notes:
+      lv: "Periodiem, kas īsāki par gadu, peļņu pārrēķina gada izteiksmē (piem., 6 mēnešu peļņa × 2). Grupas (PZU) ROE definīcija var atšķirties (piem., izslēdzot noteiktus kapitāla posteņus); salīdzinot pārbaudīt definīciju."
+      en: "For periods shorter than a year profit is annualised (e.g. 6-month profit × 2). The group (PZU) ROE definition may differ (e.g. excluding certain equity items); check the definition before comparing."
+    relations:
+      - { type: RELATED, target: solvency-ratio }
+    tags: [kpi, profitability, capital]
+    metric:
+      formula: "Net profit (annualised) / Average equity"
+      unit: PERCENT
+      aggregation: RATIO
+      additivity: NON_ADDITIVE
+      polarity: HIGHER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NOT_APPLICABLE
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Quarter × legal entity"
+      dimensions: ["Legal entity"]
+      components:
+        - { role: NUMERATOR, metric: net-profit }
+        - { role: DENOMINATOR, metric: average-equity }
+      refreshFrequency: QUARTERLY
+      example:
+        lv: "12,0 milj. EUR / 100,0 milj. EUR = 12,0 %"
+        en: "EUR 12.0m / EUR 100.0m = 12.0%"

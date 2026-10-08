@@ -1,0 +1,529 @@
+domain: distribution
+concepts:
+  - slug: sales-channel
+    type: TERM
+    labels:
+      lv: { preferred: "Pārdošanas kanāls", alt: ["Izplatīšanas kanāls"], abbrev: [] }
+      en: { preferred: "Sales channel", alt: ["Distribution channel"], abbrev: [] }
+    definition:
+      lv: "Veids, kādā apdrošināšanas produkti tiek pārdoti un polises noslēgtas ar klientiem, piemēram, tiešā pārdošana, digitālais kanāls, aģenti, brokeri vai bankapdrošināšana."
+      en: "A route through which insurance products are sold and policies concluded with customers, for example direct sales, the digital channel, agents, brokers or bancassurance."
+    notes:
+      lv: "Katrai polises versijai jāpiešķir tieši viens kanāls pēc noteikuma „kanāls, kurā līgums noslēgts“. Ja klients sāk tiešsaistē un pabeidz pie konsultanta vai brokera, kanālu nosaka noslēgšanas vieta, nevis pirmais kontakts. Atjaunojuma kanāls var atšķirties no sākotnējās pārdošanas kanāla."
+      en: "Each policy version must be assigned exactly one channel by the rule 'channel in which the contract was concluded'. If a customer starts online and completes with a consultant or broker, the channel is where the contract was concluded, not the first contact. The renewal channel may differ from the original sales channel."
+    relations:
+      - { type: RELATED, target: intermediary }
+      - { type: RELATED, target: digital-channel }
+      - { type: RELATED, target: bancassurance }
+    tags: [distribution, classification]
+
+  - slug: intermediary
+    type: TERM
+    labels:
+      lv: { preferred: "Apdrošināšanas starpnieks", alt: ["Starpnieks"], abbrev: [] }
+      en: { preferred: "Insurance intermediary", alt: ["Intermediary"], abbrev: [] }
+    definition:
+      lv: "Fiziska vai juridiska persona, kas, nebūdama apdrošinātājs vai tā darbinieks, par atlīdzību veic apdrošināšanas izplatīšanu; tā ir apdrošināšanas aģents vai apdrošināšanas brokeris."
+      en: "A natural or legal person, other than an insurer or its employee, who carries out insurance distribution for remuneration; it is either an insurance agent or an insurance broker."
+    notes:
+      lv: "Uzņēmuma darbinieki, kas pārdod polises, nav starpnieki: tā ir tiešā pārdošana. Starpniekiem jāatbilst reģistrācijas un profesionālās kvalifikācijas prasībām, ko uzrauga Latvijas Banka."
+      en: "Company employees who sell policies are not intermediaries: that is direct sales. Intermediaries must meet registration and professional qualification requirements supervised by Latvijas Banka."
+    relations:
+      - { type: RELATED, target: insurance-agent }
+      - { type: RELATED, target: insurance-broker }
+      - { type: RELATED, target: commission }
+      - { type: RELATED, target: idd }
+      - { type: RELATED, target: latvijas-banka }
+    sources:
+      - { title: "Apdrošināšanas un pārapdrošināšanas izplatīšanas likums" }
+      - { title: "Directive (EU) 2016/97 on insurance distribution (IDD)" }
+    tags: [distribution, intermediary]
+
+  - slug: insurance-agent
+    type: TERM
+    labels:
+      lv: { preferred: "Apdrošināšanas aģents", alt: ["Aģents"], abbrev: [] }
+      en: { preferred: "Insurance agent", alt: ["Agent", "Tied agent"], abbrev: [] }
+    definition:
+      lv: "Apdrošināšanas starpnieks, kas izplata apdrošināšanu viena vai vairāku apdrošinātāju vārdā un to atbildībā."
+      en: "An insurance intermediary who distributes insurance on behalf of, and under the responsibility of, one or more insurers."
+    examples:
+      lv: "Autosalons, kas līguma ar apdrošinātāju ietvaros pārdod KASKO un OCTA, darbojas kā apdrošināšanas aģents."
+      en: "A car dealership that sells KASKO and OCTA under an agreement with the insurer acts as an insurance agent."
+    notes:
+      lv: "Aģents pārstāv apdrošinātāju, bet brokeris – klientu. Piesaistītais aģents neizplata dažādu apdrošinātāju savstarpēji konkurējošus produktus. Bankas, līzinga kompānijas un citi partneri juridiski bieži ir aģenti, lai gan pārskatos tos var izdalīt atsevišķā kanālā."
+      en: "An agent represents the insurer, whereas a broker represents the customer. A tied agent does not distribute competing products of different insurers. Banks, leasing companies and other partners are often legally agents, even if they are reported as a separate channel."
+    relations:
+      - { type: BROADER, target: intermediary }
+      - { type: RELATED, target: insurance-broker }
+      - { type: RELATED, target: bancassurance }
+    sources:
+      - { title: "Apdrošināšanas un pārapdrošināšanas izplatīšanas likums" }
+    tags: [distribution, intermediary]
+
+  - slug: insurance-broker
+    type: TERM
+    labels:
+      lv: { preferred: "Apdrošināšanas brokeris", alt: ["Brokeris"], abbrev: [] }
+      en: { preferred: "Insurance broker", alt: ["Broker"], abbrev: [] }
+    definition:
+      lv: "Apdrošināšanas starpnieks, kas darbojas klienta interesēs neatkarīgi no apdrošinātājiem un, pamatojoties uz vairāku apdrošinātāju piedāvājumu analīzi, palīdz klientam izvēlēties un noslēgt piemērotu apdrošināšanas līgumu."
+      en: "An insurance intermediary who acts in the customer's interest independently of insurers and, based on an analysis of offers from several insurers, helps the customer choose and conclude a suitable insurance contract."
+    notes:
+      lv: "Lai gan brokeris pārstāv klientu, komisijas naudu parasti maksā apdrošinātājs. Brokera kanāls ietver arī tiešsaistes salīdzināšanas platformas, ja tās darbojas kā brokeri; šādu pārdošanu neuzskaita kā uzņēmuma digitālo kanālu."
+      en: "Although the broker represents the customer, the commission is usually paid by the insurer. The broker channel also includes online comparison platforms when they operate as brokers; such sales are not counted as the company's digital channel."
+    relations:
+      - { type: BROADER, target: intermediary }
+      - { type: RELATED, target: insurance-agent }
+      - { type: RELATED, target: quote }
+    sources:
+      - { title: "Apdrošināšanas un pārapdrošināšanas izplatīšanas likums" }
+    tags: [distribution, intermediary]
+
+  - slug: bancassurance
+    type: TERM
+    labels:
+      lv: { preferred: "Bankapdrošināšana", alt: ["Bankas kanāls"], abbrev: [] }
+      en: { preferred: "Bancassurance", alt: ["Bank channel"], abbrev: [] }
+    definition:
+      lv: "Izplatīšanas modelis, kurā banka saskaņā ar sadarbības līgumu pārdod apdrošinātāja produktus saviem klientiem, bieži kopā ar kredītiem vai līzingu."
+      en: "A distribution model in which a bank, under a partnership agreement, sells the insurer's products to its customers, often together with loans or leasing."
+    examples:
+      lv: "Mājokļa apdrošināšana, kas tiek piedāvāta hipotekārā kredīta noformēšanas laikā bankas filiālē vai internetbankā."
+      en: "Home insurance offered when a mortgage is arranged in a bank branch or in internet banking."
+    notes:
+      lv: "Juridiski banka parasti ir apdrošināšanas aģents, bet vadības pārskatos bankapdrošināšana tiek izdalīta kā atsevišķs kanāls. Pārdošana bankas internetbankā ir bankapdrošināšana, nevis uzņēmuma digitālais kanāls."
+      en: "Legally the bank is usually an insurance agent, but management reporting shows bancassurance as a separate channel. Sales in the bank's internet banking count as bancassurance, not as the company's digital channel."
+    relations:
+      - { type: BROADER, target: sales-channel }
+      - { type: RELATED, target: insurance-agent }
+    tags: [distribution, channel]
+
+  - slug: digital-channel
+    type: TERM
+    labels:
+      lv: { preferred: "Digitālais kanāls", alt: ["Tiešsaistes kanāls", "Pašapkalpošanās kanāls"], abbrev: [] }
+      en: { preferred: "Digital channel", alt: ["Online channel", "Self-service channel"], abbrev: [] }
+    definition:
+      lv: "Uzņēmuma paša pārdošanas kanāls, kurā klients bez pārdevēja līdzdalības pats saņem piedāvājumu un noslēdz polisi uzņēmuma tīmekļvietnē, mobilajā lietotnē vai klientu portālā."
+      en: "The company's own sales channel in which the customer, without a salesperson's involvement, obtains a quote and concludes a policy on the company website, mobile app or customer portal."
+    notes:
+      lv: "Nejaukt ar tiešsaistes pārdošanu, ko veic starpnieki (brokeru platformas, internetbanka) – tā pieder attiecīgā starpnieka kanālam. Ja konsultants pabeidz tiešsaistē uzsāktu pirkumu, tas nav digitālais kanāls, bet to var izsekot kā „digitāli iniciētu“ pārdošanu."
+      en: "Do not confuse with online sales by intermediaries (broker platforms, internet banking), which belong to the respective intermediary channel. If a consultant completes a purchase started online, it is not the digital channel, but it can be tracked as a 'digitally initiated' sale."
+    relations:
+      - { type: BROADER, target: sales-channel }
+      - { type: RELATED, target: digital-sales-share }
+    tags: [distribution, channel, digital]
+
+  - slug: commission
+    type: TERM
+    labels:
+      lv: { preferred: "Komisijas nauda", alt: ["Komisija", "Starpnieka atlīdzība"], abbrev: [] }
+      en: { preferred: "Commission", alt: ["Intermediary commission", "Brokerage"], abbrev: [] }
+    definition:
+      lv: "Atlīdzība, ko apdrošinātājs maksā apdrošināšanas starpniekam par apdrošināšanas izplatīšanu, parasti kā procentuālu daļu no pārdoto vai atjaunoto polišu prēmijas."
+      en: "A remuneration that the insurer pays to an insurance intermediary for insurance distribution, usually as a percentage of the premium of policies sold or renewed."
+    notes:
+      lv: "Nejaukt ar pārapdrošināšanas komisiju, ko apdrošinātājs saņem no pārapdrošinātāja. Bonusi par apjomu vai kvalitāti ir daļa no starpnieka atlīdzības, bet tos var uzskaitīt atsevišķi. Atceļot polisi, attiecīgā komisijas daļa parasti tiek atprasīta (komisijas storno)."
+      en: "Do not confuse with reinsurance commission, which the insurer receives from the reinsurer. Volume or quality bonuses are part of intermediary remuneration but may be recorded separately. When a policy is cancelled, the corresponding part of the commission is usually clawed back."
+    relations:
+      - { type: RELATED, target: intermediary }
+      - { type: RELATED, target: commission-expense }
+      - { type: PART_OF, target: acquisition-costs }
+      - { type: RELATED, target: reinsurance-commission }
+    tags: [distribution, cost]
+
+  - slug: quote
+    type: TERM
+    labels:
+      lv: { preferred: "Piedāvājums", alt: ["Apdrošināšanas piedāvājums", "Cenas piedāvājums"], abbrev: [] }
+      en: { preferred: "Quote", alt: ["Quotation", "Insurance offer"], abbrev: [] }
+    definition:
+      lv: "Apdrošinātāja ierobežotu laiku spēkā esošs priekšlikums, kurā norādīta prēmija un nosacījumi, ar kādiem tas ir gatavs apdrošināt konkrētu risku."
+      en: "A proposal by the insurer, valid for a limited time, stating the premium and the conditions on which it is willing to insure a specific risk."
+    notes:
+      lv: "Viens klienta pieprasījums var radīt vairākus aprēķinus vai versijas (cita pašriska vai seguma izvēle); uzskaitē tie veido vienu piedāvājumu. Piedāvājums kļūst par polisi tikai pēc tā pieņemšanas un līguma noslēgšanas."
+      en: "One customer request may produce several calculations or versions (different deductible or coverage choices); for counting they form one quote. A quote becomes a policy only once it is accepted and the contract is concluded."
+    relations:
+      - { type: RELATED, target: quotes-issued-count }
+      - { type: RELATED, target: quote-conversion-rate }
+      - { type: RELATED, target: insurance-policy }
+      - { type: RELATED, target: tariff }
+    tags: [distribution, sales]
+
+  - slug: new-business
+    type: TERM
+    labels:
+      lv: { preferred: "Jaunais bizness", alt: ["Jaunie līgumi", "Jaunās polises"], abbrev: [] }
+      en: { preferred: "New business", alt: ["New policies"], abbrev: ["NB"] }
+    definition:
+      lv: "Polises, kas noslēgtas par risku, kuru uzņēmums tieši iepriekš nebija apdrošinājis ar polisi, kas beidzas pirms jaunās polises sākuma."
+      en: "Policies concluded for a risk that the company had not insured immediately before under a policy expiring before the new policy starts."
+    examples:
+      lv: "Klients pāriet no cita apdrošinātāja – tas ir jaunais bizness, lai gan klientam tā ir atjaunošana. Esošs OCTA klients iegādājas mājokļa polisi – arī jaunais bizness."
+      en: "A customer switches from another insurer – this is new business even though the customer sees it as a renewal. An existing OCTA customer buys a home policy – also new business."
+    notes:
+      lv: "Jaunais bizness un atjaunošana kopā veido visas noslēgtās polises; grozījumi un atcelšana nav ne viens, ne otrs. Jauns bizness nav tas pats, kas jauns klients. Pārizsniegta polise tā paša riska turpināšanai (piemēram, tehnisku iemeslu dēļ) nav jaunais bizness."
+      en: "New business and renewals together make up all concluded policies; endorsements and cancellations are neither. New business is not the same as a new customer. A policy re-issued to continue the same risk (e.g. for technical reasons) is not new business."
+    relations:
+      - { type: RELATED, target: renewal }
+      - { type: RELATED, target: new-business-gwp }
+      - { type: RELATED, target: new-policies-count }
+    tags: [distribution, sales]
+
+  - slug: renewal
+    type: TERM
+    labels:
+      lv: { preferred: "Atjaunošana", alt: ["Polises atjaunošana", "Pagarināšana"], abbrev: [] }
+      en: { preferred: "Renewal", alt: ["Policy renewal"], abbrev: [] }
+    definition:
+      lv: "Jauna apdrošināšanas perioda polises noslēgšana ar to pašu apdrošinājuma ņēmēju par to pašu apdrošināšanas objektu, kas sākas tūlīt pēc uzņēmuma iepriekšējās polises beigām."
+      en: "The conclusion of a policy for a new policy term with the same policyholder for the same risk object, starting immediately after the company's previous policy expires."
+    notes:
+      lv: "Jānosaka pieļaujamā atstarpe starp iepriekšējās polises beigām un jaunās sākumu (piemēram, līdz 30 dienām), kurā polise vēl tiek uzskatīta par atjaunotu. Atjaunošana pie cita apdrošinātāja mums ir zaudēts klients, bet tam – jaunais bizness. Atjaunošanu nejaukt ar polises termiņa pagarināšanu ar grozījumu."
+      en: "A tolerance gap between the previous expiry and the new inception (e.g. up to 30 days) within which the policy still counts as renewed must be defined. A renewal with another insurer is a lost customer for us and new business for them. Do not confuse renewal with extending the policy term by endorsement."
+    relations:
+      - { type: RELATED, target: new-business }
+      - { type: RELATED, target: retention-rate }
+      - { type: RELATED, target: expiry-date }
+    tags: [distribution, sales, retention]
+
+  - slug: new-business-gwp
+    type: METRIC
+    labels:
+      lv: { preferred: "Jaunā biznesa parakstītās bruto prēmijas", alt: [], abbrev: [] }
+      en: { preferred: "New business gross written premium", alt: ["New business GWP"], abbrev: ["NB GWP"] }
+    definition:
+      lv: "Periodā parakstīto bruto prēmiju daļa, kas attiecas uz jaunā biznesa polisēm, ieskaitot to grozījumus un atcelšanu tajā pašā periodā."
+      en: "The part of gross written premium in a period that relates to new-business policies, including their endorsements and cancellations within the same period."
+    notes:
+      lv: "Neietver atjaunoto polišu prēmijas. Ilgtermiņa vai vairākgadu polisēm jānosaka, vai uzskaita visu prēmiju vai gada daļu. Salīdzinot kanālus, ņemiet vērā, ka kanāla piešķiršana notiek noslēgšanas brīdī."
+      en: "Excludes premium of renewed policies. For long-term or multi-year policies, it must be specified whether the whole premium or the annual part is counted. When comparing channels, note that the channel is assigned at the time of conclusion."
+    relations:
+      - { type: RELATED, target: new-business }
+      - { type: RELATED, target: gross-written-premium }
+    tags: [kpi, sales, premium]
+    metric:
+      formula: "Gross written premium where business type = new business"
+      unit: AMOUNT_EUR
+      aggregation: SUM
+      additivity: ADDITIVE
+      polarity: HIGHER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: GROSS
+        premiumBasis: WRITTEN
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Day × product × sales channel"
+      dimensions: ["Line of business", "Product", "Sales channel", "Intermediary", "Region", "Customer segment"]
+      components:
+        - { role: COMPONENT, metric: gross-written-premium }
+      refreshFrequency: DAILY
+      example:
+        lv: "2025. gada 2. ceturksnī GWP bija 48,0 milj. EUR, no tiem jaunais bizness – 14,4 milj. EUR (30 %)."
+        en: "In Q2 2025 GWP was EUR 48.0m, of which new business was EUR 14.4m (30%)."
+
+  - slug: quotes-issued-count
+    type: METRIC
+    labels:
+      lv: { preferred: "Izsniegto piedāvājumu skaits", alt: [], abbrev: [] }
+      en: { preferred: "Quotes issued count", alt: ["Number of quotes issued"], abbrev: [] }
+    definition:
+      lv: "Unikālo piedāvājumu skaits, kas periodā izsniegti klientiem vai starpniekiem, katru piedāvājumu ar vairākām versijām skaitot vienu reizi."
+      en: "The number of distinct quotes issued to customers or intermediaries in a period, counting each quote with several versions once."
+    notes:
+      lv: "Skaitīšanas noteikumam jāizslēdz tehniskie pārrēķini un dublikāti (piemēram, tas pats klients, objekts un produkts 30 dienu laikā). Atjaunošanas piedāvājumi jāuzskaita atsevišķi no jaunā biznesa piedāvājumiem."
+      en: "The counting rule must exclude technical recalculations and duplicates (e.g. the same customer, object and product within 30 days). Renewal offers must be counted separately from new-business quotes."
+    relations:
+      - { type: RELATED, target: quote }
+    tags: [sales, volume]
+    metric:
+      formula: "Distinct count of quotes (customer × risk object × product within the validity window) by issue date"
+      unit: COUNT
+      aggregation: COUNT
+      additivity: ADDITIVE
+      polarity: NEUTRAL
+      qualifiers:
+        reinsuranceBasis: NOT_APPLICABLE
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Day × product × sales channel"
+      dimensions: ["Product", "Sales channel", "Intermediary", "Customer segment", "Business type (new / renewal)"]
+      refreshFrequency: DAILY
+      example:
+        lv: "2025. gada maijā izsniegti 25 400 KASKO piedāvājumi."
+        en: "In May 2025, 25,400 KASKO quotes were issued."
+
+  - slug: converted-quotes-count
+    type: METRIC
+    labels:
+      lv: { preferred: "Konvertēto piedāvājumu skaits", alt: ["Pieņemto piedāvājumu skaits"], abbrev: [] }
+      en: { preferred: "Converted quotes count", alt: ["Number of bound quotes"], abbrev: [] }
+    definition:
+      lv: "Periodā izsniegto piedāvājumu skaits, kuri piedāvājuma derīguma termiņā ir pārvērsti noslēgtā polisē."
+      en: "The number of quotes issued in a period that were converted into a concluded policy within the quote's validity period."
+    notes:
+      lv: "Uzskaita pēc piedāvājuma izsniegšanas datuma, nevis polises noslēgšanas datuma, tāpēc pēdējo nedēļu vērtības var vēl pieaugt, līdz beidzas derīguma termiņš."
+      en: "Counted by quote issue date, not policy conclusion date, so values for the latest weeks may still increase until the validity period ends."
+    relations:
+      - { type: RELATED, target: quote }
+      - { type: RELATED, target: new-business }
+    tags: [sales]
+    metric:
+      formula: "Count of quotes issued in the period with a linked policy concluded within the validity period"
+      unit: COUNT
+      aggregation: COUNT
+      additivity: ADDITIVE
+      polarity: HIGHER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NOT_APPLICABLE
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Day (quote issue date) × product × sales channel"
+      dimensions: ["Product", "Sales channel", "Intermediary", "Customer segment"]
+      refreshFrequency: DAILY
+      example:
+        lv: "No maijā izsniegtajiem 25 400 piedāvājumiem 6 350 tika pārvērsti polisēs."
+        en: "Of the 25,400 quotes issued in May, 6,350 were converted into policies."
+
+  - slug: quote-conversion-rate
+    type: METRIC
+    labels:
+      lv: { preferred: "Piedāvājumu konversijas līmenis", alt: ["Piedāvājumu konversija"], abbrev: [] }
+      en: { preferred: "Quote conversion rate", alt: ["Hit ratio", "Quote-to-bind ratio"], abbrev: [] }
+    definition:
+      lv: "Periodā izsniegto piedāvājumu daļa, kas piedāvājuma derīguma termiņā ir pārvērsta noslēgtās polisēs."
+      en: "The share of quotes issued in a period that were converted into concluded policies within the quote's validity period."
+    notes:
+      lv: "Uzskaites bāze ir piedāvājumu kohorta pēc izsniegšanas datuma; nedalīt perioda polises ar perioda piedāvājumiem, jo tās attiecas uz dažādiem piedāvājumiem. Konversija ļoti atšķiras pa kanāliem (piemēram, brokeru pieprasījumos tā parasti ir zemāka), tāpēc to jāskatās pa kanāliem."
+      en: "The basis is the cohort of quotes by issue date; do not divide policies of the period by quotes of the period, since they relate to different quotes. Conversion differs strongly by channel (e.g. it is usually lower for broker requests), so it should be analysed by channel."
+    relations:
+      - { type: RELATED, target: quote }
+    tags: [kpi, sales]
+    metric:
+      formula: "Converted quotes count / Quotes issued count"
+      unit: PERCENT
+      aggregation: RATIO
+      additivity: NON_ADDITIVE
+      polarity: HIGHER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NOT_APPLICABLE
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Month (quote issue date) × product × sales channel"
+      dimensions: ["Product", "Sales channel", "Intermediary", "Customer segment", "Business type (new / renewal)"]
+      components:
+        - { role: NUMERATOR, metric: converted-quotes-count }
+        - { role: DENOMINATOR, metric: quotes-issued-count }
+      refreshFrequency: WEEKLY
+      example:
+        lv: "6 350 konvertēti / 25 400 izsniegti = 25,0 %"
+        en: "6,350 converted / 25,400 issued = 25.0%"
+
+  - slug: policies-due-for-renewal-count
+    type: METRIC
+    labels:
+      lv: { preferred: "Atjaunojamo polišu skaits", alt: [], abbrev: [] }
+      en: { preferred: "Policies due for renewal count", alt: ["Expiring policies count"], abbrev: [] }
+    definition:
+      lv: "Polišu skaits, kuru apdrošināšanas perioda beigu datums ir periodā un kuras pēc būtības ir paredzētas atjaunošanai."
+      en: "The number of policies whose expiry date falls in the period and which by their nature are intended for renewal."
+    notes:
+      lv: "Izslēdz polises, kas atceltas pirms beigu datuma, un īstermiņa polises, kas nav paredzētas atjaunošanai (piemēram, vienreizēja ceļojuma polise). Polises, kuras uzņēmums pats nolēma neatjaunot, ir iekļautas, bet tās var uzrādīt atsevišķi."
+      en: "Excludes policies cancelled before expiry and short-term policies not intended for renewal (e.g. single-trip travel). Policies the company itself decided not to renew are included but can be shown separately."
+    relations:
+      - { type: RELATED, target: renewal }
+      - { type: RELATED, target: expiry-date }
+    tags: [retention]
+    metric:
+      formula: "Count of renewable policies with expiry date in the period, not cancelled before expiry"
+      unit: COUNT
+      aggregation: COUNT
+      additivity: ADDITIVE
+      polarity: NEUTRAL
+      qualifiers:
+        reinsuranceBasis: NOT_APPLICABLE
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Month (expiry date) × product × sales channel"
+      dimensions: ["Product", "Line of business", "Sales channel", "Customer segment", "Region"]
+      refreshFrequency: MONTHLY
+      example:
+        lv: "2025. gada jūnijā beidzās 18 000 atjaunojamu polišu."
+        en: "In June 2025, 18,000 renewable policies expired."
+
+  - slug: renewed-policies-count
+    type: METRIC
+    labels:
+      lv: { preferred: "Atjaunoto polišu skaits", alt: [], abbrev: [] }
+      en: { preferred: "Renewed policies count", alt: ["Number of renewals"], abbrev: [] }
+    definition:
+      lv: "Periodā beigušos atjaunojamo polišu skaits, kurām noteiktajā pieļaujamajā atstarpē ir noslēgta atjaunošanas polise."
+      en: "The number of renewable policies expiring in the period for which a renewal policy was concluded within the defined tolerance gap."
+    notes:
+      lv: "Uzskaita pēc iepriekšējās polises beigu datuma, lai skaitītājs un saucējs atbilstu vienai kohortai. Viena atjaunošanas polise, kas apvieno vairākas iepriekšējās polises, jāapstrādā pēc vienota noteikuma."
+      en: "Counted by expiry date of the previous policy so that numerator and denominator relate to the same cohort. A single renewal policy that merges several previous policies must be handled by one consistent rule."
+    relations:
+      - { type: RELATED, target: renewal }
+    tags: [retention]
+    metric:
+      formula: "Count of policies due for renewal in the period that have a linked renewal policy"
+      unit: COUNT
+      aggregation: COUNT
+      additivity: ADDITIVE
+      polarity: HIGHER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NOT_APPLICABLE
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Month (expiry date of previous policy) × product × sales channel"
+      dimensions: ["Product", "Line of business", "Sales channel", "Customer segment", "Region"]
+      refreshFrequency: MONTHLY
+      example:
+        lv: "No 18 000 jūnijā beigušos polišu atjaunotas 14 400."
+        en: "Of the 18,000 policies expiring in June, 14,400 were renewed."
+
+  - slug: retention-rate
+    type: METRIC
+    labels:
+      lv: { preferred: "Noturēšanas līmenis", alt: ["Atjaunošanas līmenis", "Polišu noturēšana"], abbrev: [] }
+      en: { preferred: "Retention rate", alt: ["Renewal rate", "Policy retention"], abbrev: [] }
+    definition:
+      lv: "Periodā beigušos atjaunojamo polišu daļa, kas ir atjaunotas uzņēmumā."
+      en: "The share of renewable policies expiring in a period that were renewed with the company."
+    notes:
+      lv: "Šis ir polišu skaita noturēšanas rādītājs; prēmiju noturēšana (atjaunotā prēmija pret beigušos prēmiju) un klientu noturēšana ir citi rādītāji. Nejaukt ar pārapdrošināšanas pašieturējumu (angliski arī „retention“). Pēdējā mēneša vērtība var vēl pieaugt pieļaujamās atstarpes dēļ."
+      en: "This is a policy-count retention measure; premium retention (renewed premium vs expiring premium) and customer retention are different measures. Do not confuse with reinsurance retention. The value for the latest month may still rise because of the tolerance gap."
+    relations:
+      - { type: RELATED, target: renewal }
+      - { type: RELATED, target: lapse-rate }
+    tags: [kpi, retention, customer]
+    metric:
+      formula: "Renewed policies count / Policies due for renewal count"
+      unit: PERCENT
+      aggregation: RATIO
+      additivity: NON_ADDITIVE
+      polarity: HIGHER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NOT_APPLICABLE
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Month (expiry date) × product × sales channel"
+      dimensions: ["Product", "Line of business", "Sales channel", "Intermediary", "Customer segment", "Region"]
+      components:
+        - { role: NUMERATOR, metric: renewed-policies-count }
+        - { role: DENOMINATOR, metric: policies-due-for-renewal-count }
+      refreshFrequency: MONTHLY
+      example:
+        lv: "14 400 atjaunotas / 18 000 atjaunojamas = 80,0 %"
+        en: "14,400 renewed / 18,000 due for renewal = 80.0%"
+
+  - slug: digital-sales-share
+    type: METRIC
+    labels:
+      lv: { preferred: "Digitālās pārdošanas īpatsvars", alt: [], abbrev: [] }
+      en: { preferred: "Digital sales share", alt: ["Online sales share"], abbrev: [] }
+    definition:
+      lv: "Jaunā biznesa parakstīto bruto prēmiju daļa, kas periodā iegūta uzņēmuma digitālajā kanālā."
+      en: "The share of new business gross written premium in a period that was obtained through the company's digital channel."
+    notes:
+      lv: "Bāze ir prēmija, nevis polišu skaits; polišu skaita īpatsvars parasti ir augstāks, jo digitāli tiek pārdoti mazāki produkti (OCTA, ceļojumi). Starpnieku tiešsaistes pārdošana nav iekļauta. Ja vajadzīgs skaita variants, tas jāreģistrē atsevišķi."
+      en: "The basis is premium, not policy count; the count-based share is usually higher because smaller products (OCTA, travel) are sold digitally. Online sales by intermediaries are excluded. If a count-based variant is needed, register it separately."
+    relations:
+      - { type: RELATED, target: digital-channel }
+      - { type: RELATED, target: new-business }
+    tags: [kpi, sales, digital]
+    metric:
+      formula: "New business GWP (digital channel) / New business GWP (all channels)"
+      unit: PERCENT
+      aggregation: RATIO
+      additivity: NON_ADDITIVE
+      polarity: HIGHER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: GROSS
+        premiumBasis: WRITTEN
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Month × product"
+      dimensions: ["Product", "Line of business", "Customer segment", "Region"]
+      components:
+        - { role: COMPONENT, metric: new-business-gwp }
+      refreshFrequency: MONTHLY
+      example:
+        lv: "2,16 milj. EUR digitāli / 14,4 milj. EUR jaunā biznesa GWP = 15,0 %"
+        en: "EUR 2.16m digital / EUR 14.4m new business GWP = 15.0%"
+
+  - slug: commission-expense
+    type: METRIC
+    labels:
+      lv: { preferred: "Komisijas izdevumi", alt: ["Komisijas naudas izdevumi"], abbrev: [] }
+      en: { preferred: "Commission expense", alt: ["Commissions"], abbrev: [] }
+    definition:
+      lv: "Periodā aprēķinātā komisijas nauda apdrošināšanas starpniekiem par tiešās apdrošināšanas polisēm, ieskaitot bonusus un atskaitot atprasīto komisiju par atceltajām polisēm."
+      en: "The total commission accrued in a period to insurance intermediaries for direct insurance policies, including bonuses and net of commission clawed back on cancelled policies."
+    notes:
+      lv: "Šis ir aprēķinātais (parakstītais) apjoms pirms atlikto iegādes izdevumu korekcijas; finanšu pārskatos izdevumi tiek atzīti pakāpeniski līdz ar prēmijas nopelnīšanu. Neietver pārapdrošināšanas komisiju (ienākums) un pašu pārdevēju atalgojumu."
+      en: "This is the accrued (written) amount before the deferred acquisition cost adjustment; in financial statements the expense is recognised gradually as premium is earned. Excludes reinsurance commission (income) and own sales staff remuneration."
+    relations:
+      - { type: RELATED, target: commission }
+      - { type: PART_OF, target: acquisition-expenses }
+    tags: [cost, distribution]
+    metric:
+      formula: "Σ commission accrued on written policies + intermediary bonuses − commission clawbacks"
+      unit: AMOUNT_EUR
+      aggregation: SUM
+      additivity: ADDITIVE
+      polarity: NEUTRAL
+      qualifiers:
+        reinsuranceBasis: GROSS
+        premiumBasis: WRITTEN
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Month × intermediary × product"
+      dimensions: ["Intermediary", "Sales channel", "Product", "Line of business"]
+      refreshFrequency: MONTHLY
+      example:
+        lv: "2025. gada 2. ceturksnī komisijas izdevumi bija 5,28 milj. EUR."
+        en: "Commission expense in Q2 2025 was EUR 5.28m."
+
+  - slug: commission-ratio
+    type: METRIC
+    labels:
+      lv: { preferred: "Komisijas izdevumu rādītājs", alt: ["Komisijas izdevumu attiecība", "Komisijas koeficients"], abbrev: [] }
+      en: { preferred: "Commission ratio", alt: [], abbrev: [] }
+    definition:
+      lv: "Komisijas izdevumu attiecība pret parakstītajām bruto prēmijām periodā."
+      en: "The ratio of commission expense to gross written premium in a period."
+    notes:
+      lv: "Rādītājs ir uz parakstīto prēmiju bāzes un parāda pārdošanas cenu kanālos; tas nav kombinētās attiecības sastāvdaļa. Nopelnīto prēmiju bāzes analogs, kas iekļaujas kombinētajā attiecībā, ir piesaistes izmaksu attiecība. Salīdzinot kanālus, tiešā pārdošana uzrāda zemu komisiju, bet tai ir citi pārdošanas izdevumi."
+      en: "This is on a written basis and shows the cost of sales by channel; it is not a component of the combined ratio. The earned-basis counterpart that feeds the combined ratio is the acquisition cost ratio. When comparing channels, direct sales show low commission but carry other sales costs."
+    relations:
+      - { type: RELATED, target: acquisition-cost-ratio }
+      - { type: RELATED, target: commission }
+    tags: [kpi, cost, distribution]
+    metric:
+      formula: "Commission expense / Gross written premium"
+      unit: PERCENT
+      aggregation: RATIO
+      additivity: NON_ADDITIVE
+      polarity: LOWER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: GROSS
+        premiumBasis: WRITTEN
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Month × sales channel × product"
+      dimensions: ["Sales channel", "Intermediary", "Product", "Line of business"]
+      components:
+        - { role: NUMERATOR, metric: commission-expense }
+        - { role: DENOMINATOR, metric: gross-written-premium }
+      refreshFrequency: MONTHLY
+      example:
+        lv: "5,28 milj. EUR / 48,0 milj. EUR = 11,0 %"
+        en: "EUR 5.28m / EUR 48.0m = 11.0%"

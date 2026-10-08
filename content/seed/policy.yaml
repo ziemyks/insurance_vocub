@@ -1,0 +1,390 @@
+domain: policy
+concepts:
+  - slug: insurance-policy
+    type: TERM
+    labels:
+      lv: { preferred: "Apdrošināšanas polise", alt: ["Polise"], abbrev: [] }
+      en: { preferred: "Insurance policy", alt: ["Policy"], abbrev: [] }
+    definition:
+      lv: "Apdrošinātāja izsniegts dokuments, kas apliecina apdrošināšanas līguma noslēgšanu un nosaka tā galvenos noteikumus: puses, apdrošināšanas objektus, segumus, apdrošinājuma summas, prēmiju un apdrošināšanas periodu."
+      en: "A document issued by the insurer that certifies the conclusion of an insurance contract and sets out its main terms: the parties, risk objects, coverages, sums insured, premium and policy term."
+    examples:
+      lv: "Viena KASKO polise autoparkam ar 25 transportlīdzekļiem ir viena polise ar 25 apdrošināšanas objektiem."
+      en: "One KASKO policy for a fleet of 25 vehicles is one policy with 25 risk objects."
+    notes:
+      lv: "Polise (dokuments un uzskaites vienība ar polises numuru) nav tas pats, kas apdrošināšanas līgums 17. SFPS izpratnē, kur līguma robežas var atšķirties. Polisei var būt vairākas versijas grozījumu dēļ; skaitot polises, jāskaita polises numuri, nevis versijas. Atjaunojot polisi, parasti tiek izsniegta jauna polise ar jaunu periodu."
+      en: "A policy (the document and the record identified by a policy number) is not the same as an insurance contract under IFRS 17, where contract boundaries may differ. A policy can have several versions because of endorsements; when counting policies, count policy numbers, not versions. A renewal usually creates a new policy for the new term."
+    relations:
+      - { type: RELATED, target: insurance-contract }
+      - { type: RELATED, target: policyholder }
+      - { type: RELATED, target: insurance-product }
+      - { type: RELATED, target: risk-object }
+      - { type: RELATED, target: policy-term }
+    sources:
+      - { title: "Apdrošināšanas līguma likums" }
+    tags: [policy]
+
+  - slug: policy-in-force
+    type: TERM
+    labels:
+      lv: { preferred: "Spēkā esoša polise", alt: ["Aktīva polise"], abbrev: [] }
+      en: { preferred: "Policy in force", alt: ["Active policy", "In-force policy"], abbrev: ["PIF"] }
+    definition:
+      lv: "Polise, kuras apdrošināšanas periods noteiktā datumā ir sācies un nav beidzies un kura nav atcelta vai zaudējusi spēku."
+      en: "A policy whose policy term has started and not yet ended at a given date and which has not been cancelled or lapsed."
+    examples:
+      lv: "Polise ar periodu 01.07.2025.–30.06.2026., noslēgta 20.06.2025., 30.06.2025. vēl nav spēkā esoša, bet 01.07.2025. ir."
+      en: "A policy with term 1 Jul 2025 – 30 Jun 2026, concluded on 20 Jun 2025, is not yet in force on 30 Jun 2025 but is in force on 1 Jul 2025."
+    notes:
+      lv: "Noslēgta polise ar nākotnes sākuma datumu nav spēkā esoša. Polises, kurām nav samaksāta prēmija, tiek uzskatītas par spēkā esošām, līdz tās formāli izbeigtas vai zaudējušas spēku saskaņā ar polises noteikumiem. „Aktīva polise“ dažādos ziņojumos var nozīmēt atšķirīgas lietas; lietojiet šo definīciju."
+      en: "A concluded policy with a future inception date is not in force. Policies with unpaid premium are treated as in force until they are formally terminated or lapse under the policy conditions. 'Active policy' may mean different things in different reports; use this definition."
+    relations:
+      - { type: RELATED, target: insurance-policy }
+      - { type: RELATED, target: policies-in-force-count }
+      - { type: RELATED, target: inception-date }
+      - { type: RELATED, target: expiry-date }
+    tags: [policy, portfolio]
+
+  - slug: endorsement
+    type: TERM
+    labels:
+      lv: { preferred: "Polises grozījums", alt: ["Līguma grozījums", "Grozījums"], abbrev: [] }
+      en: { preferred: "Endorsement", alt: ["Mid-term adjustment", "Policy amendment"], abbrev: ["MTA"] }
+    definition:
+      lv: "Polises noteikumu izmaiņas tās apdrošināšanas perioda laikā, piemēram, objekta vai seguma pievienošana vai izslēgšana vai apdrošinājuma summas maiņa, ko reģistrē kā jaunu polises versiju un kas var radīt papildu vai atmaksājamu prēmiju."
+      en: "A change to a policy's terms during its policy term, such as adding or removing a risk object or coverage or changing a sum insured, recorded as a new policy version and possibly resulting in additional or refundable premium."
+    examples:
+      lv: "Autoparka polisei 1. oktobrī pievieno jaunu automašīnu; papildu prēmija par atlikušajiem 9 mēnešiem ir parakstīta oktobrī."
+      en: "A new car is added to a fleet policy on 1 October; the additional premium for the remaining 9 months is written in October."
+    notes:
+      lv: "Grozījums nav jaunais bizness un nav atjaunošana; tā prēmijas izmaiņa ir parakstītās prēmijas daļa grozījuma uzskaites periodā. Polises atcelšana pirms termiņa parasti tiek reģistrēta kā īpašs grozījums, bet analītikā to uzskaita atsevišķi."
+      en: "An endorsement is neither new business nor a renewal; its premium change is part of written premium in the period the endorsement is booked. Early cancellation is usually recorded as a special kind of endorsement but is analysed separately."
+    relations:
+      - { type: RELATED, target: insurance-policy }
+      - { type: RELATED, target: written-premium }
+      - { type: RELATED, target: cancellation }
+    tags: [policy, lifecycle]
+
+  - slug: inception-date
+    type: TERM
+    labels:
+      lv: { preferred: "Apdrošināšanas perioda sākuma datums", alt: ["Polises sākuma datums", "Spēkā stāšanās datums"], abbrev: [] }
+      en: { preferred: "Inception date", alt: ["Policy start date", "Effective date"], abbrev: [] }
+    definition:
+      lv: "Datums (un laiks), no kura sākas polisē noteiktā apdrošināšanas aizsardzība."
+      en: "The date (and time) from which the cover set out in the policy begins."
+    notes:
+      lv: "Nejaukt ar polises noslēgšanas (izsniegšanas) datumu un uzskaites (grāmatošanas) datumu: polisi var noslēgt pirms sākuma datuma. Grozījumam ir savs spēkā stāšanās datums, kas atšķiras no polises sākuma datuma. Parakstīšanas gads parasti tiek noteikts pēc sākuma datuma."
+      en: "Do not confuse with the conclusion (issue) date or the accounting (booking) date: a policy can be concluded before its inception date. An endorsement has its own effective date, which differs from the policy inception date. The underwriting year is usually determined by the inception date."
+    relations:
+      - { type: RELATED, target: expiry-date }
+      - { type: RELATED, target: policy-term }
+      - { type: RELATED, target: underwriting-year }
+    tags: [policy, dates]
+
+  - slug: expiry-date
+    type: TERM
+    labels:
+      lv: { preferred: "Apdrošināšanas perioda beigu datums", alt: ["Polises beigu datums"], abbrev: [] }
+      en: { preferred: "Expiry date", alt: ["Policy end date", "Expiration date"], abbrev: [] }
+    definition:
+      lv: "Datums (un laiks), kad beidzas polisē noteiktā apdrošināšanas aizsardzība, ja polise netiek izbeigta agrāk."
+      en: "The date (and time) at which the cover set out in the policy ends, unless the policy is terminated earlier."
+    notes:
+      lv: "Ja polise tiek atcelta vai zaudē spēku, faktiskais aizsardzības beigu datums ir izbeigšanas datums, bet sākotnējais beigu datums paliek nemainīgs vēsturē. Atjaunošanas analīzē izmanto sākotnējo beigu datumu."
+      en: "If a policy is cancelled or lapses, cover actually ends on the termination date, while the original expiry date stays unchanged in the history. Renewal analysis uses the original expiry date."
+    relations:
+      - { type: RELATED, target: inception-date }
+      - { type: RELATED, target: policy-term }
+      - { type: RELATED, target: renewal }
+      - { type: RELATED, target: cancellation }
+    tags: [policy, dates]
+
+  - slug: policy-term
+    type: TERM
+    labels:
+      lv: { preferred: "Apdrošināšanas periods", alt: ["Polises termiņš", "Polises darbības periods"], abbrev: [] }
+      en: { preferred: "Policy term", alt: ["Policy period", "Period of insurance"], abbrev: [] }
+    definition:
+      lv: "Laika posms no polises sākuma datuma līdz beigu datumam, kurā polise nodrošina apdrošināšanas aizsardzību."
+      en: "The period from a policy's inception date to its expiry date during which the policy provides cover."
+    examples:
+      lv: "Lielākā daļa nedzīvības polišu ir noslēgtas uz 12 mēnešiem; ceļojumu polises var būt uz dažām dienām."
+      en: "Most non-life policies run for 12 months; travel policies may run for a few days."
+    notes:
+      lv: "Apdrošināšanas periods nosaka prēmijas nopelnīšanu un ekspozīciju. Tas var atšķirties no 17. SFPS līguma robežas un no maksājumu grafika (prēmiju var maksāt daļās, bet periods paliek viens)."
+      en: "The policy term drives premium earning and exposure. It may differ from the IFRS 17 contract boundary and from the payment schedule (premium may be paid in instalments, but the term remains one)."
+    relations:
+      - { type: RELATED, target: inception-date }
+      - { type: RELATED, target: expiry-date }
+      - { type: RELATED, target: earned-premium }
+      - { type: RELATED, target: exposure }
+    tags: [policy, dates]
+
+  - slug: cancellation
+    type: TERM
+    labels:
+      lv: { preferred: "Polises izbeigšana pirms termiņa", alt: ["Polises atcelšana", "Līguma laušana"], abbrev: [] }
+      en: { preferred: "Cancellation", alt: ["Policy cancellation", "Early termination"], abbrev: [] }
+    definition:
+      lv: "Polises darbības izbeigšana pirms tās beigu datuma pēc apdrošinājuma ņēmēja vai apdrošinātāja iniciatīvas vai pēc pušu vienošanās, parasti atmaksājot neizmantoto prēmijas daļu saskaņā ar polises noteikumiem."
+      en: "The termination of a policy before its expiry date at the initiative of the policyholder or the insurer, or by agreement of the parties, usually with a refund of the unused part of the premium under the policy conditions."
+    examples:
+      lv: "Klients pārdod automašīnu un izbeidz KASKO polisi pēc 4 mēnešiem; parakstītās prēmijas tiek samazinātas par atmaksājamo daļu izbeigšanas mēnesī."
+      en: "A customer sells the car and cancels the KASKO policy after 4 months; written premium is reduced by the refundable part in the month of cancellation."
+    notes:
+      lv: "Nejaukt ar polises spēka zaudēšanu nemaksāšanas dēļ un ar neatjaunošanu beigu datumā – tās ir citas izbeigšanās formas. Izbeigšana no sākuma (polise nekad nav bijusi spēkā) jāuzrāda atsevišķi, jo tā pilnībā anulē prēmiju."
+      en: "Do not confuse with lapse for non-payment or with non-renewal at expiry – those are different forms of termination. Cancellation from inception (the policy never took effect) must be shown separately, as it reverses the whole premium."
+    relations:
+      - { type: RELATED, target: lapse }
+      - { type: RELATED, target: premium-refund }
+      - { type: RELATED, target: endorsement }
+    sources:
+      - { title: "Apdrošināšanas līguma likums" }
+    tags: [policy, lifecycle]
+
+  - slug: lapse
+    type: TERM
+    labels:
+      lv: { preferred: "Polises spēka zaudēšana", alt: ["Izbeigšana nemaksāšanas dēļ"], abbrev: [] }
+      en: { preferred: "Lapse", alt: ["Lapse for non-payment", "Non-payment termination"], abbrev: [] }
+    definition:
+      lv: "Polises izbeigšanās vai tās nestāšanās spēkā tāpēc, ka apdrošināšanas prēmija vai tās daļmaksājums nav samaksāts polisē noteiktajā termiņā."
+      en: "The termination of a policy, or its failure to take effect, because the insurance premium or a premium instalment was not paid by the deadline set in the policy."
+    notes:
+      lv: "Dzīvības apdrošināšanā un dažos tirgos „lapse“ nozīmē arī neatjaunošanu; šeit neatjaunošanu mēra ar noturēšanas līmeni, nevis ar spēka zaudēšanu. Brīdinājuma un termiņa noteikumi par prēmijas nesamaksāšanu izriet no likuma un polises noteikumiem."
+      en: "In life insurance and some markets 'lapse' also means non-renewal; here non-renewal is measured by the retention rate, not as lapse. Notice and deadline rules for unpaid premium follow from the law and the policy conditions."
+    relations:
+      - { type: RELATED, target: cancellation }
+      - { type: RELATED, target: premium-instalment }
+      - { type: RELATED, target: lapse-rate }
+    sources:
+      - { title: "Apdrošināšanas līguma likums" }
+    tags: [policy, lifecycle]
+
+  - slug: exposure
+    type: TERM
+    labels:
+      lv: { preferred: "Ekspozīcija", alt: ["Riska ekspozīcija", "Apdrošināšanas ekspozīcija"], abbrev: [] }
+      en: { preferred: "Exposure", alt: ["Exposure units", "Risk exposure"], abbrev: [] }
+    definition:
+      lv: "Apdrošinātāja uzņemtā riska apjoma mērs, kas izteikts ekspozīcijas vienībās laikā, piemēram, transportlīdzekļu gados vai īpašuma objektu gados."
+      en: "A measure of the amount of risk the insurer carries, expressed in exposure units over time, such as vehicle-years or property-object-years."
+    examples:
+      lv: "Viens automobilis, kas apdrošināts visu gadu, ir 1 transportlīdzekļa gads; divi automobiļi, kas apdrošināti pusgadu, kopā arī ir 1 transportlīdzekļa gads."
+      en: "One car insured for the whole year is 1 vehicle-year; two cars insured for half a year each are also 1 vehicle-year in total."
+    notes:
+      lv: "Ekspozīcijas vienība ir atkarīga no apdrošināšanas veida, tāpēc dažādu veidu ekspozīcijas nedrīkst summēt. Jānošķir parakstītā ekspozīcija (visa polises perioda vienības) un nopelnītā ekspozīcija (perioda laikā faktiski segtais laiks). Apdrošinājuma summu uzkrājums (piemēram, katastrofu riskam) ir cits ekspozīcijas jēdziens."
+      en: "The exposure unit depends on the line of business, so exposures of different lines must not be summed. Distinguish written exposure (units for the whole policy term) from earned exposure (time actually covered in the period). Accumulation of sums insured (e.g. for catastrophe risk) is a different notion of exposure."
+    relations:
+      - { type: RELATED, target: earned-exposure }
+      - { type: RELATED, target: risk-object }
+      - { type: RELATED, target: claim-frequency }
+    tags: [policy, actuarial]
+
+  - slug: risk-object
+    type: TERM
+    labels:
+      lv: { preferred: "Apdrošināšanas objekts", alt: ["Apdrošinātais objekts"], abbrev: [] }
+      en: { preferred: "Risk object", alt: ["Insured object", "Insured item"], abbrev: [] }
+    definition:
+      lv: "Lieta, persona, darbība vai interese, piemēram, transportlīdzeklis, ēka, ceļojums vai civiltiesiskā atbildība, attiecībā uz kuru polisē tiek sniegts apdrošināšanas segums."
+      en: "An item, person, activity or interest, such as a vehicle, building, trip or civil liability, in respect of which cover is provided under a policy."
+    notes:
+      lv: "Vienā polisē var būt vairāki objekti (autoparks, vairāki īpašumi). Objektu skaits nav polišu skaits, un ekspozīciju parasti mēra objektu līmenī. Transportlīdzekli kā objektu identificē pēc reģistrācijas numura vai VIN."
+      en: "One policy may contain several objects (a fleet, several properties). The number of objects is not the number of policies, and exposure is usually measured at object level. A vehicle as an object is identified by its registration number or VIN."
+    relations:
+      - { type: RELATED, target: insurance-policy }
+      - { type: RELATED, target: coverage }
+      - { type: RELATED, target: exposure }
+      - { type: RELATED, target: vehicle-class }
+    tags: [policy, underwriting]
+
+  - slug: underwriting
+    type: TERM
+    labels:
+      lv: { preferred: "Parakstīšana", alt: ["Riska parakstīšana", "Riska novērtēšana un parakstīšana"], abbrev: ["UW"] }
+      en: { preferred: "Underwriting", alt: ["Risk underwriting", "Risk selection"], abbrev: ["UW"] }
+    definition:
+      lv: "Process, kurā apdrošinātājs novērtē apdrošināšanai piedāvāto risku un izlemj, vai to pieņemt, ar kādiem noteikumiem un par kādu prēmiju."
+      en: "The process by which the insurer assesses a risk proposed for insurance and decides whether to accept it, on what terms and at what premium."
+    examples:
+      lv: "Ražotnes īpašuma apdrošināšanai parakstītājs pieprasa riska apskati, nosaka paaugstinātu pašrisku un piemēro tarifa koeficientu 1,2."
+      en: "For a factory property risk the underwriter requests a risk survey, sets a higher deductible and applies a tariff factor of 1.2."
+    notes:
+      lv: "Nejaukt ar parakstīšanas gadu (polišu grupēšana pēc sākuma gada) un ar parakstīšanas rezultātu (finanšu rādītājs). Masveida produktiem parakstīšana var būt pilnībā automatizēta tarifā un parakstīšanas noteikumos."
+      en: "Do not confuse with the underwriting year (grouping of policies by year of inception) or the underwriting result (a financial measure). For mass-market products underwriting may be fully automated in the tariff and underwriting rules."
+    relations:
+      - { type: RELATED, target: tariff }
+      - { type: RELATED, target: underwriting-year }
+      - { type: RELATED, target: underwriting-result }
+      - { type: RELATED, target: quote }
+    tags: [underwriting]
+
+  - slug: policies-in-force-count
+    type: METRIC
+    labels:
+      lv: { preferred: "Spēkā esošo polišu skaits", alt: [], abbrev: [] }
+      en: { preferred: "Policies in force count", alt: ["Number of policies in force"], abbrev: ["PIF"] }
+    definition:
+      lv: "Unikālo polišu skaits, kas noteiktā datumā ir spēkā."
+      en: "The number of distinct policies that are in force at a given date."
+    notes:
+      lv: "Stāvokļa rādītājs: periodam rāda perioda beigu vērtību, un mēnešu vērtības nedrīkst summēt. Pa produktiem un kanāliem to var summēt. Skaita polises, nevis apdrošināšanas objektus vai polišu versijas; objektu skaits jāreģistrē kā atsevišķs rādītājs."
+      en: "A point-in-time measure: for a period it shows the period-end value, and monthly values must not be summed. It can be summed across products and channels. It counts policies, not risk objects or policy versions; an object count must be registered as a separate measure."
+    relations:
+      - { type: RELATED, target: policy-in-force }
+      - { type: RELATED, target: active-customers-count }
+    tags: [kpi, portfolio, volume]
+    metric:
+      formula: "Count of distinct policy numbers in force at the reporting date"
+      unit: COUNT
+      aggregation: LAST_VALUE
+      additivity: SEMI_ADDITIVE
+      polarity: HIGHER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NOT_APPLICABLE
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: REPORTING_DATE
+        accountingBasis: MANAGEMENT
+      grain: "Day-end × product × sales channel"
+      dimensions: ["Line of business", "Product", "Sales channel", "Customer segment", "Region"]
+      refreshFrequency: DAILY
+      example:
+        lv: "31.12.2025. spēkā bija 685 000 polišu, no tām 310 000 OCTA."
+        en: "At 31 Dec 2025 there were 685,000 policies in force, of which 310,000 were OCTA."
+
+  - slug: new-policies-count
+    type: METRIC
+    labels:
+      lv: { preferred: "Jauno polišu skaits", alt: ["Jaunā biznesa polišu skaits"], abbrev: [] }
+      en: { preferred: "New policies count", alt: ["New business policy count"], abbrev: [] }
+    definition:
+      lv: "Periodā parakstīto jaunā biznesa polišu skaits, neskaitot atjaunošanu un grozījumus."
+      en: "The number of new-business policies written in a period, excluding renewals and endorsements."
+    notes:
+      lv: "Uzskaites datums ir tas pats, kas jaunā biznesa parakstītajām prēmijām, lai skaits un prēmija būtu salīdzināmi. Polises, kas atceltas no sākuma tajā pašā periodā, netiek skaitītas."
+      en: "The counting date is the same as for new business gross written premium, so that count and premium are comparable. Policies cancelled from inception within the same period are not counted."
+    relations:
+      - { type: RELATED, target: new-business }
+      - { type: RELATED, target: new-business-gwp }
+    tags: [sales, volume]
+    metric:
+      formula: "Count of distinct new-business policy numbers written in the period − policies cancelled from inception in the period"
+      unit: COUNT
+      aggregation: COUNT
+      additivity: ADDITIVE
+      polarity: HIGHER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NOT_APPLICABLE
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Day × product × sales channel"
+      dimensions: ["Line of business", "Product", "Sales channel", "Intermediary", "Customer segment", "Region"]
+      refreshFrequency: DAILY
+      example:
+        lv: "2025. gada 2. ceturksnī noslēgtas 52 000 jaunas polises."
+        en: "In Q2 2025, 52,000 new policies were written."
+
+  - slug: earned-exposure
+    type: METRIC
+    labels:
+      lv: { preferred: "Nopelnītā ekspozīcija", alt: [], abbrev: [] }
+      en: { preferred: "Earned exposure", alt: ["Earned exposure units"], abbrev: [] }
+    definition:
+      lv: "Ekspozīcijas vienību skaits, kas atbilst periodā faktiski nodrošinātajam apdrošināšanas aizsardzības laikam, izteikts gados (piemēram, transportlīdzekļu gados)."
+      en: "The number of exposure units corresponding to the cover actually provided during a period, expressed in years (e.g. vehicle-years)."
+    notes:
+      lv: "Nopelnītā ekspozīcija ir atlīdzību biežuma saucējs. Tā ir summējama laikā, bet ne starp apdrošināšanas veidiem ar atšķirīgām ekspozīcijas vienībām. Kalendārā perioda nopelnītā ekspozīcija sakrīt ar tā paša negadījumu perioda ekspozīciju. Atceltajām polisēm ekspozīcija beidzas izbeigšanas datumā."
+      en: "Earned exposure is the denominator of claim frequency. It is additive over time but not across lines of business with different exposure units. Earned exposure of a calendar period equals the exposure of the same accident period. For cancelled policies exposure ends at the termination date."
+    relations:
+      - { type: RELATED, target: exposure }
+      - { type: RELATED, target: claim-frequency }
+      - { type: RELATED, target: gross-earned-premium }
+    tags: [kpi, actuarial, volume]
+    metric:
+      formula: "Σ over risk objects of (days covered within the period / days in the year)"
+      unit: YEARS
+      aggregation: SUM
+      additivity: ADDITIVE
+      polarity: NEUTRAL
+      qualifiers:
+        reinsuranceBasis: NOT_APPLICABLE
+        premiumBasis: EARNED
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Month × product × coverage"
+      dimensions: ["Line of business", "Product", "Coverage", "Region", "Vehicle class"]
+      refreshFrequency: MONTHLY
+      example:
+        lv: "Automašīna apdrošināta no 01.07.2025. līdz 30.06.2026.: 2025. gadā nopelnīti 184/365 = 0,50 transportlīdzekļa gadi."
+        en: "A car insured from 1 Jul 2025 to 30 Jun 2026 earns 184/365 = 0.50 vehicle-years in 2025."
+
+  - slug: lapsed-policies-count
+    type: METRIC
+    labels:
+      lv: { preferred: "Spēku zaudējušo polišu skaits", alt: [], abbrev: [] }
+      en: { preferred: "Lapsed policies count", alt: ["Number of lapses"], abbrev: [] }
+    definition:
+      lv: "Polišu skaits, kas periodā izbeigušās vai nav stājušās spēkā prēmijas vai tās daļmaksājuma nesamaksāšanas dēļ."
+      en: "The number of policies that terminated or failed to take effect in a period because the premium or a premium instalment was not paid."
+    notes:
+      lv: "Uzskaita pēc izbeigšanas datuma. Neietver izbeigšanu pēc klienta pieprasījuma un neatjaunošanu beigu datumā."
+      en: "Counted by termination date. Excludes cancellations at the customer's request and non-renewal at expiry."
+    relations:
+      - { type: RELATED, target: lapse }
+    tags: [policy, retention]
+    metric:
+      formula: "Count of policies with termination reason = non-payment and termination date in the period"
+      unit: COUNT
+      aggregation: COUNT
+      additivity: ADDITIVE
+      polarity: LOWER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NOT_APPLICABLE
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Month × product × sales channel"
+      dimensions: ["Product", "Line of business", "Sales channel", "Payment frequency", "Customer segment"]
+      refreshFrequency: MONTHLY
+      example:
+        lv: "2025. gadā nemaksāšanas dēļ izbeigtas 13 700 polises."
+        en: "In 2025, 13,700 policies were terminated for non-payment."
+
+  - slug: lapse-rate
+    type: METRIC
+    labels:
+      lv: { preferred: "Polišu spēka zaudēšanas līmenis", alt: [], abbrev: [] }
+      en: { preferred: "Lapse rate", alt: ["Non-payment lapse rate"], abbrev: [] }
+    definition:
+      lv: "Periodā spēku zaudējušo polišu skaita attiecība pret vidējo spēkā esošo polišu skaitu tajā pašā periodā."
+      en: "The ratio of the number of policies lapsed in a period to the average number of policies in force in the same period."
+    notes:
+      lv: "Mēneša un gada vērtības nav tieši salīdzināmas; salīdzināšanai mēneša likmi annualizē. Rādītājs neietver neatjaunošanu (to mēra noturēšanas līmenis) un izbeigšanu pēc klienta pieprasījuma. Polises ar daļmaksājumiem parasti uzrāda augstāku līmeni."
+      en: "Monthly and annual values are not directly comparable; annualise the monthly rate for comparison. The measure excludes non-renewal (measured by the retention rate) and cancellations at the customer's request. Policies paid in instalments usually show a higher rate."
+    relations:
+      - { type: RELATED, target: lapse }
+      - { type: RELATED, target: retention-rate }
+    tags: [kpi, retention, policy]
+    metric:
+      formula: "Lapsed policies count / Average policies in force count over the period"
+      unit: PERCENT
+      aggregation: RATIO
+      additivity: NON_ADDITIVE
+      polarity: LOWER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NOT_APPLICABLE
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Month × product × sales channel"
+      dimensions: ["Product", "Line of business", "Sales channel", "Payment frequency", "Customer segment"]
+      components:
+        - { role: NUMERATOR, metric: lapsed-policies-count }
+        - { role: DENOMINATOR, metric: policies-in-force-count }
+      refreshFrequency: MONTHLY
+      example:
+        lv: "13 700 spēku zaudējušas / 685 000 vidēji spēkā esošas = 2,0 % gadā"
+        en: "13,700 lapsed / 685,000 average in force = 2.0% per year"

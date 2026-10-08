@@ -1,0 +1,23 @@
+# Solvency II non-life lines of business — direct business and accepted proportional
+# reinsurance (Delegated Regulation (EU) 2015/35, Annex I). Codes as used in QRT S.05.01.
+key: sii-non-life-lob
+conceptSlug: sii-line-of-business
+name:
+  lv: "Maksātspējas II nedzīvības apdrošināšanas darbības virzieni"
+  en: "Solvency II non-life lines of business"
+description:
+  lv: "Tiešā apdrošināšana un pieņemtā proporcionālā pārapdrošināšana."
+  en: "Direct business and accepted proportional reinsurance."
+values:
+  - { code: "1", lv: "Medicīnisko izdevumu apdrošināšana", en: "Medical expense insurance" }
+  - { code: "2", lv: "Ienākumu aizsardzības apdrošināšana", en: "Income protection insurance" }
+  - { code: "3", lv: "Darba ņēmēju kompensācijas apdrošināšana", en: "Workers' compensation insurance" }
+  - { code: "4", lv: "Transportlīdzekļu īpašnieku civiltiesiskās atbildības apdrošināšana", en: "Motor vehicle liability insurance" }
+  - { code: "5", lv: "Cita veida transportlīdzekļu apdrošināšana", en: "Other motor insurance" }
+  - { code: "6", lv: "Jūras, aviācijas un transporta apdrošināšana", en: "Marine, aviation and transport insurance" }
+  - { code: "7", lv: "Apdrošināšana pret uguns un citiem īpašuma bojājumiem", en: "Fire and other damage to property insurance" }
+  - { code: "8", lv: "Vispārējās civiltiesiskās atbildības apdrošināšana", en: "General liability insurance" }
+  - { code: "9", lv: "Kredītu un galvojumu apdrošināšana", en: "Credit and suretyship insurance" }
+  - { code: "10", lv: "Juridisko izdevumu apdrošināšana", en: "Legal expenses insurance" }
+  - { code: "11", lv: "Palīdzība", en: "Assistance" }
+  - { code: "12", lv: "Dažādu finansiālo zaudējumu apdrošināšana", en: "Miscellaneous financial loss" }

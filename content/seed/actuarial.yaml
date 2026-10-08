@@ -1,0 +1,553 @@
+domain: actuarial
+concepts:
+  # ------------------------------------------------------------------ terms
+
+  - slug: loss-triangle
+    type: TERM
+    labels:
+      lv: { preferred: "Zaudējumu attīstības trijstūris", alt: ["Zaudējumu trijstūris", "Attīstības trijstūris"], abbrev: [] }
+      en: { preferred: "Loss triangle", alt: ["Claims development triangle", "Run-off triangle"], abbrev: [] }
+    definition:
+      lv: "Atlīdzību datu (izmaksāto vai radušos zaudējumu summu vai lietu skaita) tabula, kurā rindas ir izcelsmes periodi (negadījuma vai parakstīšanas gadi), bet kolonnas – attīstības periodi; to izmanto, lai analizētu zaudējumu attīstību laikā un novērtētu galīgos zaudējumus un IBNR."
+      en: "A table of claims data (paid or incurred amounts, or claim counts) in which rows are origin periods (accident or underwriting years) and columns are development periods; it is used to analyse how claims develop over time and to estimate ultimate losses and IBNR."
+    examples:
+      lv: "Rindā 2023 un kolonnā 24 mēneši ir kumulatīvās izmaksas par 2023. gada negadījumiem līdz 2024. gada beigām."
+      en: "The cell in row 2023, column 24 months shows cumulative payments on accident year 2023 up to the end of 2024."
+    notes:
+      lv: "Vienmēr norāda: kumulatīvs vai inkrementāls, izmaksātie vai radušies zaudējumi, bruto vai neto, negadījuma vai parakstīšanas gads. Trijstūra diagonāles atbilst uzskaites gadiem."
+      en: "Always state: cumulative or incremental, paid or incurred, gross or net, accident or underwriting year. The diagonals of the triangle correspond to calendar years."
+    relations:
+      - { type: RELATED, target: development-factor }
+      - { type: RELATED, target: accident-year }
+      - { type: RELATED, target: ibnr }
+    tags: [actuarial, reserving]
+
+  - slug: development-factor
+    type: TERM
+    labels:
+      lv: { preferred: "Attīstības koeficients", alt: ["Attīstības faktors", "Ķēdes kāpņu koeficients"], abbrev: ["LDF"] }
+      en: { preferred: "Development factor", alt: ["Loss development factor", "Age-to-age factor", "Link ratio"], abbrev: ["LDF"] }
+    definition:
+      lv: "Attiecība starp viena izcelsmes perioda kumulatīvajiem zaudējumiem (summām vai skaitu) noteiktā attīstības periodā un tā paša izcelsmes perioda kumulatīvajiem zaudējumiem iepriekšējā attīstības periodā; ķēdes kāpņu metodē to izmanto zaudējumu projicēšanai līdz galīgajai vērtībai."
+      en: "The ratio of cumulative claims (amounts or counts) of an origin period at one development period to the cumulative claims of the same origin period at the preceding development period; the chain-ladder method uses it to project claims to ultimate."
+    examples:
+      lv: "Kumulatīvās izmaksas 12 mēnešos 8,0 milj. EUR, 24 mēnešos 10,0 milj. EUR – attīstības koeficients 12→24 ir 1,25."
+      en: "Cumulative paid EUR 8.0 m at 12 months and EUR 10.0 m at 24 months: the 12→24 development factor is 1.25."
+    notes:
+      lv: "Nošķirt koeficientu starp diviem secīgiem periodiem un kumulatīvo koeficientu līdz galīgajai vērtībai (visu turpmāko koeficientu reizinājums, ieskaitot astes koeficientu)."
+      en: "Distinguish the factor between two consecutive periods from the cumulative factor to ultimate (the product of all subsequent factors, including the tail factor)."
+    relations:
+      - { type: PART_OF, target: loss-triangle }
+      - { type: RELATED, target: ultimate-loss }
+    tags: [actuarial, reserving]
+
+  - slug: ibnr
+    type: TERM
+    labels:
+      lv: { preferred: "Radušies, bet nepieteiktie zaudējumi", alt: ["Radušos, bet nepieteikto zaudējumu rezerve", "IBNR rezerve"], abbrev: ["IBNR"] }
+      en: { preferred: "Incurred but not reported", alt: ["IBNR reserve"], abbrev: ["IBNR"] }
+    definition:
+      lv: "Rezerve atlīdzībām par zaudējumu notikumiem, kas notikuši līdz novērtēšanas datumam, bet par kuriem apdrošinātājam vēl nav paziņots."
+      en: "A reserve for claims arising from loss events that have occurred by the valuation date but have not yet been reported to the insurer."
+    examples:
+      lv: "Vētra 30. decembrī; daļu bojājumu klienti piesaka tikai janvārī – šo zaudējumu aplēse 31. decembrī ir IBNR."
+      en: "A storm on 30 December; customers report part of the damage only in January. The estimate of these losses at 31 December is IBNR."
+    notes:
+      lv: "Šaurā nozīmē IBNR aptver tikai nepieteiktos zaudējumus. Praksē un pārskatos ar IBNR bieži saprot visu aktuāra rezervi virs lietu rezervēm (IBNR + IBNER); rādītājs ibnr-reserve-amount ir definēts šajā plašajā nozīmē. IBNR aprēķina aktuāri ar statistiskām metodēm, nevis lietu līmenī."
+      en: "In the narrow sense IBNR covers unreported claims only. In practice and in reports IBNR often means the whole actuarial reserve above case reserves (IBNR + IBNER); the metric ibnr-reserve-amount is defined in this broad sense. IBNR is calculated by actuaries with statistical methods, not at claim level."
+    relations:
+      - { type: PART_OF, target: liability-for-incurred-claims }
+      - { type: RELATED, target: ibner }
+      - { type: RELATED, target: rbns }
+      - { type: RELATED, target: ibnr-reserve-amount }
+    tags: [actuarial, reserving]
+
+  - slug: ibner
+    type: TERM
+    labels:
+      lv: { preferred: "Radušies, bet nepietiekami novērtētie zaudējumi", alt: ["IBNER rezerve"], abbrev: ["IBNER"] }
+      en: { preferred: "Incurred but not enough reported", alt: ["Incurred but not enough reserved", "IBNER reserve"], abbrev: ["IBNER"] }
+    definition:
+      lv: "Rezerve jau pieteikto atlīdzības lietu sagaidāmajai turpmākajai attīstībai virs (vai zem) pašreizējām lietu rezervēm."
+      en: "A reserve for the expected future development, above (or below) current case reserves, of claims that have already been reported."
+    examples:
+      lv: "Vēsturiski kaitējuma veselībai lietu rezerves vidēji pieaug par 15 % līdz slēgšanai; aktuārs veido IBNER 15 % apmērā no šo lietu rezervēm."
+      en: "Historically, bodily-injury case reserves increase on average by 15% until closure; the actuary sets IBNER at 15% of these case reserves."
+    notes:
+      lv: "IBNER attiecas uz pieteiktām lietām, IBNR – uz nepieteiktām; RBNS ir lietu rezervju summa. Daudzās sistēmās IBNER atsevišķi neizdala un iekļauj IBNR."
+      en: "IBNER relates to reported claims, IBNR to unreported ones; RBNS is the sum of case reserves. Many systems do not separate IBNER and include it in IBNR."
+    relations:
+      - { type: RELATED, target: ibnr }
+      - { type: RELATED, target: rbns }
+      - { type: RELATED, target: case-reserve }
+    tags: [actuarial, reserving]
+
+  - slug: rbns
+    type: TERM
+    labels:
+      lv: { preferred: "Pieteiktie, bet neizmaksātie zaudējumi", alt: ["Pieteikto, bet neizmaksāto zaudējumu rezerve", "RBNS rezerve"], abbrev: ["RBNS"] }
+      en: { preferred: "Reported but not settled", alt: ["RBNS reserve", "Outstanding case reserves"], abbrev: ["RBNS"] }
+    definition:
+      lv: "Rezerve atlīdzības lietām, kas līdz novērtēšanas datumam pieteiktas apdrošinātājam, bet vēl nav pilnībā noregulētas; tā ir visu atvērto lietu rezervju summa."
+      en: "The reserve for claims that have been reported to the insurer by the valuation date but have not yet been fully settled; it is the sum of the case reserves on all open claims."
+    notes:
+      lv: "RBNS veido atlīdzību regulētāji lietu līmenī, IBNR un IBNER – aktuāri portfeļa līmenī. RBNS + IBNR (ar IBNER) = neizmaksāto atlīdzību rezerve."
+      en: "RBNS is set by claim handlers at claim level, IBNR and IBNER by actuaries at portfolio level. RBNS + IBNR (including IBNER) = outstanding claims reserve."
+    relations:
+      - { type: PART_OF, target: liability-for-incurred-claims }
+      - { type: RELATED, target: case-reserve }
+      - { type: RELATED, target: ibnr }
+      - { type: RELATED, target: outstanding-claims-reserve }
+    tags: [actuarial, reserving]
+
+  - slug: ultimate-loss
+    type: TERM
+    labels:
+      lv: { preferred: "Galīgie zaudējumi", alt: ["Paredzamie galīgie zaudējumi", "Galīgā zaudējumu aplēse"], abbrev: [] }
+      en: { preferred: "Ultimate loss", alt: ["Ultimate claims", "Ultimate claims cost"], abbrev: [] }
+    definition:
+      lv: "Aplēstā kopsumma, kas tiks izmaksāta par visām viena izcelsmes perioda (negadījuma vai parakstīšanas gada) atlīdzībām līdz to pilnīgai noregulēšanai; tā ir līdz šim izmaksātais plus lietu rezerves plus IBNR."
+      en: "The estimated total amount that will eventually be paid on all claims of an origin period (accident or underwriting year) once they are fully settled; it equals paid to date plus case reserves plus IBNR."
+    notes:
+      lv: "Galīgie zaudējumi ir aplēse, kas mainās katrā novērtēšanas datumā; to izmaiņa iepriekšējiem gadiem ir rezervju attīstības (run-off) rezultāts. Nejaukt ar uzskaites gada radušos zaudējumiem."
+      en: "Ultimate loss is an estimate that changes at each valuation date; its change for prior years is the run-off result. Do not confuse it with calendar-year claims incurred."
+    relations:
+      - { type: RELATED, target: ultimate-loss-amount }
+      - { type: RELATED, target: ultimate-loss-ratio }
+      - { type: RELATED, target: claims-incurred }
+    tags: [actuarial, reserving]
+
+  - slug: best-estimate
+    type: TERM
+    labels:
+      lv: { preferred: "Labākā aplēse", alt: ["Labākais novērtējums"], abbrev: ["BE"] }
+      en: { preferred: "Best estimate", alt: ["Best estimate liability"], abbrev: ["BE", "BEL"] }
+    definition:
+      lv: "Nākotnes naudas plūsmu varbūtībās svērtā vidējā vērtība, ņemot vērā naudas laika vērtību, ko izmanto kā objektīvu (ne piesardzīgu, ne optimistisku) apdrošināšanas saistību centrālo aplēsi."
+      en: "The probability-weighted average of future cash flows, taking account of the time value of money, used as the unbiased (neither prudent nor optimistic) central estimate of insurance liabilities."
+    notes:
+      lv: "Maksātspējas II režīmā labākā aplēse tiek diskontēta ar EIOPA bezriska procentu likmju līkni un neietver riska rezervi. 17. SFPS lieto jēdzienu 'nākotnes naudas plūsmu aplēses', kam pieskaita riska korekciju. Normatīvās rezerves var būt nediskontētas un ar piesardzības pieskaitījumu."
+      en: "Under Solvency II the best estimate is discounted with the EIOPA risk-free rate curve and excludes the risk margin. IFRS 17 uses the term 'estimates of future cash flows', to which the risk adjustment is added. Statutory reserves may be undiscounted and include a prudence margin."
+    relations:
+      - { type: PART_OF, target: technical-provisions }
+      - { type: RELATED, target: risk-margin }
+      - { type: RELATED, target: risk-adjustment }
+    sources:
+      - { title: "Directive 2009/138/EC (Solvency II)", reference: "Article 77(2)" }
+    tags: [actuarial, reserving, solvency]
+
+  - slug: run-off-result
+    type: TERM
+    labels:
+      lv: { preferred: "Rezervju attīstības rezultāts", alt: ["Run-off rezultāts", "Iepriekšējo gadu rezervju noregulējuma rezultāts"], abbrev: [] }
+      en: { preferred: "Run-off result", alt: ["Prior-year reserve development", "Reserve run-off"], abbrev: [] }
+    definition:
+      lv: "Starpība starp perioda sākumā iepriekšējo periodu atlīdzībām izveidoto neizmaksāto atlīdzību rezervi un summu, ko veido šo atlīdzību izmaksas periodā un perioda beigās tām saglabātā rezerve."
+      en: "The difference between the outstanding claims reserve held at the start of a period for claims of prior periods and the sum of payments made on those claims during the period and the reserve still held for them at the end of the period."
+    notes:
+      lv: "Pozitīvs rezultāts (peļņa) nozīmē, ka rezerves bijušas pārāk lielas, negatīvs (zaudējumi) – nepietiekamas. Uzskaites gada radušies zaudējumi ietver run-off rezultātu, negadījuma gada galīgie zaudējumi to izdala pa gadiem. Kvantitatīvais mērījums ir rādītājs reserve-run-off-result."
+      en: "A positive result (gain) means the reserves were too high, a negative result (loss) that they were insufficient. Calendar-year claims incurred include the run-off result, whereas accident-year ultimates show it by year. The quantified measure is the metric reserve-run-off-result."
+    relations:
+      - { type: RELATED, target: reserve-run-off-result }
+      - { type: RELATED, target: calendar-year }
+      - { type: RELATED, target: ultimate-loss }
+    tags: [actuarial, reserving]
+
+  - slug: accident-year
+    type: TERM
+    labels:
+      lv: { preferred: "Negadījuma gads", alt: ["Zaudējumu notikuma gads"], abbrev: ["AY"] }
+      en: { preferred: "Accident year", alt: ["Year of occurrence", "Loss year"], abbrev: ["AY"] }
+    definition:
+      lv: "Kalendārais gads, kurā noticis zaudējumu notikums; pēc tā grupē atlīdzības neatkarīgi no tā, kad polise parakstīta vai kad atlīdzība pieteikta vai izmaksāta."
+      en: "The calendar year in which the loss event occurred, used to group claims regardless of when the policy was written or when the claim was reported or paid."
+    examples:
+      lv: "Negadījums 2025. gada 28. decembrī, pieteikts 2026. gada 5. janvārī, izmaksāts 2026. gada februārī – negadījuma gads 2025."
+      en: "Accident on 28 December 2025, reported on 5 January 2026, paid in February 2026: accident year 2025."
+    notes:
+      lv: "Negadījuma gada rezultāti attīstās vēl vairākus gadus pēc gada beigām. Nejaukt ar parakstīšanas gadu (polises sākuma gads) un uzskaites gadu (grāmatošanas gads)."
+      en: "Accident-year figures keep developing for several years after the year ends. Do not confuse with underwriting year (policy inception year) or calendar year (booking year)."
+    relations:
+      - { type: RELATED, target: underwriting-year }
+      - { type: RELATED, target: calendar-year }
+      - { type: RELATED, target: accident-date }
+    tags: [actuarial, time]
+
+  - slug: underwriting-year
+    type: TERM
+    labels:
+      lv: { preferred: "Parakstīšanas gads", alt: ["Polises gads", "Līguma gads"], abbrev: ["UY"] }
+      en: { preferred: "Underwriting year", alt: ["Policy year", "Year of account"], abbrev: ["UY"] }
+    definition:
+      lv: "Gads, kurā apdrošināšanas polise vai pārapdrošināšanas līgums stājas spēkā; pēc tā grupē visas prēmijas un atlīdzības no šajā gadā spēkā stājušamies līgumiem."
+      en: "The year in which an insurance policy or reinsurance treaty incepts, used to group all premiums and claims arising from contracts that incepted in that year."
+    examples:
+      lv: "Gada polise ar sākumu 2025. gada 1. jūlijā: negadījumi var būt 2025. un 2026. negadījuma gadā, bet visi pieder 2025. parakstīšanas gadam."
+      en: "An annual policy incepting on 1 July 2025: its accidents can fall in accident years 2025 and 2026, but all belong to underwriting year 2025."
+    notes:
+      lv: "Parakstīšanas gadu plaši lieto pārapdrošināšanā (līgumi, kas attiecas uz riskiem, kuri sākas līguma periodā) un cenu noteikšanas analīzē. 17. SFPS gada kohortas jēdziens ir līdzīgs, bet balstās uz līguma izdošanas datumu."
+      en: "Underwriting year is widely used in reinsurance (risks-attaching treaties) and in pricing analysis. The IFRS 17 annual cohort concept is similar but is based on contract issue date."
+    relations:
+      - { type: RELATED, target: accident-year }
+      - { type: RELATED, target: annual-cohort }
+      - { type: RELATED, target: inception-date }
+    tags: [actuarial, time]
+
+  - slug: calendar-year
+    type: TERM
+    labels:
+      lv: { preferred: "Uzskaites gads", alt: ["Kalendārais gads", "Pārskata gads", "Finanšu gads"], abbrev: ["CY"] }
+      en: { preferred: "Calendar year", alt: ["Accounting year", "Financial year"], abbrev: ["CY"] }
+    definition:
+      lv: "Finanšu pārskata periods (gads, ceturksnis vai mēnesis), kurā darījumi tiek grāmatoti, neatkarīgi no negadījuma vai parakstīšanas gada, uz kuru tie attiecas."
+      en: "The financial reporting period (year, quarter or month) in which transactions are booked, regardless of the accident or underwriting year to which they relate."
+    notes:
+      lv: "Uzskaites gada rezultāts ietver gan jaunā gada negadījumus, gan iepriekšējo gadu rezervju attīstību, tāpēc tas var atšķirties no negadījuma gada rādītājiem. Finanšu pārskati ir uzskaites gada pamatā."
+      en: "The calendar-year result includes both the current-year accidents and the development of prior-year reserves, so it can differ from accident-year figures. Financial statements are on a calendar-year basis."
+    relations:
+      - { type: RELATED, target: accident-year }
+      - { type: RELATED, target: underwriting-year }
+      - { type: RELATED, target: run-off-result }
+    tags: [actuarial, time]
+
+  # ---------------------------------------------------------------- metrics
+
+  - slug: ibnr-ratio
+    type: METRIC
+    labels:
+      lv: { preferred: "IBNR īpatsvars", alt: ["IBNR daļa rezervē"], abbrev: [] }
+      en: { preferred: "IBNR ratio", alt: ["IBNR share of reserves"], abbrev: [] }
+    definition:
+      lv: "Procentuālā daļa, ko pārskata datumā bruto neizmaksāto atlīdzību rezervē veido IBNR rezerve (ieskaitot IBNER)."
+      en: "The percentage of the gross outstanding claims reserve at the reporting date that is made up of the IBNR reserve (including IBNER)."
+    notes:
+      lv: "Augsts īpatsvars raksturīgs ilgi attīstošiem veidiem (OCTA kaitējums veselībai, atbildība), zems – īpašumam un KASKO. Cits variants ir IBNR attiecībā pret nopelnītajām prēmijām; to definē kā atsevišķu rādītāju."
+      en: "A high share is typical of long-tail lines (OCTA bodily injury, liability), a low one of property and KASKO. Another variant is IBNR relative to earned premium; that is defined as a separate metric."
+    relations:
+      - { type: RELATED, target: ibnr }
+      - { type: RELATED, target: rbns }
+    tags: [actuarial, reserving]
+    metric:
+      formula: "IBNR reserve amount / Outstanding claims reserve × 100"
+      unit: PERCENT
+      aggregation: RATIO
+      additivity: NON_ADDITIVE
+      polarity: NEUTRAL
+      qualifiers:
+        reinsuranceBasis: GROSS
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: REPORTING_DATE
+        accountingBasis: MANAGEMENT
+        inclusions:
+          largeLosses: INCLUDED
+          catastropheLosses: INCLUDED
+          alae: INCLUDED
+          ulae: EXCLUDED
+          recoveries: EXCLUDED
+      grain: "Quarter-end × line of business × accident year"
+      dimensions: ["Line of business", "Accident year", "SII line of business"]
+      components:
+        - { role: NUMERATOR, metric: ibnr-reserve-amount }
+        - { role: DENOMINATOR, metric: outstanding-claims-reserve }
+      refreshFrequency: QUARTERLY
+      example:
+        lv: "OCTA 31.12.: IBNR 18,0 milj. EUR, kopējā rezerve 45,0 milj. EUR: 18,0 / 45,0 = 40 %."
+        en: "OCTA at 31 December: IBNR EUR 18.0 m, total reserve EUR 45.0 m: 18.0 / 45.0 = 40%."
+
+  - slug: reserve-run-off-result
+    type: METRIC
+    labels:
+      lv: { preferred: "Bruto rezervju attīstības rezultāts", alt: ["Iepriekšējo gadu rezervju attīstība"], abbrev: [] }
+      en: { preferred: "Reserve run-off result", alt: ["Prior-year reserve development", "Run-off gain/loss"], abbrev: [] }
+    definition:
+      lv: "Bruto summa, par kuru gada sākumā iepriekšējo negadījuma gadu atlīdzībām izveidotā neizmaksāto atlīdzību rezerve pārsniedz šo atlīdzību izmaksas pārskata periodā (atskaitot saņemtos regresus) kopā ar perioda beigās tām saglabāto rezervi."
+      en: "The gross amount by which the outstanding claims reserve held at the start of the year for prior accident years exceeds the payments on those claims in the reporting period (less recoveries received) plus the reserve still held for them at the end of the period."
+    notes:
+      lv: "Pozitīvs – peļņa (rezerves bija lielākas par nepieciešamo), negatīvs – zaudējumi. Pastāvīgi liela peļņa var liecināt par pārmērīgu piesardzību rezervēšanā. Iepriekšējie gadi ir negadījuma gadi pirms pārskata gada; salīdzinājuma bāze ir gada sākuma rezerve, tāpēc ceturkšņa vērtības gada ietvaros ir kumulatīvas. 17. SFPS variantā izmanto LIC izmaiņas, kas attiecas uz pagātnes pakalpojumiem."
+      en: "Positive is a gain (reserves were more than sufficient), negative a loss. Persistently large gains may indicate excessive prudence in reserving. Prior years are accident years before the reporting year; the basis is the reserve at the start of the year, so quarterly values within a year are year-to-date. The IFRS 17 variant uses changes in the LIC that relate to past service."
+    relations:
+      - { type: RELATED, target: run-off-result }
+      - { type: RELATED, target: liability-for-incurred-claims }
+    tags: [actuarial, kpi, reserving]
+    metric:
+      formula: "Opening outstanding claims reserve (prior accident years) − [Gross claims paid in period on prior accident years − Recoveries received on prior accident years + Closing outstanding claims reserve (prior accident years)]"
+      unit: AMOUNT_EUR
+      aggregation: SUM
+      additivity: SEMI_ADDITIVE
+      polarity: HIGHER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: GROSS
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+        inclusions:
+          largeLosses: INCLUDED
+          catastropheLosses: INCLUDED
+          alae: INCLUDED
+          ulae: EXCLUDED
+          recoveries: INCLUDED
+      grain: "Quarter (year-to-date) × line of business × accident year"
+      dimensions: ["Line of business", "Accident year", "Reserve type (RBNS / IBNR)"]
+      components:
+        - { role: COMPONENT, metric: outstanding-claims-reserve }
+        - { role: COMPONENT, metric: gross-claims-paid }
+      refreshFrequency: QUARTERLY
+      example:
+        lv: "Rezerve 1.01. iepriekšējiem gadiem 50,0 milj. EUR; gada laikā izmaksāts 21,0 milj. EUR, regresi 1,0 milj. EUR, rezerve 31.12. 27,0 milj. EUR: 50,0 − (21,0 − 1,0 + 27,0) = +3,0 milj. EUR."
+        en: "Reserve at 1 January for prior years EUR 50.0 m; paid during the year EUR 21.0 m, recoveries EUR 1.0 m, reserve at 31 December EUR 27.0 m: 50.0 − (21.0 − 1.0 + 27.0) = +EUR 3.0 m."
+
+  - slug: burning-cost
+    type: METRIC
+    labels:
+      lv: { preferred: "Vēsturiskās zaudējumu izmaksas uz riska vienību", alt: ["Burning cost", "Faktiskā zaudējumu likme"], abbrev: [] }
+      en: { preferred: "Burning cost", alt: ["Historical loss cost", "Experience loss cost"], abbrev: [] }
+    definition:
+      lv: "Faktiskie vēsturiskie bruto radušies zaudējumi negadījuma periodā, dalīti ar šī perioda nopelnīto riska apjomu."
+      en: "Actual historical gross claims incurred for an accident period divided by the earned exposure of that period."
+    notes:
+      lv: "Burning cost ir pieredzes mērs; riska prēmija (pure premium) ir uz nākotni vērsta aplēse, kas balstās uz koriģētu (inflācija, attīstība līdz galīgajai vērtībai, lielo zaudējumu ierobežošana) pieredzi. Pārapdrošināšanā burning cost parasti izsaka kā zaudējumu slānī attiecību pret pamatprēmiju (%)."
+      en: "Burning cost is an experience measure; pure premium is a forward-looking estimate based on adjusted experience (inflation, development to ultimate, large-loss capping). In reinsurance, burning cost is usually expressed as losses to the layer divided by subject premium (%)."
+    relations:
+      - { type: RELATED, target: pure-premium }
+      - { type: RELATED, target: claim-frequency }
+      - { type: RELATED, target: excess-of-loss }
+    tags: [actuarial, pricing]
+    metric:
+      formula: "Gross claims incurred (accident year) / Earned exposure"
+      unit: AMOUNT_EUR
+      aggregation: RATIO
+      additivity: NON_ADDITIVE
+      polarity: LOWER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: GROSS
+        premiumBasis: EARNED
+        timeBasis: ACCIDENT_YEAR
+        accountingBasis: MANAGEMENT
+        inclusions:
+          largeLosses: INCLUDED
+          catastropheLosses: EXCLUDED
+          alae: INCLUDED
+          ulae: EXCLUDED
+          recoveries: INCLUDED
+      grain: "Accident year × line of business × rating segment"
+      dimensions: ["Line of business", "Product", "Coverage", "Vehicle class", "Region", "Customer segment"]
+      components:
+        - { role: NUMERATOR, metric: gross-claims-incurred }
+        - { role: DENOMINATOR, metric: earned-exposure }
+      refreshFrequency: QUARTERLY
+      example:
+        lv: "KASKO 2025. negadījuma gads: 19,8 milj. EUR / 55 000 transportlīdzekļu gadi = 360 EUR uz transportlīdzekļa gadu."
+        en: "KASKO accident year 2025: EUR 19.8 m / 55,000 vehicle-years = EUR 360 per vehicle-year."
+
+  - slug: pure-premium
+    type: METRIC
+    labels:
+      lv: { preferred: "Riska prēmija", alt: ["Tīrā riska prēmija", "Paredzamās zaudējumu izmaksas uz riska vienību"], abbrev: [] }
+      en: { preferred: "Pure premium", alt: ["Risk premium", "Expected loss cost"], abbrev: [] }
+    definition:
+      lv: "Paredzamās bruto zaudējumu izmaksas uz vienu nopelnītā riska vienību nākotnes seguma periodam, kas aprēķinātas kā prognozētais atlīdzību biežums, reizināts ar prognozēto vidējo atlīdzības summu."
+      en: "The expected gross loss cost per unit of earned exposure for a future period of cover, calculated as projected claim frequency multiplied by projected average claim severity."
+    notes:
+      lv: "Riska prēmija neietver izdevumu, komisijas, katastrofu un peļņas uzcenojumus – tos pieskaita, nosakot tarifu. Nejaukt ar burning cost (vēsturiskā pieredze) un ar neto prēmiju (prēmija pēc pārapdrošināšanas)."
+      en: "Pure premium excludes expense, commission, catastrophe and profit loadings; these are added when setting the tariff. Do not confuse it with burning cost (historical experience) or with net premium (premium after reinsurance)."
+    relations:
+      - { type: RELATED, target: tariff }
+      - { type: RELATED, target: burning-cost }
+      - { type: RELATED, target: insurance-premium }
+    tags: [actuarial, pricing]
+    metric:
+      formula: "Claim frequency (projected) × Average claim severity (projected)"
+      unit: AMOUNT_EUR
+      aggregation: CUSTOM
+      additivity: NON_ADDITIVE
+      polarity: NEUTRAL
+      qualifiers:
+        reinsuranceBasis: GROSS
+        premiumBasis: EARNED
+        timeBasis: ACCIDENT_YEAR
+        accountingBasis: MANAGEMENT
+        inclusions:
+          largeLosses: INCLUDED
+          catastropheLosses: EXCLUDED
+          alae: INCLUDED
+          ulae: EXCLUDED
+          recoveries: INCLUDED
+      grain: "Rating segment × coverage × projection year"
+      dimensions: ["Line of business", "Product", "Coverage", "Rating factor", "Region"]
+      components:
+        - { role: COMPONENT, metric: claim-frequency }
+        - { role: COMPONENT, metric: average-claim-severity }
+      refreshFrequency: ANNUAL
+      example:
+        lv: "OCTA vieglajam automobilim: biežums 0,030 × vidējā atlīdzība 2 400 EUR = 72 EUR uz transportlīdzekļa gadu."
+        en: "OCTA passenger car: frequency 0.030 × average severity EUR 2,400 = EUR 72 per vehicle-year."
+
+  - slug: ultimate-loss-ratio
+    type: METRIC
+    labels:
+      lv: { preferred: "Galīgo zaudējumu rādītājs", alt: ["Galīgo zaudējumu koeficients", "Negadījuma gada galīgo zaudējumu rādītājs"], abbrev: ["ULR"] }
+      en: { preferred: "Ultimate loss ratio", alt: ["Accident-year ultimate loss ratio"], abbrev: ["ULR"] }
+    definition:
+      lv: "Procentuālā attiecība starp negadījuma gada aplēstajiem bruto galīgajiem zaudējumiem un šī gada bruto nopelnītajām prēmijām."
+      en: "The percentage ratio of the estimated gross ultimate loss of an accident year to the gross earned premium of that year."
+    notes:
+      lv: "Atšķirībā no uzskaites gada zaudējumu koeficienta neietver iepriekšējo gadu rezervju attīstību, tāpēc labāk parāda konkrētā gada portfeļa rentabilitāti. Vērtība mainās ar katru pārvērtēšanu. Pārapdrošināšanā un cenu analīzē lieto arī parakstīšanas gada variantu."
+      en: "Unlike the calendar-year loss ratio it excludes prior-year reserve development, so it better shows the profitability of a given year's business. The value changes at every re-estimation. Reinsurance and pricing analysis also use an underwriting-year variant."
+    relations:
+      - { type: RELATED, target: gross-loss-ratio }
+      - { type: RELATED, target: ultimate-loss }
+    tags: [actuarial, kpi, reserving]
+    metric:
+      formula: "Ultimate loss amount (accident year) / Gross earned premium (same year) × 100"
+      unit: PERCENT
+      aggregation: RATIO
+      additivity: NON_ADDITIVE
+      polarity: LOWER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: GROSS
+        premiumBasis: EARNED
+        timeBasis: ACCIDENT_YEAR
+        accountingBasis: MANAGEMENT
+        inclusions:
+          largeLosses: INCLUDED
+          catastropheLosses: INCLUDED
+          alae: INCLUDED
+          ulae: EXCLUDED
+          recoveries: INCLUDED
+      grain: "Accident year × line of business × valuation quarter"
+      dimensions: ["Line of business", "Product", "Accident year", "Valuation date"]
+      components:
+        - { role: NUMERATOR, metric: ultimate-loss-amount }
+        - { role: DENOMINATOR, metric: gross-earned-premium }
+      refreshFrequency: QUARTERLY
+      example:
+        lv: "2025. negadījuma gads: galīgie zaudējumi 62,0 milj. EUR / nopelnītās prēmijas 100,0 milj. EUR = 62 %."
+        en: "Accident year 2025: ultimate loss EUR 62.0 m / earned premium EUR 100.0 m = 62%."
+
+  # ---------------------------------------------------- extra (Writer 2)
+
+  - slug: outstanding-claims-reserve
+    type: METRIC
+    labels:
+      lv: { preferred: "Neizmaksāto atlīdzību rezerve", alt: ["Atlīdzību prasību rezerve", "Zaudējumu rezerve"], abbrev: ["OCR"] }
+      en: { preferred: "Outstanding claims reserve", alt: ["Claims reserve", "Loss reserve", "Claims outstanding"], abbrev: ["OCR"] }
+    definition:
+      lv: "Bruto rezerves summa pārskata datumā atlīdzībām par jau notikušiem zaudējumu notikumiem, kas vēl nav izmaksātas; tā ir RBNS un IBNR (ieskaitot IBNER) summa ar tieši piesaistāmajiem regulēšanas izdevumiem pirms pārapdrošinātāju daļas atskaitīšanas."
+      en: "The gross reserve amount at the reporting date for claims on loss events that have already occurred but are not yet paid; it is the sum of RBNS and IBNR (including IBNER), with allocated loss adjustment expenses and before deducting the reinsurers' share."
+    notes:
+      lv: "Vadības uzskaites noklusējumā nediskontēta, bez ULAE rezerves un bez paredzamo regresu samazinājuma. Normatīvajos pārskatos rezerve ietver ULAE; 17. SFPS atbilstošais jēdziens ir saistības par radušos atlīdzību prasībām (LIC), kas ir diskontētas un ietver riska korekciju."
+      en: "In the management default it is undiscounted, excludes the ULAE reserve and is not reduced by expected recoveries. In statutory reporting the reserve includes ULAE; the IFRS 17 counterpart is the liability for incurred claims (LIC), which is discounted and includes the risk adjustment."
+    relations:
+      - { type: RELATED, target: rbns }
+      - { type: RELATED, target: ibnr }
+      - { type: RELATED, target: liability-for-incurred-claims }
+      - { type: PART_OF, target: technical-provisions }
+    tags: [actuarial, reserving, finance]
+    metric:
+      formula: "RBNS (sum of case reserves) + IBNR reserve amount, at Reporting date"
+      unit: AMOUNT_EUR
+      aggregation: LAST_VALUE
+      additivity: SEMI_ADDITIVE
+      polarity: NEUTRAL
+      qualifiers:
+        reinsuranceBasis: GROSS
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: REPORTING_DATE
+        accountingBasis: MANAGEMENT
+        inclusions:
+          largeLosses: INCLUDED
+          catastropheLosses: INCLUDED
+          alae: INCLUDED
+          ulae: EXCLUDED
+          recoveries: EXCLUDED
+      grain: "Month-end × line of business × accident year"
+      dimensions: ["Line of business", "Accident year", "Reserve type (RBNS / IBNR)", "SII line of business"]
+      components:
+        - { role: COMPONENT, metric: ibnr-reserve-amount }
+      refreshFrequency: MONTHLY
+      example:
+        lv: "31.12.: RBNS 33,0 milj. EUR + IBNR 18,0 milj. EUR = 51,0 milj. EUR."
+        en: "At 31 December: RBNS EUR 33.0 m + IBNR EUR 18.0 m = EUR 51.0 m."
+
+  - slug: ibnr-reserve-amount
+    type: METRIC
+    labels:
+      lv: { preferred: "IBNR rezerves summa", alt: ["Bruto IBNR rezerve"], abbrev: [] }
+      en: { preferred: "IBNR reserve amount", alt: ["Gross IBNR reserve", "Bulk reserve"], abbrev: [] }
+    definition:
+      lv: "Bruto aktuāra rezerves summa pārskata datumā virs atvērto lietu rezervēm, kas ietver nepieteiktos zaudējumus (IBNR) un pieteikto lietu turpmāko attīstību (IBNER)."
+      en: "The gross actuarial reserve amount at the reporting date in excess of case reserves on open claims, covering unreported claims (IBNR) and the further development of reported claims (IBNER)."
+    notes:
+      lv: "Šeit IBNR lietots plašā nozīmē (IBNR + IBNER) = neizmaksāto atlīdzību rezerve − RBNS. Ja nepieciešams tikai šaurais IBNR, IBNER jāizdala atsevišķi."
+      en: "IBNR is used here in the broad sense (IBNR + IBNER) = outstanding claims reserve − RBNS. If only narrow IBNR is required, IBNER must be separated."
+    relations:
+      - { type: RELATED, target: ibnr }
+      - { type: RELATED, target: ibner }
+      - { type: PART_OF, target: outstanding-claims-reserve }
+    tags: [actuarial, reserving]
+    metric:
+      formula: "Actuarial estimate of total outstanding claims − RBNS (sum of case reserves), at Reporting date"
+      unit: AMOUNT_EUR
+      aggregation: LAST_VALUE
+      additivity: SEMI_ADDITIVE
+      polarity: NEUTRAL
+      qualifiers:
+        reinsuranceBasis: GROSS
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: REPORTING_DATE
+        accountingBasis: MANAGEMENT
+        inclusions:
+          largeLosses: INCLUDED
+          catastropheLosses: INCLUDED
+          alae: INCLUDED
+          ulae: EXCLUDED
+          recoveries: EXCLUDED
+      grain: "Quarter-end × line of business × accident year"
+      dimensions: ["Line of business", "Accident year", "Reserving method"]
+      components: []
+      refreshFrequency: QUARTERLY
+      example:
+        lv: "Aktuāra aplēse kopējām neizmaksātajām atlīdzībām 51,0 milj. EUR − RBNS 33,0 milj. EUR = IBNR 18,0 milj. EUR."
+        en: "Actuarial estimate of total outstanding claims EUR 51.0 m − RBNS EUR 33.0 m = IBNR EUR 18.0 m."
+
+  - slug: ultimate-loss-amount
+    type: METRIC
+    labels:
+      lv: { preferred: "Galīgo zaudējumu summa", alt: ["Galīgo zaudējumu aplēse"], abbrev: [] }
+      en: { preferred: "Ultimate loss amount", alt: ["Estimated ultimate loss"], abbrev: [] }
+    definition:
+      lv: "Novērtēšanas datumā aplēstā negadījuma gada bruto galīgo zaudējumu summa: kumulatīvās izmaksas līdz šim, atskaitot saņemtos regresus, plus šī gada atlīdzību neizmaksāto atlīdzību rezerve (RBNS un IBNR)."
+      en: "The estimated gross ultimate loss of an accident year at the valuation date: cumulative payments to date, less recoveries received, plus the outstanding claims reserve (RBNS and IBNR) for that year's claims."
+    notes:
+      lv: "Starp negadījuma gadiem un apdrošināšanas veidiem summējama, bet laikā ņem tikai jaunāko novērtējumu. Divu novērtējumu starpība iepriekšējiem gadiem ir rezervju attīstības rezultāts."
+      en: "Summable across accident years and lines of business, but over time only the latest valuation is used. The difference between two valuations for prior years is the run-off result."
+    relations:
+      - { type: RELATED, target: ultimate-loss }
+      - { type: RELATED, target: reserve-run-off-result }
+    tags: [actuarial, reserving]
+    metric:
+      formula: "Cumulative gross claims paid to date (accident year) − Cumulative recoveries received + Outstanding claims reserve (accident year)"
+      unit: AMOUNT_EUR
+      aggregation: LAST_VALUE
+      additivity: SEMI_ADDITIVE
+      polarity: NEUTRAL
+      qualifiers:
+        reinsuranceBasis: GROSS
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: ACCIDENT_YEAR
+        accountingBasis: MANAGEMENT
+        inclusions:
+          largeLosses: INCLUDED
+          catastropheLosses: INCLUDED
+          alae: INCLUDED
+          ulae: EXCLUDED
+          recoveries: INCLUDED
+      grain: "Accident year × line of business × valuation quarter"
+      dimensions: ["Line of business", "Accident year", "Valuation date"]
+      components:
+        - { role: COMPONENT, metric: gross-claims-paid }
+        - { role: COMPONENT, metric: outstanding-claims-reserve }
+      refreshFrequency: QUARTERLY
+      example:
+        lv: "2025. negadījuma gads 31.12.2025.: izmaksāts 40,0 milj. EUR, regresi 1,0 milj. EUR, rezerve 23,0 milj. EUR = 62,0 milj. EUR."
+        en: "Accident year 2025 at 31 December 2025: paid EUR 40.0 m, recoveries EUR 1.0 m, reserve EUR 23.0 m = EUR 62.0 m."

@@ -1,0 +1,351 @@
+// Insurance vocabulary & metric registry — data model (plan §3.1).
+//
+// The canonical content of a term or metric is the validated ConceptDoc JSON (see
+// packages/core/src/concept-schema.ts), stored on Concept.doc and snapshotted in Revision.
+// Columns next to it (labels, search text, Metric qualifiers, relations, components) are
+// derived from the document on every write so they can be indexed, filtered and joined.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum ConceptType {
+  TERM
+  METRIC
+}
+
+enum ConceptStatus {
+  CANDIDATE
+  APPROVED
+  DEPRECATED
+}
+
+enum ChangeKind {
+  CREATE
+  UPDATE
+  DEPRECATE
+}
+
+enum ChangeStatus {
+  DRAFT
+  SUBMITTED
+  ENDORSED
+  CHANGES_REQUESTED
+  APPROVED
+  REJECTED
+  WITHDRAWN
+}
+
+enum Role {
+  VIEWER
+  CONTRIBUTOR
+  STEWARD
+  OWNER
+  ADMIN
+}
+
+enum AssignmentSource {
+  MANUAL
+  ENTRA
+  SEED
+}
+
+enum RelationType {
+  BROADER
+  RELATED
+  PART_OF
+  REPLACED_BY
+}
+
+enum ComponentRole {
+  NUMERATOR
+  DENOMINATOR
+  COMPONENT
+}
+
+enum DataElementKind {
+  SYNAPSE_TABLE
+  SYNAPSE_COLUMN
+  POWERBI_DATASET
+  POWERBI_MEASURE
+}
+
+model User {
+  id          String    @id @default(cuid())
+  email       String    @unique
+  name        String
+  entraOid    String?   @unique
+  createdAt   DateTime  @default(now())
+  lastLoginAt DateTime?
+
+  assignments      RoleAssignment[]
+  ownedDomains     Domain[]         @relation("DomainOwner")
+  stewardedDomains Domain[]         @relation("DomainSteward")
+  changes          ChangeRequest[]  @relation("ChangeAuthor")
+  decisions        ChangeRequest[]  @relation("ChangeDecider")
+  reviews          Review[]
+  comments         Comment[]
+}
+
+model RoleAssignment {
+  id        String           @id @default(cuid())
+  userId    String
+  role      Role
+  domainId  String?
+  source    AssignmentSource @default(MANUAL)
+  createdAt DateTime         @default(now())
+
+  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  domain Domain? @relation(fields: [domainId], references: [id])
+
+  @@unique([userId, role, domainId])
+}
+
+model Domain {
+  id            String  @id @default(cuid())
+  key           String  @unique
+  order         Int
+  nameLv        String
+  nameEn        String
+  descriptionLv String
+  descriptionEn String
+  ownerId       String?
+  stewardId     String?
+
+  owner       User?            @relation("DomainOwner", fields: [ownerId], references: [id])
+  steward     User?            @relation("DomainSteward", fields: [stewardId], references: [id])
+  concepts    Concept[]
+  changes     ChangeRequest[]
+  assignments RoleAssignment[]
+}
+
+model Concept {
+  id          String        @id @default(cuid())
+  slug        String        @unique
+  type        ConceptType
+  status      ConceptStatus @default(CANDIDATE)
+  domainId    String
+  doc         Json
+  revision    Int           @default(1)
+  preferredLv String
+  preferredEn String
+  labelText   String
+  fullText    String
+  approvedAt  DateTime?
+  approvedBy  String?
+  reviewDueAt DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  domain        Domain               @relation(fields: [domainId], references: [id])
+  metric        Metric?
+  relationsFrom ConceptRelation[]    @relation("RelationFrom")
+  relationsTo   ConceptRelation[]    @relation("RelationTo")
+  components    MetricComponent[]    @relation("ComponentOf")
+  usedIn        MetricComponent[]    @relation("ComponentUses")
+  revisions     Revision[]
+  changes       ChangeRequest[]
+  comments      Comment[]
+  mappings      ConceptDataMapping[]
+
+  @@index([domainId, status])
+  @@index([preferredEn])
+  @@index([reviewDueAt])
+}
+
+model Metric {
+  conceptId        String  @id
+  unit             String
+  aggregation      String
+  additivity       String
+  polarity         String
+  reinsuranceBasis String
+  premiumBasis     String
+  timeBasis        String
+  accountingBasis  String
+  refreshFrequency String?
+  powerBiDataset   String?
+  powerBiMeasure   String?
+  hasDax           Boolean @default(false)
+  hasReferenceSql  Boolean @default(false)
+
+  concept Concept @relation(fields: [conceptId], references: [id], onDelete: Cascade)
+
+  @@index([accountingBasis, reinsuranceBasis])
+}
+
+model ConceptRelation {
+  fromId String
+  toId   String
+  type   RelationType
+
+  from Concept @relation("RelationFrom", fields: [fromId], references: [id], onDelete: Cascade)
+  to   Concept @relation("RelationTo", fields: [toId], references: [id], onDelete: Cascade)
+
+  @@id([fromId, toId, type])
+  @@index([toId])
+}
+
+model MetricComponent {
+  metricId    String
+  componentId String
+  role        ComponentRole
+
+  metric    Concept @relation("ComponentOf", fields: [metricId], references: [id], onDelete: Cascade)
+  component Concept @relation("ComponentUses", fields: [componentId], references: [id], onDelete: Cascade)
+
+  @@id([metricId, componentId, role])
+  @@index([componentId])
+}
+
+/// Immutable snapshot of a concept after each change. UPDATE/DELETE blocked by a DB trigger.
+model Revision {
+  id              String        @id @default(cuid())
+  conceptId       String
+  number          Int
+  doc             Json
+  status          ConceptStatus
+  note            String?
+  changeRequestId String?
+  authorId        String?
+  approvedById    String?
+  createdAt       DateTime      @default(now())
+
+  concept       Concept        @relation(fields: [conceptId], references: [id])
+  changeRequest ChangeRequest? @relation(fields: [changeRequestId], references: [id])
+
+  @@unique([conceptId, number])
+}
+
+model ChangeRequest {
+  id           String       @id @default(cuid())
+  number       Int          @unique @default(autoincrement())
+  kind         ChangeKind
+  status       ChangeStatus @default(DRAFT)
+  slug         String
+  conceptId    String?
+  domainId     String
+  payload      Json
+  baseRevision Int?
+  reason       String
+  authorId     String
+  decidedById  String?
+  submittedAt  DateTime?
+  decidedAt    DateTime?
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  concept   Concept?   @relation(fields: [conceptId], references: [id])
+  domain    Domain     @relation(fields: [domainId], references: [id])
+  author    User       @relation("ChangeAuthor", fields: [authorId], references: [id])
+  decidedBy User?      @relation("ChangeDecider", fields: [decidedById], references: [id])
+  reviews   Review[]
+  comments  Comment[]
+  revisions Revision[]
+
+  @@index([status, domainId])
+  @@index([authorId])
+  @@index([slug])
+}
+
+/// Workflow log: one row per action taken on a change request.
+model Review {
+  id              String       @id @default(cuid())
+  changeRequestId String
+  actorId         String
+  action          String
+  fromStatus      ChangeStatus
+  toStatus        ChangeStatus
+  comment         String?
+  createdAt       DateTime     @default(now())
+
+  changeRequest ChangeRequest @relation(fields: [changeRequestId], references: [id], onDelete: Cascade)
+  actor         User          @relation(fields: [actorId], references: [id])
+}
+
+model Comment {
+  id              String   @id @default(cuid())
+  authorId        String
+  body            String
+  conceptId       String?
+  changeRequestId String?
+  createdAt       DateTime @default(now())
+
+  author        User           @relation(fields: [authorId], references: [id])
+  concept       Concept?       @relation(fields: [conceptId], references: [id])
+  changeRequest ChangeRequest? @relation(fields: [changeRequestId], references: [id])
+
+  @@index([conceptId])
+  @@index([changeRequestId])
+}
+
+model CodeList {
+  id            String  @id @default(cuid())
+  key           String  @unique
+  nameLv        String
+  nameEn        String
+  descriptionLv String?
+  descriptionEn String?
+  conceptSlug   String?
+
+  values CodeValue[]
+}
+
+model CodeValue {
+  id         String    @id @default(cuid())
+  codeListId String
+  code       String
+  labelLv    String
+  labelEn    String
+  sortOrder  Int       @default(0)
+  validFrom  DateTime?
+  validTo    DateTime?
+
+  codeList CodeList @relation(fields: [codeListId], references: [id], onDelete: Cascade)
+
+  @@unique([codeListId, code])
+}
+
+/// A physical data asset (Synapse object or Power BI measure) that implements a concept.
+model DataElement {
+  id            String          @id @default(cuid())
+  kind          DataElementKind
+  system        String
+  qualifiedName String          @unique
+  description   String?
+  lastSeenAt    DateTime?
+
+  mappings ConceptDataMapping[]
+}
+
+model ConceptDataMapping {
+  conceptId     String
+  dataElementId String
+  note          String?
+  createdById   String?
+  createdAt     DateTime @default(now())
+
+  concept     Concept     @relation(fields: [conceptId], references: [id], onDelete: Cascade)
+  dataElement DataElement @relation(fields: [dataElementId], references: [id], onDelete: Cascade)
+
+  @@id([conceptId, dataElementId])
+}
+
+/// Append-only audit trail. UPDATE/DELETE blocked by a DB trigger.
+model AuditLog {
+  id         String   @id @default(cuid())
+  actorId    String?
+  action     String
+  entityType String
+  entityId   String
+  details    Json?
+  createdAt  DateTime @default(now())
+
+  @@index([entityType, entityId])
+  @@index([createdAt])
+}

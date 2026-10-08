@@ -1,0 +1,1014 @@
+domain: claims
+concepts:
+  # ------------------------------------------------------------------ terms
+
+  - slug: claim
+    type: TERM
+    labels:
+      lv: { preferred: "Atlīdzības pieteikums", alt: ["Atlīdzības prasība", "Zaudējumu pieteikums", "Atlīdzības lieta"], abbrev: [] }
+      en: { preferred: "Claim", alt: ["Insurance claim", "Claim file"], abbrev: [] }
+    definition:
+      lv: "Apdrošinājuma ņēmēja, apdrošinātā, labuma guvēja vai cietušas trešās personas prasījums, lai apdrošinātājs izmaksā apdrošināšanas atlīdzību par konkrētu zaudējumu notikumu; to reģistrē un regulē kā atsevišķu atlīdzības lietu."
+      en: "A demand by a policyholder, insured person, beneficiary or injured third party that the insurer pay insurance indemnity for a specific loss event; it is registered and handled as a separate claim file."
+    examples:
+      lv: "OCTA negadījumā, kurā bojāti divi automobiļi un cietis viens gājējs, var tikt reģistrētas trīs atlīdzības lietas: divas par transportlīdzekļu bojājumiem un viena par kaitējumu veselībai."
+      en: "An OCTA accident in which two cars are damaged and one pedestrian is injured may be registered as three claims: two for vehicle damage and one for bodily injury."
+    notes:
+      lv: "Atlīdzības pieteikumu nejaukt ar zaudējumu notikumu: viens notikums var radīt vairākus pieteikumus vairākās polisēs. Pieteikums tiek uzskaitīts arī tad, ja vēlāk to noraida vai slēdz bez izmaksas (nulles atlīdzība). Skaitīšanas vienība (lieta, cietušais vai segums) jānosaka katram rādītājam."
+      en: "Do not confuse a claim with a loss event: one event can generate several claims under several policies. A claim is counted even if it is later declined or closed without payment (nil claim). The counting unit (file, claimant or coverage) must be stated for each metric."
+    relations:
+      - { type: RELATED, target: loss-event }
+      - { type: RELATED, target: fnol }
+      - { type: RELATED, target: insurance-policy }
+      - { type: RELATED, target: claim-handler }
+    tags: [claims, core]
+
+  - slug: fnol
+    type: TERM
+    labels:
+      lv: { preferred: "Pirmais paziņojums par zaudējumiem", alt: ["Zaudējumu pieteikšana", "Pirmreizējais pieteikums"], abbrev: ["FNOL"] }
+      en: { preferred: "First notification of loss", alt: ["First notice of loss"], abbrev: ["FNOL"] }
+    definition:
+      lv: "Pirmā informācija, ko apdrošinātājs saņem no apdrošinātā, cietušā, starpnieka vai citas personas par noticušu zaudējumu notikumu jebkurā saziņas kanālā; ar to tiek atvērta atlīdzības lieta un noteikts pieteikšanas datums."
+      en: "The first information the insurer receives from the insured, an injured party, an intermediary or another person about a loss event that has occurred, through any contact channel; it opens the claim file and sets the claim reporting date."
+    examples:
+      lv: "Klients piesaka KASKO zaudējumus mobilajā lietotnē 2026. gada 3. martā; šis ir FNOL datums, pat ja dokumenti tiek iesniegti vēlāk."
+      en: "A customer reports a KASKO loss in the mobile app on 3 March 2026; this is the FNOL date even if documents are submitted later."
+    notes:
+      lv: "FNOL ir notikums (paziņojuma saņemšana), nevis process. Laiks no negadījuma līdz FNOL ir pieteikšanas kavējums, kas ietekmē IBNR."
+      en: "FNOL is an event (receipt of notification), not a process. The time from accident to FNOL is the reporting delay, which drives IBNR."
+    relations:
+      - { type: PART_OF, target: claim }
+      - { type: RELATED, target: claim-reporting-date }
+      - { type: RELATED, target: fnol-to-first-payment-days }
+      - { type: RELATED, target: digital-channel }
+    tags: [claims, process]
+
+  - slug: loss-event
+    type: TERM
+    labels:
+      lv: { preferred: "Zaudējumu notikums", alt: ["Negadījums", "Apdrošināšanas gadījums"], abbrev: [] }
+      en: { preferred: "Loss event", alt: ["Occurrence", "Insured event"], abbrev: [] }
+    definition:
+      lv: "Notikums noteiktā laikā un vietā, piemēram, ceļu satiksmes negadījums, ugunsgrēks, vētra vai zādzība, kas rada mantisku zaudējumu vai kaitējumu personai un var izraisīt vienu vai vairākus atlīdzības pieteikumus vienā vai vairākās polisēs."
+      en: "An occurrence at a specific time and place, such as a road accident, fire, storm or theft, that causes property damage or personal injury and may give rise to one or more claims under one or more policies."
+    notes:
+      lv: "Ja notikums ir apdrošināšanas līgumā paredzēts un segts, to sauc par apdrošināšanas gadījumu. Pārapdrošināšanā (XL, katastrofu segumi) notikuma definīcija nosaka, kurus zaudējumus apvieno vienā notikumā."
+      en: "When the event is covered by the insurance contract it is called an insured event. In reinsurance (XL, catastrophe covers) the event definition determines which losses are aggregated into one event."
+    relations:
+      - { type: RELATED, target: claim }
+      - { type: RELATED, target: accident-date }
+      - { type: RELATED, target: catastrophe-event }
+      - { type: RELATED, target: peril }
+    tags: [claims, core]
+
+  - slug: claim-payment
+    type: TERM
+    labels:
+      lv: { preferred: "Atlīdzības izmaksa", alt: ["Atlīdzības maksājums"], abbrev: [] }
+      en: { preferred: "Claim payment", alt: ["Indemnity payment"], abbrev: [] }
+    definition:
+      lv: "Atsevišķs maksājums atlīdzības lietā, ko apdrošinātājs veic prasītājam, pakalpojuma sniedzējam (piemēram, remontuzņēmumam) vai citam saņēmējam kā apdrošināšanas atlīdzību vai ar lietu saistītus izdevumus."
+      en: "A single payment on a claim that the insurer makes to the claimant, a service provider (for example a repair shop) or another payee as insurance indemnity or claim-related costs."
+    notes:
+      lv: "Vienā lietā var būt vairākas daļējas izmaksas un avansi. Atgūtās regresa summas un atlieku ieņēmumi nav negatīvas izmaksas – tās uzskaita atsevišķi."
+      en: "A claim may have several partial payments and advances. Subrogation recoveries and salvage proceeds are not negative payments; they are recorded separately."
+    relations:
+      - { type: PART_OF, target: claims-paid }
+      - { type: RELATED, target: claim }
+    tags: [claims]
+
+  - slug: case-reserve
+    type: TERM
+    labels:
+      lv: { preferred: "Pieteikto zaudējumu rezerve", alt: ["Atlīdzības lietas rezerve", "Lietas rezerve"], abbrev: [] }
+      en: { preferred: "Case reserve", alt: ["Case estimate", "Individual claim reserve"], abbrev: [] }
+    definition:
+      lv: "Summa, ko atlīdzību regulētājs novērtē konkrētai atvērtai atlīdzības lietai kā vēl izmaksājamo atlīdzību un tieši piesaistāmos izdevumus, pamatojoties uz lietā pieejamo informāciju."
+      en: "An amount that the claim handler estimates for a specific open claim as the indemnity and allocated expenses still to be paid, based on the information available in the file."
+    examples:
+      lv: "Novērtētais remonta apmērs 6 000 EUR, jau izmaksāts avanss 2 000 EUR – lietas rezerve ir 4 000 EUR."
+      en: "Estimated repair cost EUR 6,000, advance already paid EUR 2,000: the case reserve is EUR 4,000."
+    notes:
+      lv: "Lietas rezerve ir vienas lietas līmeņa novērtējums; visu atvērto lietu rezervju summa veido RBNS. Aktuāru korekcija par sistemātisku lietu rezervju nepietiekamību ir IBNER, nevis daļa no lietas rezerves."
+      en: "A case reserve is an estimate at single-claim level; the sum over all open claims forms RBNS. The actuarial adjustment for systematic under-reserving of case reserves is IBNER, not part of the case reserve."
+    relations:
+      - { type: PART_OF, target: rbns }
+      - { type: RELATED, target: ibner }
+      - { type: RELATED, target: claim-handler }
+    tags: [claims, reserving]
+
+  - slug: claims-paid
+    type: TERM
+    labels:
+      lv: { preferred: "Izmaksātās atlīdzības", alt: ["Atlīdzību izmaksas"], abbrev: [] }
+      en: { preferred: "Claims paid", alt: ["Paid claims", "Paid losses"], abbrev: [] }
+    definition:
+      lv: "Visu periodā veikto atlīdzības izmaksu kopsumma neatkarīgi no tā, kad noticis zaudējumu notikums vai kad pieteikta atlīdzība."
+      en: "The total of all claim payments made during a period, regardless of when the loss event occurred or the claim was reported."
+    notes:
+      lv: "Izmaksātās atlīdzības ir naudas plūsma; tās nav vienādas ar radušos zaudējumiem, kas ietver arī rezervju izmaiņas. Precīzs mērījums ar bruto pamatu un iekļaušanas noteikumiem ir rādītājs gross-claims-paid."
+      en: "Claims paid is a cash flow; it is not the same as claims incurred, which also includes the change in reserves. The precise gross measure with inclusion rules is the metric gross-claims-paid."
+    relations:
+      - { type: PART_OF, target: claims-incurred }
+      - { type: RELATED, target: gross-claims-paid }
+    tags: [claims]
+
+  - slug: claims-incurred
+    type: TERM
+    labels:
+      lv: { preferred: "Radušies zaudējumi", alt: ["Piekritušās atlīdzības"], abbrev: [] }
+      en: { preferred: "Claims incurred", alt: ["Incurred losses", "Incurred claims"], abbrev: [] }
+    definition:
+      lv: "Periodam piekritīgās atlīdzību izmaksas, kas vienādas ar periodā izmaksātajām atlīdzībām plus neizmaksāto atlīdzību rezervju (pieteikto zaudējumu rezervju un IBNR) izmaiņu periodā."
+      en: "The cost of claims attributable to a period, equal to the claims paid in the period plus the change during the period in outstanding claims reserves (case reserves and IBNR)."
+    examples:
+      lv: "Izmaksāts 10 milj. EUR, rezerves gada sākumā 25 milj. EUR, beigās 27 milj. EUR – radušies zaudējumi 12 milj. EUR."
+      en: "Paid EUR 10 m, reserves EUR 25 m at the start of the year and EUR 27 m at the end: claims incurred EUR 12 m."
+    notes:
+      lv: "Uzskaites gada griezumā radušies zaudējumi ietver arī iepriekšējo gadu rezervju attīstību (run-off); negadījuma gada griezumā tie attiecas tikai uz konkrētā gada negadījumiem. Vienmēr norādiet, vai summa ir bruto vai neto."
+      en: "On a calendar-year basis claims incurred also include the run-off of prior-year reserves; on an accident-year basis they relate only to the accidents of that year. Always state whether the amount is gross or net."
+    relations:
+      - { type: RELATED, target: gross-claims-incurred }
+      - { type: RELATED, target: net-claims-incurred }
+      - { type: RELATED, target: claims-paid }
+      - { type: RELATED, target: ultimate-loss }
+    sources:
+      - { title: "IFRS 17 Insurance Contracts", reference: "Appendix A (liability for incurred claims)" }
+    tags: [claims, reserving]
+
+  - slug: claim-settlement
+    type: TERM
+    labels:
+      lv: { preferred: "Atlīdzības lietas noregulēšana", alt: ["Atlīdzības lietas slēgšana", "Lietas noregulējums"], abbrev: [] }
+      en: { preferred: "Claim settlement", alt: ["Claim closure", "Claim closing"], abbrev: [] }
+    definition:
+      lv: "Atlīdzību regulēšanas noslēguma posms, kurā galīgi nosaka apdrošinātāja saistības lietā un lietu slēdz – izmaksājot atlīdzību, atsakot izmaksu vai prasītājam atsaucot pieteikumu."
+      en: "The final stage of claims handling in which the insurer's liability on a claim is finally determined and the file is closed, by paying the indemnity, declining the claim or the claimant withdrawing it."
+    notes:
+      lv: "Noregulēšanas datums ir lietas slēgšanas datums, nevis lēmuma vai pirmās izmaksas datums. Atteikums arī ir noregulējums. Pēc slēgšanas lieta var tikt atvērta atkārtoti."
+      en: "The settlement date is the date the file is closed, not the decision date or the first payment date. A declinature is also a settlement. A closed claim may later be reopened."
+    relations:
+      - { type: RELATED, target: claim }
+      - { type: RELATED, target: reopened-claim }
+      - { type: RELATED, target: average-settlement-time }
+    tags: [claims, process]
+
+  - slug: reopened-claim
+    type: TERM
+    labels:
+      lv: { preferred: "Atkārtoti atvērta atlīdzības lieta", alt: ["Atjaunota atlīdzības lieta"], abbrev: [] }
+      en: { preferred: "Reopened claim", alt: [], abbrev: [] }
+    definition:
+      lv: "Atlīdzības lieta, kas bija noregulēta un slēgta, bet tiek atvērta no jauna, jo jauna informācija, papildu bojājumi, tiesas nolēmums vai sūdzība prasa turpmāku regulēšanu vai izmaksu."
+      en: "A claim that had been settled and closed but is opened again because new information, additional damage, a court decision or a complaint requires further handling or payment."
+    notes:
+      lv: "Atkārtoti atvērta lieta saglabā sākotnējo negadījuma un pieteikšanas datumu; to neuzskaita kā jaunu pieteikumu. Biežas atkārtotas atvēršanas var liecināt par pāragru slēgšanu vai nepietiekamu sākotnējo novērtējumu."
+      en: "A reopened claim keeps its original accident and reporting dates and is not counted as a new reported claim. Frequent reopening may indicate premature closure or an inadequate initial assessment."
+    relations:
+      - { type: BROADER, target: claim }
+      - { type: RELATED, target: reopen-rate }
+      - { type: RELATED, target: claim-settlement }
+    tags: [claims, quality]
+
+  - slug: subrogation
+    type: TERM
+    labels:
+      lv: { preferred: "Regress", alt: ["Regresa prasība", "Subrogācija"], abbrev: [] }
+      en: { preferred: "Subrogation", alt: ["Recourse", "Subrogation recovery"], abbrev: [] }
+    definition:
+      lv: "Apdrošinātāja tiesības pēc atlīdzības izmaksas izmaksātās summas apmērā prasīt tās atlīdzināšanu no personas, kas atbildīga par zaudējumu, kā arī šo tiesību īstenošana."
+      en: "The insurer's right, after paying an indemnity, to claim reimbursement up to the amount paid from the person liable for the loss, and the exercise of that right."
+    examples:
+      lv: "KASKO apdrošinātājs izmaksā 8 000 EUR par automobiļa remontu un pēc tam iesniedz regresa prasību vainīgā vadītāja OCTA apdrošinātājam."
+      en: "A KASKO insurer pays EUR 8,000 for a car repair and then submits a subrogation claim to the OCTA insurer of the driver at fault."
+    notes:
+      lv: "Regress ir prasība pret trešo personu; atlieku realizācija ir apdrošinātajam piederējušās bojātās mantas vērtības atgūšana – tos uzskaita atsevišķi. OCTA apdrošinātājam likumā noteiktos gadījumos ir regresa tiesības arī pret pašu transportlīdzekļa vadītāju (piemēram, alkohola reibumā)."
+      en: "Subrogation is a claim against a third party; salvage is recovery of the value of the damaged property itself, and the two are recorded separately. In cases defined by law an OCTA insurer also has a right of recourse against the driver (for example, when intoxicated)."
+    relations:
+      - { type: RELATED, target: salvage }
+      - { type: RELATED, target: subrogation-recovery-rate }
+      - { type: RELATED, target: octa }
+    sources:
+      - { title: "Apdrošināšanas līguma likums" }
+    tags: [claims, recoveries]
+
+  - slug: salvage
+    type: TERM
+    labels:
+      lv: { preferred: "Atlieku realizācija", alt: ["Atliekas", "Bojātās mantas atlieku vērtība"], abbrev: [] }
+      en: { preferred: "Salvage", alt: ["Salvage recovery", "Salvage proceeds"], abbrev: [] }
+    definition:
+      lv: "Bojātās apdrošinātās mantas (piemēram, bojāeju cietuša transportlīdzekļa) atlikusī vērtība, kas pēc atlīdzības izmaksas pāriet apdrošinātājam, un ieņēmumi no tās pārdošanas, kas samazina zaudējumu neto izmaksas."
+      en: "The residual value of damaged insured property (for example a total-loss vehicle) that passes to the insurer after the indemnity is paid, and the proceeds from its sale, which reduce the net cost of the claim."
+    examples:
+      lv: "Automobilis atzīts par bojāgājušu, atlīdzība 15 000 EUR; atliekas pārdotas izsolē par 3 000 EUR – neto zaudējums 12 000 EUR."
+      en: "A car is declared a total loss with indemnity of EUR 15,000; the wreck is sold at auction for EUR 3,000, so the net loss is EUR 12,000."
+    notes:
+      lv: "Ja atliekas paliek klientam, atlīdzību parasti samazina par to vērtību; tad atsevišķas atguves nav. Atlieku ieņēmumus nejaukt ar regresu."
+      en: "If the wreck stays with the customer, the indemnity is usually reduced by its value and there is no separate recovery. Do not confuse salvage proceeds with subrogation."
+    relations:
+      - { type: RELATED, target: subrogation }
+    tags: [claims, recoveries]
+
+  - slug: fraud-suspicion
+    type: TERM
+    labels:
+      lv: { preferred: "Krāpšanas aizdomas", alt: ["Aizdomas par krāpšanu"], abbrev: [] }
+      en: { preferred: "Fraud suspicion", alt: ["Suspected fraud", "Fraud flag"], abbrev: [] }
+    definition:
+      lv: "Atlīdzības lietai piešķirta atzīme, ja pazīmes liecina, ka pieteikums var būt pilnībā vai daļēji krāpniecisks (piemēram, inscenēts negadījums, palielināti zaudējumi, noslēpti apstākļi), un pirms noregulēšanas nepieciešama papildu pārbaude."
+      en: "A flag set on a claim when indicators suggest that the claim may be wholly or partly fraudulent (for example a staged accident, inflated damage or concealed circumstances), requiring additional investigation before settlement."
+    notes:
+      lv: "Aizdomas nav pierādīta krāpšana: daļa aizdomu pēc pārbaudes neapstiprinās. Rādītājos skaidri nošķirt atzīmētās, izmeklētās un apstiprinātās krāpšanas lietas."
+      en: "A suspicion is not proven fraud: part of the suspicions are not confirmed after investigation. Metrics must clearly separate flagged, investigated and confirmed fraud cases."
+    relations:
+      - { type: RELATED, target: fraud-detection-rate }
+      - { type: RELATED, target: claim }
+    tags: [claims, fraud]
+
+  - slug: large-loss
+    type: TERM
+    labels:
+      lv: { preferred: "Lielais zaudējums", alt: ["Liela atlīdzība"], abbrev: [] }
+      en: { preferred: "Large loss", alt: ["Large claim"], abbrev: [] }
+    definition:
+      lv: "Atlīdzības lieta, kuras bruto radušos zaudējumu summa pārsniedz apdrošināšanas veidam noteikto slieksni, un kuru tāpēc uzrauga, rezervē un analizē atsevišķi no parastajiem zaudējumiem."
+      en: "A claim whose gross incurred amount exceeds the threshold set for its line of business, and which is therefore monitored, reserved and analysed separately from attritional losses."
+    examples:
+      lv: "Ja īpašuma apdrošināšanas slieksnis ir 100 000 EUR, ugunsgrēks noliktavā ar radušos zaudējumu 450 000 EUR ir lielais zaudējums."
+      en: "If the property threshold is EUR 100,000, a warehouse fire with incurred loss of EUR 450,000 is a large loss."
+    notes:
+      lv: "Slieksnis jānosaka un jādokumentē katram apdrošināšanas veidam; tas var atšķirties no pārapdrošināšanas XL prioritātes. Jānorāda, vai slieksni piemēro vienai lietai vai visam notikumam. Katastrofu notikumi parasti tiek uzskaitīti atsevišķi no lielajiem zaudējumiem."
+      en: "The threshold must be set and documented per line of business; it may differ from the reinsurance XL retention. State whether the threshold is applied per claim or per event. Catastrophe events are usually tracked separately from large losses."
+    relations:
+      - { type: RELATED, target: large-loss-share }
+      - { type: RELATED, target: catastrophe-event }
+      - { type: RELATED, target: excess-of-loss }
+    tags: [claims, reserving]
+
+  - slug: catastrophe-event
+    type: TERM
+    labels:
+      lv: { preferred: "Katastrofāls notikums", alt: ["Katastrofu notikums", "Dabas katastrofa"], abbrev: ["CAT"] }
+      en: { preferred: "Catastrophe event", alt: ["Cat event", "Natural catastrophe"], abbrev: ["CAT"] }
+    definition:
+      lv: "Viens dabas vai cilvēka izraisīts notikums (piemēram, vētra, plūdi, krusa), kas īsā, noteiktā laika posmā rada lielu skaitu atlīdzības pieteikumu daudzās polisēs un kura kopējos zaudējumus rezervēšanā un pārapdrošināšanā analizē kā vienu notikumu."
+      en: "A single natural or man-made event (for example a windstorm, flood or hail) that within a short, defined time window causes a large number of claims under many policies and whose aggregate losses are analysed as one event for reserving and reinsurance."
+    examples:
+      lv: "Vētra, kas 48 stundu laikā rada 1 800 īpašuma un KASKO pieteikumus visā Latvijā."
+      en: "A windstorm that causes 1,800 property and KASKO claims across Latvia within 48 hours."
+    notes:
+      lv: "Katastrofu pārapdrošināšanas līgumos laika logu nosaka stundu klauzula (piemēram, 72 stundas vētrai). Viens katastrofāls notikums sastāv no daudziem atsevišķi maziem pieteikumiem, tāpēc tas nav tas pats, kas lielais zaudējums."
+      en: "In catastrophe reinsurance treaties the time window is set by an hours clause (for example 72 hours for windstorm). A catastrophe event consists of many individually small claims, so it is not the same as a large loss."
+    relations:
+      - { type: BROADER, target: loss-event }
+      - { type: RELATED, target: large-loss }
+      - { type: RELATED, target: excess-of-loss }
+    tags: [claims, catastrophe]
+
+  - slug: alae
+    type: TERM
+    labels:
+      lv: { preferred: "Tieši piesaistāmie zaudējumu regulēšanas izdevumi", alt: ["Tieši attiecināmie regulēšanas izdevumi"], abbrev: ["ALAE"] }
+      en: { preferred: "Allocated loss adjustment expenses", alt: ["Allocated claims handling expenses"], abbrev: ["ALAE"] }
+    definition:
+      lv: "Atlīdzību regulēšanas izdevumi, kurus var tieši attiecināt uz konkrētu atlīdzības lietu, piemēram, ārējo zaudējumu novērtētāju, ekspertu un juristu honorāri un tiesāšanās izdevumi."
+      en: "Claims handling expenses that can be attributed directly to an individual claim, such as fees of external loss adjusters, experts and lawyers, and litigation costs."
+    notes:
+      lv: "ALAE uzskaita lietas līmenī un parasti iekļauj radušos zaudējumos. Iekšējo regulētāju algas parasti ir ULAE. Robeža starp ALAE un ULAE jānosaka uzskaites politikā."
+      en: "ALAE are recorded at claim level and are usually included in claims incurred. Salaries of in-house claim handlers are normally ULAE. The boundary between ALAE and ULAE must be set in the accounting policy."
+    relations:
+      - { type: RELATED, target: ulae }
+      - { type: RELATED, target: claims-handling-cost }
+    tags: [claims, expenses]
+
+  - slug: ulae
+    type: TERM
+    labels:
+      lv: { preferred: "Nepiesaistāmie zaudējumu regulēšanas izdevumi", alt: ["Netieši attiecināmie regulēšanas izdevumi", "Atlīdzību departamenta izdevumi"], abbrev: ["ULAE"] }
+      en: { preferred: "Unallocated loss adjustment expenses", alt: ["Unallocated claims handling expenses"], abbrev: ["ULAE"] }
+    definition:
+      lv: "Atlīdzību regulēšanas izdevumi, kurus nevar attiecināt uz konkrētu atlīdzības lietu, piemēram, atlīdzību departamenta darbinieku atalgojums, atlīdzību IT sistēmas un ar regulēšanu saistītās pieskaitāmās izmaksas."
+      en: "Claims handling expenses that cannot be attributed to an individual claim, such as salaries of claims department staff, claims IT systems and claims-related overheads."
+    notes:
+      lv: "ULAE sadala apdrošināšanas veidiem ar sadalījuma atslēgām. Vadības uzskaitē tos bieži uzrāda izdevumos, bet normatīvajos un 17. SFPS pārskatos tie ir daļa no atlīdzību izdevumiem un rezervēm (ULAE rezerve)."
+      en: "ULAE are allocated to lines of business using allocation keys. In management reporting they are often shown within expenses, whereas in statutory and IFRS 17 reporting they form part of claims expenses and reserves (ULAE reserve)."
+    relations:
+      - { type: RELATED, target: alae }
+      - { type: RELATED, target: claims-handling-cost }
+      - { type: RELATED, target: operating-expenses }
+    tags: [claims, expenses]
+
+  - slug: accident-date
+    type: TERM
+    labels:
+      lv: { preferred: "Negadījuma datums", alt: ["Zaudējumu notikuma datums", "Apdrošināšanas gadījuma datums"], abbrev: [] }
+      en: { preferred: "Accident date", alt: ["Date of loss", "Loss date"], abbrev: [] }
+    definition:
+      lv: "Datums, kurā noticis zaudējumu notikums, kas izraisīja atlīdzības pieteikumu (polisēm ar pieteikšanas principu – datums, kad prasījums pirmo reizi celts); to izmanto, lai lietu attiecinātu uz negadījuma gadu."
+      en: "The date on which the loss event that gave rise to the claim occurred (for claims-made policies, the date the claim was first made); it is used to assign the claim to an accident year."
+    notes:
+      lv: "Nejaukt ar pieteikšanas datumu. Ilgstošiem notikumiem (piemēram, ūdens noplūde) jānosaka vienots noteikums datuma izvēlei."
+      en: "Do not confuse with the claim reporting date. For long-lasting events (for example a water leak) a single rule for choosing the date must be set."
+    relations:
+      - { type: RELATED, target: accident-year }
+      - { type: RELATED, target: claim-reporting-date }
+      - { type: RELATED, target: loss-event }
+    tags: [claims, dates]
+
+  - slug: claim-reporting-date
+    type: TERM
+    labels:
+      lv: { preferred: "Atlīdzības pieteikšanas datums", alt: ["Pieteikuma datums", "FNOL datums"], abbrev: [] }
+      en: { preferred: "Claim reporting date", alt: ["Notification date", "FNOL date"], abbrev: [] }
+    definition:
+      lv: "Datums, kurā apdrošinātājs pirmo reizi saņēma paziņojumu par atlīdzības pieteikumu (FNOL); no tā mēra pieteikšanas kavējumu un regulēšanas ilgumu."
+      en: "The date on which the insurer first received notification of the claim (FNOL); reporting delay and settlement time are measured from it."
+    notes:
+      lv: "Tas ir paziņojuma saņemšanas datums, nevis lietas reģistrēšanas datums sistēmā, ja tie atšķiras. Atkārtoti atvērtai lietai pieteikšanas datums nemainās."
+      en: "It is the date the notification was received, not the date the file was registered in the system, if these differ. The reporting date does not change when a claim is reopened."
+    relations:
+      - { type: RELATED, target: fnol }
+      - { type: RELATED, target: accident-date }
+    tags: [claims, dates]
+
+  - slug: claim-handler
+    type: TERM
+    labels:
+      lv: { preferred: "Atlīdzību regulētājs", alt: ["Zaudējumu regulētājs", "Atlīdzību speciālists"], abbrev: [] }
+      en: { preferred: "Claim handler", alt: ["Claims adjuster", "Loss adjuster"], abbrev: [] }
+    definition:
+      lv: "Darbinieks vai pilnvarots ārējs regulētājs, kas atbild par atlīdzības lietas regulēšanu: izvērtē segumu un atbildību, nosaka zaudējumu apmēru, uztur lietas rezervi un savu pilnvaru robežās apstiprina izmaksas."
+      en: "An employee or authorised external adjuster responsible for handling a claim: assessing coverage and liability, quantifying the loss, maintaining the case reserve and approving payments within his or her authority limits."
+    notes:
+      lv: "Ārēja zaudējumu novērtētāja izmaksas ir ALAE; iekšējo regulētāju izmaksas parasti ir ULAE."
+      en: "The cost of an external loss adjuster is ALAE; the cost of in-house handlers is usually ULAE."
+    relations:
+      - { type: RELATED, target: claims-per-handler }
+      - { type: RELATED, target: case-reserve }
+    tags: [claims, roles]
+
+  # ---------------------------------------------------------------- metrics
+
+  - slug: reported-claims-count
+    type: METRIC
+    labels:
+      lv: { preferred: "Pieteikto atlīdzību skaits", alt: ["Pieteikto zaudējumu skaits", "Jauno atlīdzības lietu skaits"], abbrev: [] }
+      en: { preferred: "Reported claims count", alt: ["Number of claims reported", "Claims notified"], abbrev: [] }
+    definition:
+      lv: "Atlīdzības lietu skaits, kuru pieteikšanas datums ir pārskata periodā, ieskaitot vēlāk noraidītās un bez izmaksas slēgtās lietas."
+      en: "The number of claims whose reporting date falls in the reporting period, including claims later declined or closed without payment."
+    notes:
+      lv: "Neiekļauj kļūdaini vai dubulti reģistrētas lietas un atkārtoti atvērtas lietas. Biežuma aprēķinam to pašu skaitu grupē pēc negadījuma datuma."
+      en: "Excludes files registered in error or in duplicate, and reopened claims. For claim frequency the same count is grouped by accident date."
+    relations:
+      - { type: RELATED, target: claim }
+      - { type: RELATED, target: claim-frequency }
+    tags: [claims, kpi, volume]
+    metric:
+      formula: "Count of claims with Claim reporting date in period (incl. nil and declined claims, excl. registrations in error and reopened claims)"
+      unit: COUNT
+      aggregation: COUNT
+      additivity: ADDITIVE
+      polarity: NEUTRAL
+      qualifiers:
+        reinsuranceBasis: NOT_APPLICABLE
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+        inclusions:
+          largeLosses: INCLUDED
+          catastropheLosses: INCLUDED
+          alae: NOT_APPLICABLE
+          ulae: NOT_APPLICABLE
+          recoveries: NOT_APPLICABLE
+      grain: "Day × line of business × product"
+      dimensions: ["Line of business", "Product", "Sales channel", "Region", "Cause of loss", "Accident year", "Reporting channel"]
+      components: []
+      refreshFrequency: DAILY
+      example:
+        lv: "Martā pieteiktas 4 250 lietas, no tām 180 vēlāk noraidītas – pieteikto atlīdzību skaits ir 4 250."
+        en: "4,250 claims were reported in March, 180 of them later declined: reported claims count is 4,250."
+
+  - slug: open-claims-count
+    type: METRIC
+    labels:
+      lv: { preferred: "Atvērto atlīdzības lietu skaits", alt: ["Neslēgto lietu skaits", "Regulējamo lietu skaits"], abbrev: [] }
+      en: { preferred: "Open claims count", alt: ["Number of open claims", "Pending claims"], abbrev: [] }
+    definition:
+      lv: "Atlīdzības lietu skaits, kas pārskata datumā ir atvērtas, t. i., pieteiktas vai atkārtoti atvērtas un vēl nav noregulētas."
+      en: "The number of claims that are open at the reporting date, i.e. reported or reopened and not yet settled."
+    notes:
+      lv: "Tas ir stāvokļa rādītājs: mēnešu vērtības nesummē, bet ņem perioda beigu vērtību. Lietas ar statusu 'gaida regresu' pēc atlīdzības izmaksas jāuzskaita saskaņā ar vienotu noteikumu."
+      en: "This is a stock measure: monthly values are not summed; the period-end value is used. Files in status 'awaiting recovery' after the indemnity has been paid must be treated under a single agreed rule."
+    relations:
+      - { type: RELATED, target: case-reserve }
+      - { type: RELATED, target: claims-per-handler }
+    tags: [claims, kpi, operations]
+    metric:
+      formula: "Count of claims with status open or reopened at Reporting date"
+      unit: COUNT
+      aggregation: LAST_VALUE
+      additivity: SEMI_ADDITIVE
+      polarity: NEUTRAL
+      qualifiers:
+        reinsuranceBasis: NOT_APPLICABLE
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: REPORTING_DATE
+        accountingBasis: MANAGEMENT
+        inclusions:
+          largeLosses: INCLUDED
+          catastropheLosses: INCLUDED
+          alae: NOT_APPLICABLE
+          ulae: NOT_APPLICABLE
+          recoveries: NOT_APPLICABLE
+      grain: "Reporting date × line of business × claim handler"
+      dimensions: ["Line of business", "Product", "Claim handler", "Claim age band", "Accident year", "Region"]
+      components: []
+      refreshFrequency: DAILY
+      example:
+        lv: "31.03. atvērtas 3 900 lietas, no tām 120 atkārtoti atvērtas – rādītājs ir 3 900."
+        en: "On 31 March 3,900 claims are open, of which 120 are reopened: the metric is 3,900."
+
+  - slug: claim-frequency
+    type: METRIC
+    labels:
+      lv: { preferred: "Atlīdzību biežums", alt: ["Zaudējumu biežums"], abbrev: [] }
+      en: { preferred: "Claim frequency", alt: ["Claims frequency"], abbrev: [] }
+    definition:
+      lv: "Attiecība starp pieteikto atlīdzības lietu skaitu, kuru negadījuma datums ir periodā, un šī perioda nopelnīto riska apjomu."
+      en: "The ratio of the number of reported claims with an accident date in the period to the earned exposure of that period."
+    notes:
+      lv: "Skaitītājs ir reported-claims-count, grupēts pēc negadījuma datuma (nevis pieteikšanas datuma), tāpēc jaunākajiem periodiem biežums vēl pieaugs nepieteikto zaudējumu dēļ. Pēc noklusējuma iekļauj nulles atlīdzības un izslēdz katastrofālo notikumu lietas; abi varianti jānorāda."
+      en: "The numerator is reported-claims-count grouped by accident date (not reporting date), so the most recent periods will still rise as late-reported claims arrive. By default nil claims are included and catastrophe-event claims are excluded; both choices must be stated."
+    relations:
+      - { type: RELATED, target: average-claim-severity }
+      - { type: RELATED, target: pure-premium }
+      - { type: RELATED, target: exposure }
+    tags: [claims, kpi, pricing]
+    metric:
+      formula: "Reported claims count (by accident date) / Earned exposure"
+      unit: RATIO
+      aggregation: RATIO
+      additivity: NON_ADDITIVE
+      polarity: LOWER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: GROSS
+        premiumBasis: EARNED
+        timeBasis: ACCIDENT_YEAR
+        accountingBasis: MANAGEMENT
+        inclusions:
+          largeLosses: INCLUDED
+          catastropheLosses: EXCLUDED
+          alae: NOT_APPLICABLE
+          ulae: NOT_APPLICABLE
+          recoveries: NOT_APPLICABLE
+      grain: "Accident month × line of business × product"
+      dimensions: ["Line of business", "Product", "Coverage", "Vehicle class", "Region", "Customer segment", "Sales channel"]
+      components:
+        - { role: NUMERATOR, metric: reported-claims-count }
+        - { role: DENOMINATOR, metric: earned-exposure }
+      refreshFrequency: MONTHLY
+      example:
+        lv: "2025. negadījuma gadā OCTA: 6 300 lietas / 210 000 transportlīdzekļu gadi = 0,030 (3,0 lietas uz 100 transportlīdzekļu gadiem)."
+        en: "OCTA accident year 2025: 6,300 claims / 210,000 vehicle-years = 0.030 (3.0 claims per 100 vehicle-years)."
+
+  - slug: gross-claims-paid
+    type: METRIC
+    labels:
+      lv: { preferred: "Bruto izmaksātās atlīdzības", alt: ["Izmaksātās atlīdzības bruto"], abbrev: [] }
+      en: { preferred: "Gross claims paid", alt: ["Gross paid losses"], abbrev: [] }
+    definition:
+      lv: "Periodā veikto atlīdzības izmaksu summa pirms pārapdrošinātāju daļas atskaitīšanas, ietverot tieši piesaistāmos regulēšanas izdevumus, bet pirms regresa un atlieku ieņēmumu atskaitīšanas."
+      en: "The sum of claim payments made in the period before deducting the reinsurers' share, including allocated loss adjustment expenses but before deducting subrogation and salvage recoveries."
+    notes:
+      lv: "Uzskaites gada rādītājs: ietver izmaksas par visu gadu negadījumiem. Regresa un atlieku ieņēmumus uzrāda atsevišķi un atskaita, aprēķinot radušos zaudējumus. ULAE nav iekļauti."
+      en: "A calendar-year measure: it includes payments on accidents of all years. Subrogation and salvage proceeds are shown separately and deducted when calculating claims incurred. ULAE are not included."
+    relations:
+      - { type: RELATED, target: claims-paid }
+      - { type: PART_OF, target: gross-claims-incurred }
+    tags: [claims, kpi, finance]
+    metric:
+      formula: "Sum of Claim payments (indemnity + ALAE) with payment date in period, before reinsurance and before recoveries"
+      unit: AMOUNT_EUR
+      aggregation: SUM
+      additivity: ADDITIVE
+      polarity: NEUTRAL
+      qualifiers:
+        reinsuranceBasis: GROSS
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+        inclusions:
+          largeLosses: INCLUDED
+          catastropheLosses: INCLUDED
+          alae: INCLUDED
+          ulae: EXCLUDED
+          recoveries: EXCLUDED
+      grain: "Payment date × claim"
+      dimensions: ["Line of business", "Product", "Accident year", "Region", "Cause of loss", "Payee type"]
+      components: []
+      refreshFrequency: DAILY
+      example:
+        lv: "1. ceturksnī atlīdzībās izmaksāti 21,4 milj. EUR un ekspertiem 0,6 milj. EUR – bruto izmaksātās atlīdzības 22,0 milj. EUR."
+        en: "In Q1 EUR 21.4 m was paid in indemnities and EUR 0.6 m to experts: gross claims paid EUR 22.0 m."
+
+  - slug: gross-claims-incurred
+    type: METRIC
+    labels:
+      lv: { preferred: "Bruto radušies zaudējumi", alt: ["Bruto piekritušās atlīdzības"], abbrev: [] }
+      en: { preferred: "Gross claims incurred", alt: ["Gross incurred losses"], abbrev: [] }
+    definition:
+      lv: "Periodam piekritīgās atlīdzību izmaksas pirms pārapdrošināšanas: bruto izmaksātās atlīdzības, atskaitot saņemtos regresa un atlieku ieņēmumus, plus bruto neizmaksāto atlīdzību rezerves (pieteikto zaudējumu rezervju un IBNR) izmaiņa periodā."
+      en: "The cost of claims attributable to a period before reinsurance: gross claims paid, less subrogation and salvage recoveries received, plus the change in the gross outstanding claims reserve (case reserves and IBNR) during the period."
+    notes:
+      lv: "Noklusējums ir uzskaites gads, kurā ietilpst arī iepriekšējo gadu rezervju attīstība. Negadījuma gada variantā (izmanto biežumam, vidējai atlīdzībai un burning cost) summē izmaksas un rezerves tikai par konkrētā gada negadījumiem. ULAE nav iekļauti vadības uzskaites noklusējumā, bet ir iekļauti normatīvajā un 17. SFPS uzskaitē."
+      en: "The default is calendar year, which also includes the run-off of prior-year reserves. In the accident-year variant (used for severity, frequency-based analysis and burning cost) only payments and reserves for accidents of that year are summed. ULAE are excluded in the management default but included in statutory and IFRS 17 reporting."
+    relations:
+      - { type: RELATED, target: claims-incurred }
+      - { type: RELATED, target: gross-loss-ratio }
+      - { type: RELATED, target: net-claims-incurred }
+    tags: [claims, kpi, finance]
+    metric:
+      formula: "Gross claims paid − Subrogation and salvage recoveries received + (Closing outstanding claims reserve − Opening outstanding claims reserve)"
+      unit: AMOUNT_EUR
+      aggregation: SUM
+      additivity: ADDITIVE
+      polarity: NEUTRAL
+      qualifiers:
+        reinsuranceBasis: GROSS
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+        inclusions:
+          largeLosses: INCLUDED
+          catastropheLosses: INCLUDED
+          alae: INCLUDED
+          ulae: EXCLUDED
+          recoveries: INCLUDED
+      grain: "Month × line of business × accident year"
+      dimensions: ["Line of business", "Product", "Accident year", "Region", "Sales channel", "Cause of loss"]
+      components:
+        - { role: COMPONENT, metric: gross-claims-paid }
+        - { role: COMPONENT, metric: outstanding-claims-reserve }
+      refreshFrequency: MONTHLY
+      example:
+        lv: "Izmaksāts 22,0 milj. EUR, saņemti regresi 1,0 milj. EUR, rezerve pieaugusi no 48,0 līdz 51,0 milj. EUR: 22,0 − 1,0 + 3,0 = 24,0 milj. EUR."
+        en: "Paid EUR 22.0 m, recoveries received EUR 1.0 m, reserve up from EUR 48.0 m to EUR 51.0 m: 22.0 − 1.0 + 3.0 = EUR 24.0 m."
+
+  - slug: net-claims-incurred
+    type: METRIC
+    labels:
+      lv: { preferred: "Neto radušies zaudējumi", alt: ["Neto piekritušās atlīdzības", "Pašieturējuma radušies zaudējumi"], abbrev: [] }
+      en: { preferred: "Net claims incurred", alt: ["Net incurred losses", "Claims incurred net of reinsurance"], abbrev: [] }
+    definition:
+      lv: "Bruto radušies zaudējumi, atskaitot pārapdrošinātāju daļu radušos zaudējumos (atgūtās summas no pārapdrošinātājiem un pārapdrošinātāju daļas rezervēs izmaiņu)."
+      en: "Gross claims incurred less the reinsurers' share of claims incurred (amounts recovered from reinsurers and the change in the reinsurers' share of reserves)."
+    notes:
+      lv: "Neto šeit nozīmē 'pēc pārapdrošināšanas', nevis 'pēc regresiem' – regresi jau ir atskaitīti bruto summā. Katastrofāla notikuma gadā bruto un neto atšķirība var būt ļoti liela."
+      en: "Net here means after reinsurance, not after recoveries: subrogation is already deducted in the gross amount. In a catastrophe year the gap between gross and net can be very large."
+    relations:
+      - { type: RELATED, target: claims-incurred }
+      - { type: RELATED, target: net-loss-ratio }
+      - { type: RELATED, target: reinsurance-recoveries }
+    tags: [claims, kpi, finance, reinsurance]
+    metric:
+      formula: "Gross claims incurred − Reinsurance recoveries (reinsurers' share of claims incurred)"
+      unit: AMOUNT_EUR
+      aggregation: SUM
+      additivity: ADDITIVE
+      polarity: NEUTRAL
+      qualifiers:
+        reinsuranceBasis: NET
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+        inclusions:
+          largeLosses: INCLUDED
+          catastropheLosses: INCLUDED
+          alae: INCLUDED
+          ulae: EXCLUDED
+          recoveries: INCLUDED
+      grain: "Month × line of business × accident year"
+      dimensions: ["Line of business", "Product", "Accident year", "Reinsurance treaty"]
+      components:
+        - { role: COMPONENT, metric: gross-claims-incurred }
+        - { role: COMPONENT, metric: reinsurance-recoveries-amount }
+      refreshFrequency: MONTHLY
+      example:
+        lv: "Bruto radušies zaudējumi 24,0 milj. EUR, pārapdrošinātāju daļa 3,5 milj. EUR – neto 20,5 milj. EUR."
+        en: "Gross claims incurred EUR 24.0 m, reinsurers' share EUR 3.5 m: net EUR 20.5 m."
+
+  - slug: average-claim-severity
+    type: METRIC
+    labels:
+      lv: { preferred: "Vidējā atlīdzības summa", alt: ["Vidējais zaudējums", "Zaudējumu smagums"], abbrev: [] }
+      en: { preferred: "Average claim severity", alt: ["Average claim cost", "Claim severity"], abbrev: [] }
+    definition:
+      lv: "Vidējās radušos zaudējumu izmaksas uz vienu pieteikto atlīdzības lietu konkrētā negadījuma periodā."
+      en: "The average incurred cost per reported claim for a given accident period."
+    notes:
+      lv: "Saucējā ir arī nulles atlīdzības, tāpēc biežums × vidējā atlīdzība = zaudējumi uz riska vienību. Ja vajag vidējo izmaksu tikai lietām ar izmaksu, tas ir atsevišķs rādītājs. Jaunākajiem negadījuma periodiem vērtība vēl mainīsies, jo IBNR un lietu rezerves attīstās."
+      en: "Nil claims are included in the denominator so that frequency × severity = loss cost per exposure unit. An average over paid claims only is a separate metric. For recent accident periods the value will still change as IBNR and case reserves develop."
+    relations:
+      - { type: RELATED, target: claim-frequency }
+      - { type: RELATED, target: pure-premium }
+    tags: [claims, kpi, pricing]
+    metric:
+      formula: "Gross claims incurred (accident year) / Reported claims count (by accident date)"
+      unit: AMOUNT_EUR
+      aggregation: RATIO
+      additivity: NON_ADDITIVE
+      polarity: LOWER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: GROSS
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: ACCIDENT_YEAR
+        accountingBasis: MANAGEMENT
+        inclusions:
+          largeLosses: INCLUDED
+          catastropheLosses: EXCLUDED
+          alae: INCLUDED
+          ulae: EXCLUDED
+          recoveries: INCLUDED
+      grain: "Accident month × line of business × product"
+      dimensions: ["Line of business", "Product", "Coverage", "Cause of loss", "Region", "Vehicle class"]
+      components:
+        - { role: NUMERATOR, metric: gross-claims-incurred }
+        - { role: DENOMINATOR, metric: reported-claims-count }
+      refreshFrequency: MONTHLY
+      example:
+        lv: "KASKO 2025. negadījuma gads: 19,8 milj. EUR / 11 000 lietas = 1 800 EUR."
+        en: "KASKO accident year 2025: EUR 19.8 m / 11,000 claims = EUR 1,800."
+
+  - slug: average-settlement-time
+    type: METRIC
+    labels:
+      lv: { preferred: "Vidējais atlīdzības regulēšanas ilgums", alt: ["Vidējais lietas noregulēšanas laiks"], abbrev: [] }
+      en: { preferred: "Average settlement time", alt: ["Average claim cycle time", "Average time to settle"], abbrev: [] }
+    definition:
+      lv: "Vidējais kalendāro dienu skaits no atlīdzības pieteikšanas datuma līdz lietas noregulēšanas (slēgšanas) datumam lietām, kas noregulētas pārskata periodā."
+      en: "The average number of calendar days from the claim reporting date to the settlement (closing) date for claims settled in the reporting period."
+    notes:
+      lv: "Ietver arī noraidītās lietas un nulles atlīdzības. Atkārtoti atvērtām lietām mēra līdz pēdējai slēgšanai. Lielo zaudējumu un kaitējuma veselībai lietu ilgums būtiski paaugstina vidējo, tāpēc analīzē papildus izmanto mediānu."
+      en: "Includes declined and nil claims. For reopened claims time is measured to the final closure. Large and bodily-injury claims raise the average significantly, so the median is used as a complement in analysis."
+    relations:
+      - { type: RELATED, target: claim-settlement }
+      - { type: RELATED, target: claims-settled-within-30-days-share }
+      - { type: RELATED, target: service-level-agreement }
+    tags: [claims, kpi, service]
+    metric:
+      formula: "Sum of (Settlement date − Claim reporting date) in calendar days / Settled claims count"
+      unit: DAYS
+      aggregation: AVERAGE
+      additivity: NON_ADDITIVE
+      polarity: LOWER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NOT_APPLICABLE
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+        inclusions:
+          largeLosses: INCLUDED
+          catastropheLosses: INCLUDED
+          alae: NOT_APPLICABLE
+          ulae: NOT_APPLICABLE
+          recoveries: NOT_APPLICABLE
+      grain: "Settlement month × line of business × claim handler"
+      dimensions: ["Line of business", "Product", "Claim handler", "Settlement outcome", "Reporting channel", "Region"]
+      components:
+        - { role: DENOMINATOR, metric: settled-claims-count }
+      refreshFrequency: WEEKLY
+      example:
+        lv: "Martā noregulētas 4 000 lietas ar kopējo ilgumu 72 000 dienu – vidēji 18 dienas."
+        en: "4,000 claims settled in March with a total duration of 72,000 days: 18 days on average."
+
+  - slug: claims-settled-within-30-days-share
+    type: METRIC
+    labels:
+      lv: { preferred: "30 dienu laikā noregulēto lietu īpatsvars", alt: ["Ātri noregulēto lietu daļa"], abbrev: [] }
+      en: { preferred: "Share of claims settled within 30 days", alt: ["30-day settlement rate"], abbrev: [] }
+    definition:
+      lv: "Procentuālā daļa no pārskata periodā noregulētajām atlīdzības lietām, kuras noregulētas ne vēlāk kā 30 kalendārās dienas pēc pieteikšanas datuma."
+      en: "The percentage of claims settled in the reporting period that were settled no later than 30 calendar days after the claim reporting date."
+    notes:
+      lv: "Skaita kalendārās, nevis darba dienas. Rādītājs neņem vērā lietas, kas vēl ir atvērtas, tāpēc lietu uzkrāšanās var palikt neredzama – to uzrauga kopā ar atvērto lietu skaitu."
+      en: "Counts calendar days, not working days. Claims still open are not reflected, so a growing backlog can stay hidden; monitor together with open claims count."
+    relations:
+      - { type: RELATED, target: average-settlement-time }
+      - { type: RELATED, target: open-claims-count }
+      - { type: RELATED, target: service-level-agreement }
+    tags: [claims, kpi, service]
+    metric:
+      formula: "Count of claims settled in period with (Settlement date − Claim reporting date) ≤ 30 days / Settled claims count × 100"
+      unit: PERCENT
+      aggregation: RATIO
+      additivity: NON_ADDITIVE
+      polarity: HIGHER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NOT_APPLICABLE
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+        inclusions:
+          largeLosses: INCLUDED
+          catastropheLosses: INCLUDED
+          alae: NOT_APPLICABLE
+          ulae: NOT_APPLICABLE
+          recoveries: NOT_APPLICABLE
+      grain: "Settlement month × line of business × claim handler"
+      dimensions: ["Line of business", "Product", "Claim handler", "Reporting channel", "Region"]
+      components:
+        - { role: DENOMINATOR, metric: settled-claims-count }
+      refreshFrequency: WEEKLY
+      example:
+        lv: "No 4 000 martā noregulētajām lietām 3 120 noregulētas 30 dienās: 3 120 / 4 000 = 78 %."
+        en: "Of 4,000 claims settled in March, 3,120 were settled within 30 days: 3,120 / 4,000 = 78%."
+
+  - slug: reopen-rate
+    type: METRIC
+    labels:
+      lv: { preferred: "Atkārtoti atvērto lietu īpatsvars", alt: ["Atkārtotas atvēršanas līmenis"], abbrev: [] }
+      en: { preferred: "Reopen rate", alt: ["Claims reopen rate"], abbrev: [] }
+    definition:
+      lv: "Procentuālā attiecība starp periodā atkārtoti atvērto atlīdzības lietu skaitu un periodā noregulēto lietu skaitu."
+      en: "The percentage ratio of the number of claims reopened in the period to the number of claims settled in the period."
+    notes:
+      lv: "Skaitītājā lietas var būt slēgtas agrākos periodos, tāpēc mazos segmentos rādītājs svārstās. Precīzākai kvalitātes analīzei izmanto kohortas variantu: cik no mēnesī slēgtajām lietām atvērtas 90 dienu laikā."
+      en: "Claims in the numerator may have been closed in earlier periods, so the ratio fluctuates in small segments. For sharper quality analysis use the cohort variant: how many claims closed in a month were reopened within 90 days."
+    relations:
+      - { type: RELATED, target: reopened-claim }
+      - { type: RELATED, target: complaint }
+    tags: [claims, kpi, quality]
+    metric:
+      formula: "Count of claims reopened in period / Settled claims count × 100"
+      unit: PERCENT
+      aggregation: RATIO
+      additivity: NON_ADDITIVE
+      polarity: LOWER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NOT_APPLICABLE
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+        inclusions:
+          largeLosses: INCLUDED
+          catastropheLosses: INCLUDED
+          alae: NOT_APPLICABLE
+          ulae: NOT_APPLICABLE
+          recoveries: NOT_APPLICABLE
+      grain: "Month × line of business × claim handler"
+      dimensions: ["Line of business", "Product", "Claim handler", "Reopen reason"]
+      components:
+        - { role: DENOMINATOR, metric: settled-claims-count }
+      refreshFrequency: MONTHLY
+      example:
+        lv: "Martā atkārtoti atvērtas 120 lietas, noregulētas 4 000: 120 / 4 000 = 3,0 %."
+        en: "120 claims reopened and 4,000 settled in March: 120 / 4,000 = 3.0%."
+
+  - slug: fnol-to-first-payment-days
+    type: METRIC
+    labels:
+      lv: { preferred: "Dienas no pieteikuma līdz pirmajai izmaksai", alt: ["Laiks līdz pirmajai izmaksai"], abbrev: [] }
+      en: { preferred: "FNOL to first payment (days)", alt: ["Time to first payment"], abbrev: [] }
+    definition:
+      lv: "Vidējais kalendāro dienu skaits no atlīdzības pieteikšanas datuma (FNOL) līdz pirmās atlīdzības izmaksas datumam lietām, kurās pirmā izmaksa veikta pārskata periodā."
+      en: "The average number of calendar days from the claim reporting date (FNOL) to the date of the first claim payment, for claims whose first payment was made in the reporting period."
+    notes:
+      lv: "Lietas bez izmaksas (noraidītās, nulles) netiek iekļautas. Izmaksas ekspertiem (ALAE) neuzskata par pirmo izmaksu – skaita tikai atlīdzības izmaksu prasītājam vai pakalpojuma sniedzējam par bojājumu novēršanu (remontu)."
+      en: "Claims without payment (declined, nil) are excluded. Payments to experts (ALAE) do not count as the first payment; only indemnity paid to the claimant or to a service provider for repairing the damage counts."
+    relations:
+      - { type: RELATED, target: fnol }
+      - { type: RELATED, target: claim-payment }
+      - { type: RELATED, target: average-settlement-time }
+    tags: [claims, kpi, service]
+    metric:
+      formula: "Sum of (First indemnity payment date − Claim reporting date) in calendar days / Count of claims with first indemnity payment in period"
+      unit: DAYS
+      aggregation: AVERAGE
+      additivity: NON_ADDITIVE
+      polarity: LOWER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NOT_APPLICABLE
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+        inclusions:
+          largeLosses: INCLUDED
+          catastropheLosses: INCLUDED
+          alae: EXCLUDED
+          ulae: NOT_APPLICABLE
+          recoveries: NOT_APPLICABLE
+      grain: "First-payment month × line of business × product"
+      dimensions: ["Line of business", "Product", "Reporting channel", "Claim handler", "Region"]
+      components: []
+      refreshFrequency: WEEKLY
+      example:
+        lv: "Martā pirmā izmaksa veikta 2 500 lietās ar kopējo gaidīšanas laiku 30 000 dienu – vidēji 12 dienas."
+        en: "In March 2,500 claims received their first payment with a total waiting time of 30,000 days: 12 days on average."
+
+  - slug: subrogation-recovery-rate
+    type: METRIC
+    labels:
+      lv: { preferred: "Regresa atguvumu īpatsvars", alt: ["Regresu atgūšanas līmenis"], abbrev: [] }
+      en: { preferred: "Subrogation recovery rate", alt: ["Recovery rate"], abbrev: [] }
+    definition:
+      lv: "Procentuālā attiecība starp periodā saņemtajām regresa summām un periodā bruto izmaksātajām atlīdzībām."
+      en: "The percentage ratio of subrogation recoveries received in the period to gross claims paid in the period."
+    notes:
+      lv: "Atlieku ieņēmumi skaitītājā nav iekļauti. Atguves bieži ienāk vēlāk nekā izmaksa, tāpēc īsos periodos rādītājs svārstās. Regresa darba efektivitātes rādītājs (atgūts / pret trešajām personām pieprasīts) ir atsevišķs rādītājs. Īpaši nozīmīgs KASKO, kur regresu vērš pret vainīgā OCTA apdrošinātāju."
+      en: "Salvage proceeds are excluded from the numerator. Recoveries often arrive later than the payment, so the ratio fluctuates in short periods. The recovery-effectiveness measure (recovered / amount claimed from third parties) is a separate metric. Particularly relevant for KASKO, where subrogation is pursued against the OCTA insurer of the party at fault."
+    relations:
+      - { type: RELATED, target: subrogation }
+      - { type: RELATED, target: octa }
+    tags: [claims, kpi, recoveries]
+    metric:
+      formula: "Subrogation recoveries received in period / Gross claims paid × 100"
+      unit: PERCENT
+      aggregation: RATIO
+      additivity: NON_ADDITIVE
+      polarity: HIGHER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: GROSS
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+        inclusions:
+          largeLosses: INCLUDED
+          catastropheLosses: INCLUDED
+          alae: INCLUDED
+          ulae: EXCLUDED
+          recoveries: INCLUDED
+      grain: "Month × line of business"
+      dimensions: ["Line of business", "Product", "Counterparty type", "Accident year"]
+      components:
+        - { role: DENOMINATOR, metric: gross-claims-paid }
+      refreshFrequency: MONTHLY
+      example:
+        lv: "KASKO gadā saņemti regresi 2,1 milj. EUR, bruto izmaksātās atlīdzības 30,0 milj. EUR: 7,0 %."
+        en: "KASKO recoveries received in the year EUR 2.1 m, gross claims paid EUR 30.0 m: 7.0%."
+
+  - slug: fraud-detection-rate
+    type: METRIC
+    labels:
+      lv: { preferred: "Atklātās krāpšanas īpatsvars", alt: ["Krāpšanas atklāšanas līmenis"], abbrev: [] }
+      en: { preferred: "Fraud detection rate", alt: ["Confirmed fraud rate"], abbrev: [] }
+    definition:
+      lv: "Procentuālā daļa no periodā noregulētajām atlīdzības lietām, kurās krāpšana apstiprināta un lieta tāpēc noraidīta vai atlīdzība samazināta."
+      en: "The percentage of claims settled in the period in which fraud was confirmed and the claim was therefore declined or the indemnity reduced."
+    notes:
+      lv: "Skaita tikai apstiprinātu krāpšanu, nevis aizdomas. Augstāka vērtība nozīmē efektīvāku atklāšanu, taču rādītājs nav krāpšanas izplatības mērs. Papildus uzrauga aizdomu apstiprināšanās īpatsvaru (apstiprinātās / pārbaudītās aizdomas) un novērsto izmaksu summu."
+      en: "Counts confirmed fraud only, not suspicions. A higher value means more effective detection, but the ratio is not a measure of fraud prevalence. Monitor alongside the hit rate (confirmed / investigated suspicions) and the amount of payments avoided."
+    relations:
+      - { type: RELATED, target: fraud-suspicion }
+    tags: [claims, kpi, fraud]
+    metric:
+      formula: "Count of claims settled in period with fraud confirmed / Settled claims count × 100"
+      unit: PERCENT
+      aggregation: RATIO
+      additivity: NON_ADDITIVE
+      polarity: HIGHER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NOT_APPLICABLE
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+        inclusions:
+          largeLosses: INCLUDED
+          catastropheLosses: INCLUDED
+          alae: NOT_APPLICABLE
+          ulae: NOT_APPLICABLE
+          recoveries: NOT_APPLICABLE
+      grain: "Settlement month × line of business"
+      dimensions: ["Line of business", "Product", "Fraud indicator", "Sales channel", "Region"]
+      components:
+        - { role: DENOMINATOR, metric: settled-claims-count }
+      refreshFrequency: MONTHLY
+      example:
+        lv: "No 48 000 gadā noregulētajām lietām 290 slēgtas ar apstiprinātu krāpšanu: 0,6 %."
+        en: "Of 48,000 claims settled in the year, 290 were closed with confirmed fraud: 0.6%."
+
+  - slug: large-loss-share
+    type: METRIC
+    labels:
+      lv: { preferred: "Lielo zaudējumu īpatsvars", alt: ["Lielo zaudējumu daļa"], abbrev: [] }
+      en: { preferred: "Large loss share", alt: ["Large loss ratio to incurred"], abbrev: [] }
+    definition:
+      lv: "Procentuālā daļa, ko bruto radušos zaudējumos veido lielie zaudējumi, t. i., lietas virs apdrošināšanas veidam noteiktā sliekšņa."
+      en: "The percentage of gross claims incurred that is made up of large losses, i.e. claims above the threshold set for the line of business."
+    notes:
+      lv: "Abiem lielumiem jābūt vienā pamatā (bruto, uzskaites gads). Lielo zaudējumu slieksnis jānorāda pie rādītāja. Katastrofu notikumi nav lielie zaudējumi, ja vien atsevišķa lieta nepārsniedz slieksni."
+      en: "Both amounts must be on the same basis (gross, calendar year). The large-loss threshold must be shown with the metric. Catastrophe events are not large losses unless an individual claim exceeds the threshold."
+    relations:
+      - { type: RELATED, target: large-loss }
+      - { type: RELATED, target: gross-loss-ratio }
+    tags: [claims, kpi, reserving]
+    metric:
+      formula: "Gross claims incurred on large losses / Gross claims incurred × 100"
+      unit: PERCENT
+      aggregation: RATIO
+      additivity: NON_ADDITIVE
+      polarity: NEUTRAL
+      qualifiers:
+        reinsuranceBasis: GROSS
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+        inclusions:
+          largeLosses: INCLUDED
+          catastropheLosses: INCLUDED
+          alae: INCLUDED
+          ulae: EXCLUDED
+          recoveries: INCLUDED
+      grain: "Quarter × line of business"
+      dimensions: ["Line of business", "Product", "Accident year", "Cause of loss"]
+      components:
+        - { role: DENOMINATOR, metric: gross-claims-incurred }
+      refreshFrequency: MONTHLY
+      example:
+        lv: "Īpašuma apdrošināšanā lielie zaudējumi 6,0 milj. EUR no 20,0 milj. EUR bruto radušos zaudējumu: 30 %."
+        en: "In property, large losses EUR 6.0 m out of EUR 20.0 m gross claims incurred: 30%."
+
+  # ---------------------------------------------------- extra (Writer 2)
+
+  - slug: settled-claims-count
+    type: METRIC
+    labels:
+      lv: { preferred: "Noregulēto atlīdzības lietu skaits", alt: ["Slēgto lietu skaits"], abbrev: [] }
+      en: { preferred: "Settled claims count", alt: ["Closed claims count", "Number of claims settled"], abbrev: [] }
+    definition:
+      lv: "Atlīdzības lietu skaits, kuru noregulēšanas (slēgšanas) datums ir pārskata periodā, ieskaitot noraidītās un bez izmaksas slēgtās lietas."
+      en: "The number of claims whose settlement (closing) date falls in the reporting period, including claims declined or closed without payment."
+    notes:
+      lv: "Ja lieta periodā slēgta vairākas reizes (pēc atkārtotas atvēršanas), to skaita vienu reizi – pēc pēdējās slēgšanas. Saucējs regulēšanas ilguma, atkārtotas atvēršanas un krāpšanas rādītājiem."
+      en: "A claim closed more than once in the period (after reopening) is counted once, at its last closure. It is the denominator for settlement time, reopen and fraud metrics."
+    relations:
+      - { type: RELATED, target: claim-settlement }
+      - { type: RELATED, target: reported-claims-count }
+    tags: [claims, volume]
+    metric:
+      formula: "Count of distinct claims with Settlement date in period"
+      unit: COUNT
+      aggregation: DISTINCT_COUNT
+      additivity: SEMI_ADDITIVE
+      polarity: NEUTRAL
+      qualifiers:
+        reinsuranceBasis: NOT_APPLICABLE
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+        inclusions:
+          largeLosses: INCLUDED
+          catastropheLosses: INCLUDED
+          alae: NOT_APPLICABLE
+          ulae: NOT_APPLICABLE
+          recoveries: NOT_APPLICABLE
+      grain: "Settlement date × line of business × claim handler"
+      dimensions: ["Line of business", "Product", "Claim handler", "Settlement outcome", "Region"]
+      components: []
+      refreshFrequency: DAILY
+      example:
+        lv: "Martā slēgtas 4 000 lietas, no tām 3 650 ar izmaksu un 350 bez izmaksas – rādītājs ir 4 000."
+        en: "4,000 claims closed in March, 3,650 with payment and 350 without: the metric is 4,000."
+
+  - slug: claims-handling-cost
+    type: METRIC
+    labels:
+      lv: { preferred: "Atlīdzību regulēšanas izdevumi", alt: ["Zaudējumu regulēšanas izdevumi"], abbrev: ["LAE"] }
+      en: { preferred: "Claims handling cost", alt: ["Loss adjustment expenses", "Claims handling expenses"], abbrev: ["LAE"] }
+    definition:
+      lv: "Periodā radušos atlīdzību regulēšanas izdevumu summa – tieši piesaistāmie (ALAE) un nepiesaistāmie (ULAE) izdevumi kopā."
+      en: "The total of claims handling expenses incurred in the period, allocated (ALAE) and unallocated (ULAE) combined."
+    notes:
+      lv: "ALAE daļa jau ir iekļauta bruto radušos zaudējumos, tāpēc, salīdzinot ar zaudējumiem vai summējot ar izdevumiem, jāizvairās no dubultas uzskaites. Izmanto regulēšanas efektivitātes analīzei, piemēram, izdevumi uz vienu noregulēto lietu."
+      en: "The ALAE part is already included in gross claims incurred, so avoid double counting when comparing with losses or adding to expenses. Used for claims efficiency analysis, for example cost per settled claim."
+    relations:
+      - { type: RELATED, target: alae }
+      - { type: RELATED, target: ulae }
+      - { type: RELATED, target: cost-per-policy }
+    tags: [claims, expenses]
+    metric:
+      formula: "ALAE incurred + ULAE incurred in period"
+      unit: AMOUNT_EUR
+      aggregation: SUM
+      additivity: ADDITIVE
+      polarity: LOWER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: GROSS
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+        inclusions:
+          largeLosses: INCLUDED
+          catastropheLosses: INCLUDED
+          alae: INCLUDED
+          ulae: INCLUDED
+          recoveries: NOT_APPLICABLE
+      grain: "Month × line of business"
+      dimensions: ["Line of business", "Cost type", "Cost centre"]
+      components: []
+      refreshFrequency: MONTHLY
+      example:
+        lv: "Gadā ALAE 1,8 milj. EUR un ULAE 4,2 milj. EUR – kopā 6,0 milj. EUR; ar 48 000 noregulētām lietām tas ir 125 EUR uz lietu."
+        en: "ALAE EUR 1.8 m and ULAE EUR 4.2 m in the year: EUR 6.0 m in total; with 48,000 settled claims that is EUR 125 per claim."

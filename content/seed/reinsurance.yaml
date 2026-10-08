@@ -1,0 +1,371 @@
+domain: reinsurance
+concepts:
+  # ------------------------------------------------------------------ terms
+
+  - slug: reinsurance
+    type: TERM
+    labels:
+      lv: { preferred: "Pārapdrošināšana", alt: ["Pārapdrošināšanas aizsardzība"], abbrev: ["RI"] }
+      en: { preferred: "Reinsurance", alt: ["Reinsurance held", "Outward reinsurance"], abbrev: ["RI"] }
+    definition:
+      lv: "Vienošanās, ar kuru apdrošinātājs (cedents) par prēmiju nodod daļu no apdrošināšanas līgumos uzņemtajiem riskiem citam apdrošinātājam (pārapdrošinātājam), kas sedz cedentam saskaņoto daļu no atlīdzībām."
+      en: "An arrangement under which an insurer (the cedant) transfers, for a premium, part of the risks assumed under its insurance contracts to another insurer (the reinsurer), which compensates the cedant for an agreed share of the claims."
+    notes:
+      lv: "Pret apdrošinājuma ņēmējiem apdrošinātājs paliek pilnībā atbildīgs neatkarīgi no pārapdrošināšanas. Nošķirt nodoto pārapdrošināšanu (šī glosārija nozīme) no pieņemtās pārapdrošināšanas, kurā sabiedrība darbojas kā pārapdrošinātājs. Pārapdrošināšana var būt grupas iekšējā vai ar ārējiem pārapdrošinātājiem – darījuma partneris jānorāda."
+      en: "The insurer remains fully liable to policyholders regardless of reinsurance. Distinguish reinsurance ceded (the meaning in this glossary) from reinsurance accepted, where the company acts as reinsurer. Reinsurance may be intra-group or with external reinsurers; the counterparty must be recorded."
+    relations:
+      - { type: RELATED, target: reinsurance-treaty }
+      - { type: RELATED, target: facultative-reinsurance }
+      - { type: RELATED, target: retention }
+    sources:
+      - { title: "IFRS 17 Insurance Contracts", reference: "Appendix A (reinsurance contract)" }
+    tags: [reinsurance, core]
+
+  - slug: reinsurance-treaty
+    type: TERM
+    labels:
+      lv: { preferred: "Obligātās pārapdrošināšanas līgums", alt: ["Pārapdrošināšanas līgums", "Līgumiskā pārapdrošināšana"], abbrev: [] }
+      en: { preferred: "Reinsurance treaty", alt: ["Treaty reinsurance", "Obligatory reinsurance"], abbrev: [] }
+    definition:
+      lv: "Pārapdrošināšanas līgums, kas līguma periodā saskaņā ar iepriekš noteiktiem nosacījumiem automātiski aptver visus noteikta portfeļa (piemēram, apdrošināšanas veida) riskus, pārapdrošinātājam katru risku atsevišķi neakceptējot."
+      en: "A reinsurance contract that, during the treaty period and under pre-agreed terms, automatically covers all risks of a defined portfolio (for example a line of business) without the reinsurer accepting each risk individually."
+    examples:
+      lv: "Īpašuma portfeļa riska XL līgums 2026. gadam un KASKO kvotas līgums."
+      en: "A property per-risk XL treaty for 2026 and a KASKO quota share treaty."
+    notes:
+      lv: "Obligātais līgums var būt proporcionāls (kvotas, ekscedenta pēc summas) vai neproporcionāls (zaudējumu ekscedenta). Jānorāda seguma pamats: zaudējumi, kas notikuši līguma periodā, vai riski, kas sākušies līguma periodā. Pretstats ir fakultatīvā pārapdrošināšana."
+      en: "A treaty can be proportional (quota share, surplus) or non-proportional (excess of loss). The basis of cover must be stated: losses occurring during the treaty period or risks attaching during the treaty period. The opposite is facultative reinsurance."
+    relations:
+      - { type: BROADER, target: reinsurance }
+      - { type: RELATED, target: facultative-reinsurance }
+      - { type: RELATED, target: underwriting-year }
+    tags: [reinsurance]
+
+  - slug: facultative-reinsurance
+    type: TERM
+    labels:
+      lv: { preferred: "Fakultatīvā pārapdrošināšana", alt: ["Fakultatīvais līgums"], abbrev: ["FAC"] }
+      en: { preferred: "Facultative reinsurance", alt: ["Facultative cover"], abbrev: ["FAC"] }
+    definition:
+      lv: "Atsevišķa riska (vienas polises vai apdrošināšanas objekta) pārapdrošināšana, par kuru vienojas un ko pārapdrošinātājs akceptē individuāli; to izmanto riskiem, kas pārsniedz obligāto līgumu kapacitāti vai ir no tiem izslēgti."
+      en: "Reinsurance of an individual risk (a single policy or insured object) that is negotiated and accepted by the reinsurer individually; it is used for risks that exceed treaty capacity or are excluded from the treaties."
+    examples:
+      lv: "Liela ražotnes īpašuma risks ar apdrošinājuma summu 60 milj. EUR, kas pārsniedz obligātā līguma limitu, tiek daļēji pārapdrošināts fakultatīvi."
+      en: "A large manufacturing property risk with a sum insured of EUR 60 m, exceeding the treaty limit, is partly reinsured facultatively."
+    notes:
+      lv: "Fakultatīvais segums parasti tiek piemērots pirms obligātajiem līgumiem, tāpēc tas samazina līgumos nododamo risku."
+      en: "Facultative cover usually applies before the treaties, so it reduces the risk ceded to the treaties."
+    relations:
+      - { type: BROADER, target: reinsurance }
+      - { type: RELATED, target: reinsurance-treaty }
+      - { type: RELATED, target: sum-insured }
+    tags: [reinsurance]
+
+  - slug: quota-share
+    type: TERM
+    labels:
+      lv: { preferred: "Kvotas pārapdrošināšana", alt: ["Kvotas līgums"], abbrev: ["QS"] }
+      en: { preferred: "Quota share", alt: ["Quota share treaty"], abbrev: ["QS"] }
+    definition:
+      lv: "Proporcionāls pārapdrošināšanas līgums, ar kuru cedents nodod fiksētu procentuālu daļu no katra aptvertā portfeļa riska, un pārapdrošinātājs saņem tādu pašu daļu no prēmijām un sedz tādu pašu daļu no atlīdzībām, parasti maksājot pārapdrošināšanas komisiju."
+      en: "A proportional reinsurance treaty under which the cedant cedes a fixed percentage of every risk in the covered portfolio, and the reinsurer receives the same share of premiums and pays the same share of claims, usually paying a reinsurance commission."
+    examples:
+      lv: "30 % kvotas līgums: no polises ar prēmiju 1 000 EUR nodod 300 EUR; no atlīdzības 10 000 EUR pārapdrošinātājs sedz 3 000 EUR."
+      en: "A 30% quota share: from a policy with a premium of EUR 1,000, EUR 300 is ceded; of a claim of EUR 10,000, the reinsurer pays EUR 3,000."
+    notes:
+      lv: "Nejaukt ar ekscedenta pēc summas līgumu, kurā nodotā daļa katram riskam atšķiras atkarībā no apdrošinājuma summas. Kvotas līgumu bieži izmanto kapitāla atvieglojumam, nevis lielo zaudējumu aizsardzībai."
+      en: "Do not confuse with a surplus treaty, where the ceded share differs by risk depending on the sum insured. Quota share is often used for capital relief rather than protection against large losses."
+    relations:
+      - { type: BROADER, target: reinsurance-treaty }
+      - { type: RELATED, target: reinsurance-commission }
+    tags: [reinsurance]
+
+  - slug: excess-of-loss
+    type: TERM
+    labels:
+      lv: { preferred: "Zaudējumu ekscedenta pārapdrošināšana", alt: ["Zaudējumu ekscedenta līgums", "Neproporcionālā pārapdrošināšana"], abbrev: ["XL", "XoL"] }
+      en: { preferred: "Excess of loss", alt: ["Excess of loss reinsurance", "Non-proportional reinsurance"], abbrev: ["XL", "XoL"] }
+    definition:
+      lv: "Neproporcionāls pārapdrošināšanas līgums, ar kuru pārapdrošinātājs sedz to katra zaudējuma (riska XL) vai katra notikuma (katastrofu XL) daļu, kas pārsniedz saskaņoto pašieturējumu (prioritāti), līdz saskaņotajam limitam."
+      en: "A non-proportional reinsurance treaty under which the reinsurer pays the part of each loss (per-risk XL) or each event (catastrophe XL) that exceeds an agreed retention (priority), up to an agreed limit."
+    examples:
+      lv: "Slānis 4 milj. EUR virs 1 milj. EUR: zaudējumā 3 milj. EUR pārapdrošinātājs sedz 2 milj. EUR, cedents – 1 milj. EUR."
+      en: "Layer EUR 4 m xs EUR 1 m: on a loss of EUR 3 m the reinsurer pays EUR 2 m and the cedant EUR 1 m."
+    notes:
+      lv: "Prēmiju nosaka kā likmi no pamatprēmijas (GNPI), parasti ar minimālo un depozīta prēmiju; pēc zaudējuma var būt jāmaksā atjaunošanas prēmija. Precīzi nošķirt riska XL (viens risks) un katastrofu XL (viens notikums ar stundu klauzulu). Neproporcionālā pārapdrošināšana ir plašāks jēdziens, kas ietver arī stop loss līgumus."
+      en: "The premium is set as a rate on subject premium (GNPI), usually with a minimum and deposit premium; after a loss a reinstatement premium may be payable. Distinguish per-risk XL (one risk) from catastrophe XL (one event, with an hours clause). Non-proportional reinsurance is a broader concept that also includes stop-loss treaties."
+    relations:
+      - { type: BROADER, target: reinsurance-treaty }
+      - { type: RELATED, target: retention }
+      - { type: RELATED, target: large-loss }
+      - { type: RELATED, target: catastrophe-event }
+    tags: [reinsurance]
+
+  - slug: retention
+    type: TERM
+    labels:
+      lv: { preferred: "Pašieturējums", alt: ["Prioritāte", "Pašieturējuma līmenis"], abbrev: [] }
+      en: { preferred: "Retention", alt: ["Net retention", "Priority"], abbrev: [] }
+    definition:
+      lv: "Riska vai zaudējuma daļa, ko cedents patur uz sava rēķina un nenodod pārapdrošinātājiem; kvotas līgumā tā ir procentuāla daļa, zaudējumu ekscedenta līgumā – summa, līdz kurai katru zaudējumu sedz cedents (prioritāte)."
+      en: "The part of a risk or loss that the cedant keeps for its own account and does not transfer to reinsurers; under a quota share it is a percentage, under excess of loss it is the amount up to which each loss is borne by the cedant (priority)."
+    examples:
+      lv: "Īpašuma riska XL ar prioritāti 1 milj. EUR: katru zaudējumu līdz 1 milj. EUR apdrošinātājs sedz pats."
+      en: "Property per-risk XL with a priority of EUR 1 m: the insurer bears each loss up to EUR 1 m itself."
+    notes:
+      lv: "Nejaukt ar pašrisku (daļa, ko sedz apdrošinātais) un ar klientu noturēšanu (retention-rate, angļu valodā arī 'retention'). Pašieturējuma līmeni nosaka pārapdrošināšanas stratēģija un riska apetīte."
+      en: "Do not confuse with the deductible (the part borne by the insured) or with customer retention (retention-rate, also called 'retention' in English). The retention level is set by the reinsurance strategy and risk appetite."
+    relations:
+      - { type: RELATED, target: excess-of-loss }
+      - { type: RELATED, target: deductible }
+      - { type: RELATED, target: large-loss }
+    tags: [reinsurance]
+
+  - slug: ceded-premium
+    type: TERM
+    labels:
+      lv: { preferred: "Pārapdrošinātājiem nodotā prēmija", alt: ["Pārapdrošināšanas prēmija", "Cedētā prēmija"], abbrev: [] }
+      en: { preferred: "Ceded premium", alt: ["Reinsurance premium", "Outward reinsurance premium"], abbrev: [] }
+    definition:
+      lv: "Prēmija, ko cedents maksā vai ir parādā pārapdrošinātājiem par pārapdrošināšanas segumu."
+      en: "The premium that the cedant pays or owes to reinsurers for reinsurance cover."
+    notes:
+      lv: "Proporcionālajos līgumos tā ir nodotā daļa no bruto prēmijas; neproporcionālajos to nosaka atsevišķi (minimālā un depozīta prēmija, korekcijas, atjaunošanas prēmijas). Tāpat kā tiešajām prēmijām, nošķir parakstīto un nopelnīto pamatu."
+      en: "Under proportional treaties it is the ceded share of gross premium; under non-proportional treaties it is set separately (minimum and deposit premium, adjustments, reinstatement premiums). As with direct premium, written and earned bases are distinguished."
+    relations:
+      - { type: RELATED, target: ceded-written-premium }
+      - { type: RELATED, target: ceded-earned-premium }
+      - { type: RELATED, target: insurance-premium }
+    tags: [reinsurance, premium]
+
+  - slug: reinsurance-commission
+    type: TERM
+    labels:
+      lv: { preferred: "Pārapdrošināšanas komisija", alt: ["Pārapdrošinātāja komisija", "Cedēšanas komisija"], abbrev: [] }
+      en: { preferred: "Reinsurance commission", alt: ["Ceding commission"], abbrev: [] }
+    definition:
+      lv: "Komisija, ko proporcionālās pārapdrošināšanas līgumā pārapdrošinātājs maksā cedentam kā procentus no nodotās prēmijas, lai kompensētu tā iegādes un administratīvos izdevumus."
+      en: "A commission that, under a proportional reinsurance treaty, the reinsurer pays to the cedant as a percentage of ceded premium, to compensate for its acquisition and administrative expenses."
+    examples:
+      lv: "Nodotā prēmija 3,0 milj. EUR, komisijas likme 25 % – pārapdrošināšanas komisija 0,75 milj. EUR."
+      en: "Ceded premium EUR 3.0 m at a commission rate of 25%: reinsurance commission EUR 0.75 m."
+    notes:
+      lv: "Komisija var būt fiksēta, slīdoša (atkarīga no zaudējumu koeficienta) vai ar peļņas komisiju. Saskaņā ar 17. SFPS no zaudējumiem neatkarīgu komisiju uzrāda kā nodotās prēmijas samazinājumu, bet no zaudējumiem atkarīgo – kā daļu no pārapdrošinātājiem atgūstamajām atlīdzībām."
+      en: "The commission can be fixed, sliding scale (dependent on the loss ratio) or include a profit commission. Under IFRS 17 a commission not contingent on claims is presented as a reduction of ceded premium, and one contingent on claims as part of the claims recoverable from reinsurers."
+    relations:
+      - { type: RELATED, target: quota-share }
+      - { type: RELATED, target: commission }
+      - { type: RELATED, target: reinsurance-result }
+    sources:
+      - { title: "IFRS 17 Insurance Contracts", reference: "paragraph 86" }
+    tags: [reinsurance]
+
+  - slug: reinsurance-recoveries
+    type: TERM
+    labels:
+      lv: { preferred: "Pārapdrošinātāju daļa atlīdzībās", alt: ["No pārapdrošinātājiem atgūstamās summas", "Pārapdrošināšanas atguvumi"], abbrev: [] }
+      en: { preferred: "Reinsurance recoveries", alt: ["Reinsurers' share of claims", "Reinsurance recoverables"], abbrev: [] }
+    definition:
+      lv: "Summas, ko cedents saņem vai ir tiesīgs saņemt no pārapdrošinātājiem par atlīdzībām, kuras sedz pārapdrošināšanas līgumi."
+      en: "Amounts that the cedant receives or is entitled to receive from reinsurers in respect of claims covered by reinsurance contracts."
+    notes:
+      lv: "Nošķirt jau saņemtās summas (par izmaksātajām atlīdzībām) un atgūstamās summas (pārapdrošinātāju daļa rezervēs). Atgūstamās summas rada darījuma partnera saistību neizpildes risku. Nejaukt ar regresiem, kas ir atgūšana no trešajām personām."
+      en: "Distinguish amounts already received (on paid claims) from amounts recoverable (reinsurers' share of reserves). Recoverables create counterparty default risk. Do not confuse with subrogation, which is recovery from third parties."
+    relations:
+      - { type: RELATED, target: reinsurance-recoveries-amount }
+      - { type: RELATED, target: net-claims-incurred }
+      - { type: RELATED, target: subrogation }
+    tags: [reinsurance, claims]
+
+  # ---------------------------------------------------------------- metrics
+
+  - slug: ceded-written-premium
+    type: METRIC
+    labels:
+      lv: { preferred: "Pārapdrošinātājiem nodotās parakstītās prēmijas", alt: ["Nodotās parakstītās prēmijas"], abbrev: [] }
+      en: { preferred: "Ceded written premium", alt: ["Reinsurance written premium"], abbrev: ["CWP"] }
+    definition:
+      lv: "Pārskata periodā parakstītā pārapdrošinātājiem nodotās prēmijas summa: proporcionālajos līgumos – nodotā daļa no bruto parakstītajām prēmijām, neproporcionālajos – periodā aprēķinātās minimālās un depozīta prēmijas, korekcijas un atjaunošanas prēmijas."
+      en: "The amount of premium ceded to reinsurers written in the reporting period: for proportional treaties the ceded share of gross written premium, for non-proportional treaties the minimum and deposit premiums, adjustments and reinstatement premiums booked in the period."
+    notes:
+      lv: "Neto parakstītās prēmijas = bruto parakstītās prēmijas − nodotās parakstītās prēmijas. Fakultatīvā pārapdrošināšana iekļauta."
+      en: "Net written premium = gross written premium − ceded written premium. Facultative reinsurance is included."
+    relations:
+      - { type: RELATED, target: ceded-premium }
+      - { type: RELATED, target: net-written-premium }
+    tags: [reinsurance, premium]
+    metric:
+      formula: "Sum of reinsurance premiums ceded booked in period (proportional ceded share of Gross written premium + XL minimum and deposit, adjustment and reinstatement premiums + facultative premiums)"
+      unit: AMOUNT_EUR
+      aggregation: SUM
+      additivity: ADDITIVE
+      polarity: NEUTRAL
+      qualifiers:
+        reinsuranceBasis: CEDED
+        premiumBasis: WRITTEN
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Month × line of business × reinsurance treaty"
+      dimensions: ["Line of business", "Reinsurance treaty", "Reinsurer", "Treaty type"]
+      components: []
+      refreshFrequency: MONTHLY
+      example:
+        lv: "Gadā: kvotas līgumi 6,0 milj. EUR + XL 3,5 milj. EUR + fakultatīvā 0,5 milj. EUR = 10,0 milj. EUR."
+        en: "For the year: quota share EUR 6.0 m + XL EUR 3.5 m + facultative EUR 0.5 m = EUR 10.0 m."
+
+  - slug: ceded-earned-premium
+    type: METRIC
+    labels:
+      lv: { preferred: "Pārapdrošinātājiem nodotās nopelnītās prēmijas", alt: ["Nodotās nopelnītās prēmijas"], abbrev: [] }
+      en: { preferred: "Ceded earned premium", alt: ["Reinsurance earned premium"], abbrev: ["CEP"] }
+    definition:
+      lv: "Pārapdrošinātājiem nodotās prēmijas daļa, kas attiecas uz pārskata periodā sniegto pārapdrošināšanas segumu; tā ir nodotās parakstītās prēmijas, koriģētas par pārapdrošinātāju daļas nenopelnīto prēmiju rezervē izmaiņu."
+      en: "The portion of premium ceded to reinsurers that relates to reinsurance cover provided in the reporting period; it equals ceded written premium adjusted for the change in the reinsurers' share of the unearned premium reserve."
+    notes:
+      lv: "Neto nopelnītās prēmijas = bruto nopelnītās prēmijas − nodotās nopelnītās prēmijas. XL prēmija tiek nopelnīta līguma perioda laikā, neatkarīgi no pamatpolišu nopelnīšanas modeļa."
+      en: "Net earned premium = gross earned premium − ceded earned premium. An XL premium is earned over the treaty period, regardless of the earning pattern of the underlying policies."
+    relations:
+      - { type: RELATED, target: ceded-premium }
+      - { type: RELATED, target: net-earned-premium }
+      - { type: RELATED, target: unearned-premium-reserve }
+    tags: [reinsurance, premium]
+    metric:
+      formula: "Ceded written premium − (Closing reinsurers' share of unearned premium reserve − Opening reinsurers' share of unearned premium reserve)"
+      unit: AMOUNT_EUR
+      aggregation: SUM
+      additivity: ADDITIVE
+      polarity: NEUTRAL
+      qualifiers:
+        reinsuranceBasis: CEDED
+        premiumBasis: EARNED
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Month × line of business × reinsurance treaty"
+      dimensions: ["Line of business", "Reinsurance treaty", "Reinsurer", "Treaty type"]
+      components:
+        - { role: COMPONENT, metric: ceded-written-premium }
+      refreshFrequency: MONTHLY
+      example:
+        lv: "Nodotās parakstītās 10,0 milj. EUR; pārapdrošinātāju daļa nenopelnīto prēmiju rezervē pieaug par 0,8 milj. EUR: 10,0 − 0,8 = 9,2 milj. EUR."
+        en: "Ceded written EUR 10.0 m; reinsurers' share of unearned premium reserve rises by EUR 0.8 m: 10.0 − 0.8 = EUR 9.2 m."
+
+  - slug: reinsurance-recoveries-amount
+    type: METRIC
+    labels:
+      lv: { preferred: "Pārapdrošinātāju daļa radušos zaudējumos", alt: ["Pārapdrošināšanas atguvumu summa"], abbrev: [] }
+      en: { preferred: "Reinsurance recoveries amount", alt: ["Reinsurers' share of claims incurred"], abbrev: [] }
+    definition:
+      lv: "Pārapdrošinātāju daļa periodā radušos zaudējumos: summas, kas saņemtas vai saņemamas par periodā izmaksātajām atlīdzībām, plus pārapdrošinātāju daļas neizmaksāto atlīdzību rezervē izmaiņa periodā."
+      en: "The reinsurers' share of claims incurred in the period: amounts received or receivable on claims paid in the period, plus the change during the period in the reinsurers' share of the outstanding claims reserve."
+    notes:
+      lv: "Pārapdrošinātāju daļu aprēķina no zaudējumiem pēc regresiem un atlieku ieņēmumiem (XL līgumos – no galīgā neto zaudējuma). Bruto radušies zaudējumi − šis rādītājs = neto radušies zaudējumi. Katastrofu gadā vērtība var strauji pieaugt."
+      en: "The reinsurers' share is calculated on losses after subrogation and salvage (for XL, on the ultimate net loss). Gross claims incurred − this metric = net claims incurred. In a catastrophe year the value can rise sharply."
+    relations:
+      - { type: RELATED, target: reinsurance-recoveries }
+      - { type: RELATED, target: net-claims-incurred }
+    tags: [reinsurance, claims]
+    metric:
+      formula: "Reinsurers' share of claims paid in period + (Closing reinsurers' share of outstanding claims reserve − Opening reinsurers' share of outstanding claims reserve)"
+      unit: AMOUNT_EUR
+      aggregation: SUM
+      additivity: ADDITIVE
+      polarity: NEUTRAL
+      qualifiers:
+        reinsuranceBasis: CEDED
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+        inclusions:
+          largeLosses: INCLUDED
+          catastropheLosses: INCLUDED
+          alae: INCLUDED
+          ulae: EXCLUDED
+          recoveries: INCLUDED
+      grain: "Month × line of business × reinsurance treaty × accident year"
+      dimensions: ["Line of business", "Reinsurance treaty", "Reinsurer", "Accident year", "Treaty type"]
+      components: []
+      refreshFrequency: MONTHLY
+      example:
+        lv: "Saņemamais par izmaksātām atlīdzībām 2,0 milj. EUR; pārapdrošinātāju daļa rezervē pieaug par 1,5 milj. EUR: 3,5 milj. EUR."
+        en: "Receivable on paid claims EUR 2.0 m; reinsurers' share of reserves rises by EUR 1.5 m: EUR 3.5 m."
+
+  - slug: reinsurance-cession-rate
+    type: METRIC
+    labels:
+      lv: { preferred: "Pārapdrošināšanā nodotās prēmijas īpatsvars", alt: ["Cesijas līmenis", "Nodošanas pārapdrošināšanā īpatsvars"], abbrev: [] }
+      en: { preferred: "Reinsurance cession rate", alt: ["Cession ratio", "Ceded premium ratio"], abbrev: [] }
+    definition:
+      lv: "Procentuālā attiecība starp periodā pārapdrošinātājiem nodotajām parakstītajām prēmijām un bruto parakstītajām prēmijām."
+      en: "The percentage ratio of ceded written premium to gross written premium in the period."
+    notes:
+      lv: "Rāda, cik lielu daļu prēmiju apdrošinātājs nodod pārapdrošināšanā; 100 % − šis rādītājs = pašieturējuma daļa prēmijās. Neproporcionālā pārapdrošināšana dod zemu īpatsvaru, pat ja aizsardzība pret lieliem zaudējumiem ir būtiska."
+      en: "Shows how much of the premium the insurer passes to reinsurers; 100% − this metric = retained share of premium. Non-proportional reinsurance produces a low rate even when the protection against large losses is substantial."
+    relations:
+      - { type: RELATED, target: retention }
+      - { type: RELATED, target: net-written-premium }
+    tags: [reinsurance, kpi]
+    metric:
+      formula: "Ceded written premium / Gross written premium × 100"
+      unit: PERCENT
+      aggregation: RATIO
+      additivity: NON_ADDITIVE
+      polarity: NEUTRAL
+      qualifiers:
+        reinsuranceBasis: CEDED
+        premiumBasis: WRITTEN
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Quarter × line of business"
+      dimensions: ["Line of business", "Treaty type"]
+      components:
+        - { role: NUMERATOR, metric: ceded-written-premium }
+        - { role: DENOMINATOR, metric: gross-written-premium }
+      refreshFrequency: QUARTERLY
+      example:
+        lv: "10,0 milj. EUR / 200,0 milj. EUR = 5,0 %."
+        en: "EUR 10.0 m / EUR 200.0 m = 5.0%."
+
+  - slug: reinsurance-result
+    type: METRIC
+    labels:
+      lv: { preferred: "Pārapdrošināšanas rezultāts", alt: ["Nodotās pārapdrošināšanas rezultāts", "Pārapdrošināšanas saldo"], abbrev: [] }
+      en: { preferred: "Reinsurance result", alt: ["Result of reinsurance ceded", "Net reinsurance cost"], abbrev: [] }
+    definition:
+      lv: "Cedenta finanšu rezultāts no nodotās pārapdrošināšanas periodā: pārapdrošinātāju daļa radušos zaudējumos plus nopelnītā pārapdrošināšanas komisija, atskaitot pārapdrošinātājiem nodotās nopelnītās prēmijas."
+      en: "The cedant's financial result from reinsurance ceded in the period: the reinsurers' share of claims incurred plus earned reinsurance commission, less ceded earned premium."
+    notes:
+      lv: "Ilgtermiņā rezultāts parasti ir negatīvs – tā ir aizsardzības cena; pozitīvs rezultāts parasti rodas gados ar lieliem vai katastrofāliem zaudējumiem, tāpēc rādītāja virziens ir neitrāls. Saskaņā ar 17. SFPS to uzrāda kā neto ienākumus vai izdevumus no turētajiem pārapdrošināšanas līgumiem, un no zaudējumiem neatkarīgā komisija samazina nodoto prēmiju."
+      en: "Over the long term the result is usually negative, being the cost of protection; a positive result usually arises in years with large or catastrophe losses, so the polarity is neutral. Under IFRS 17 it is presented as net income or expense from reinsurance contracts held, and a commission not contingent on claims reduces the ceded premium."
+    relations:
+      - { type: RELATED, target: reinsurance-commission }
+      - { type: RELATED, target: insurance-service-result }
+      - { type: RELATED, target: net-loss-ratio }
+    sources:
+      - { title: "IFRS 17 Insurance Contracts", reference: "paragraph 86" }
+    tags: [reinsurance, kpi, finance]
+    metric:
+      formula: "Reinsurance recoveries amount + Reinsurance commission (earned) − Ceded earned premium"
+      unit: AMOUNT_EUR
+      aggregation: SUM
+      additivity: ADDITIVE
+      polarity: NEUTRAL
+      qualifiers:
+        reinsuranceBasis: CEDED
+        premiumBasis: EARNED
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+        inclusions:
+          largeLosses: INCLUDED
+          catastropheLosses: INCLUDED
+          alae: INCLUDED
+          ulae: EXCLUDED
+          recoveries: INCLUDED
+      grain: "Quarter × line of business × reinsurance treaty"
+      dimensions: ["Line of business", "Reinsurance treaty", "Reinsurer", "Treaty type"]
+      components:
+        - { role: COMPONENT, metric: reinsurance-recoveries-amount }
+        - { role: COMPONENT, metric: ceded-earned-premium }
+      refreshFrequency: QUARTERLY
+      example:
+        lv: "Pārapdrošinātāju daļa zaudējumos 3,5 milj. EUR + komisija 1,5 milj. EUR − nodotās nopelnītās prēmijas 9,2 milj. EUR = −4,2 milj. EUR."
+        en: "Reinsurers' share of claims EUR 3.5 m + commission EUR 1.5 m − ceded earned premium EUR 9.2 m = −EUR 4.2 m."

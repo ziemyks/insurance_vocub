@@ -1,0 +1,308 @@
+domain: party
+concepts:
+  - slug: policyholder
+    type: TERM
+    labels:
+      lv: { preferred: "Apdrošinājuma ņēmējs", alt: [], abbrev: [] }
+      en: { preferred: "Policyholder", alt: ["Policy holder"], abbrev: [] }
+    definition:
+      lv: "Fiziska vai juridiska persona, kas ir noslēgusi apdrošināšanas līgumu ar apdrošinātāju un kurai ir pienākums maksāt apdrošināšanas prēmiju."
+      en: "A natural or legal person who has concluded an insurance contract with the insurer and is obliged to pay the insurance premium."
+    examples:
+      lv: "Uzņēmums noslēdz KASKO polisi savam autoparkam: uzņēmums ir apdrošinājuma ņēmējs, bet transportlīdzekļu vadītāji nav."
+      en: "A company takes out a KASKO policy for its vehicle fleet: the company is the policyholder, while the drivers are not."
+    notes:
+      lv: "Nejaukt ar apdrošināto (personu, kuras intereses vai risks ir apdrošināts) un labuma guvēju (personu, kurai ir tiesības saņemt atlīdzību). Visas trīs lomas var būt vienai personai, bet var būt arī trim dažādām personām. Apdrošinājuma ņēmējs ir loma konkrētā līgumā, nevis klienta īpašība."
+      en: "Do not confuse with the insured (the person whose interest or risk is covered) or the beneficiary (the person entitled to receive the indemnity). One person may hold all three roles, or they may be three different persons. Policyholder is a role in a specific contract, not an attribute of the customer."
+    relations:
+      - { type: RELATED, target: insured-person }
+      - { type: RELATED, target: beneficiary }
+      - { type: RELATED, target: customer }
+      - { type: RELATED, target: insurance-policy }
+    sources:
+      - { title: "Apdrošināšanas līguma likums" }
+    tags: [party, contract-role]
+
+  - slug: insured-person
+    type: TERM
+    labels:
+      lv: { preferred: "Apdrošinātais", alt: ["Apdrošinātā persona"], abbrev: [] }
+      en: { preferred: "Insured", alt: ["Insured person", "Insured party"], abbrev: [] }
+    definition:
+      lv: "Persona, kuras dzīvība, veselība, manta vai civiltiesiskā atbildība ir apdrošināta saskaņā ar apdrošināšanas līgumu un kuras apdrošinātās intereses aizskāruma gadījumā iestājas apdrošinātāja saistības."
+      en: "A person whose life, health, property or civil liability is insured under an insurance contract and whose insured interest, if harmed, gives rise to the insurer's obligations."
+    examples:
+      lv: "Darba devējs (apdrošinājuma ņēmējs) iegādājas veselības apdrošināšanu darbiniekiem; katrs darbinieks ir apdrošinātais."
+      en: "An employer (policyholder) buys health insurance for its employees; each employee is an insured."
+    notes:
+      lv: "Nedzīvības apdrošināšanā apdrošinātais bieži sakrīt ar apdrošinājuma ņēmēju, taču kolektīvajās polisēs un atbildības apdrošināšanā tie atšķiras. OCTA gadījumā apdrošināta ir jebkura transportlīdzekļa likumīgā vadītāja civiltiesiskā atbildība, tāpēc apdrošinātos nevar uzskaitīt kā konkrētu personu sarakstu."
+      en: "In non-life insurance the insured often coincides with the policyholder, but they differ in group policies and liability insurance. Under OCTA, the civil liability of any lawful driver of the vehicle is insured, so the insured persons cannot be listed as a fixed set of named people."
+    relations:
+      - { type: RELATED, target: policyholder }
+      - { type: RELATED, target: beneficiary }
+      - { type: RELATED, target: risk-object }
+    sources:
+      - { title: "Apdrošināšanas līguma likums" }
+    tags: [party, contract-role]
+
+  - slug: beneficiary
+    type: TERM
+    labels:
+      lv: { preferred: "Labuma guvējs", alt: [], abbrev: [] }
+      en: { preferred: "Beneficiary", alt: ["Loss payee"], abbrev: [] }
+    definition:
+      lv: "Persona, kurai saskaņā ar apdrošināšanas līgumu ir tiesības saņemt apdrošināšanas atlīdzību, iestājoties apdrošināšanas gadījumam."
+      en: "A person who, under the insurance contract, is entitled to receive the insurance indemnity when an insured event occurs."
+    examples:
+      lv: "Līzinga automašīnas KASKO polisē labuma guvējs bojāejas vai zādzības gadījumā parasti ir līzinga kompānija."
+      en: "In a KASKO policy for a leased car, the beneficiary in case of total loss or theft is usually the leasing company."
+    notes:
+      lv: "Labuma guvējs ne vienmēr ir apdrošinātais vai apdrošinājuma ņēmējs. Atbildības apdrošināšanā atlīdzību saņem cietusī trešā persona, kas nav labuma guvējs līguma izpratnē, bet gan prasītājs."
+      en: "The beneficiary is not necessarily the insured or the policyholder. In liability insurance the indemnity is received by the injured third party, who is a claimant rather than a beneficiary in the contractual sense."
+    relations:
+      - { type: RELATED, target: policyholder }
+      - { type: RELATED, target: insured-person }
+      - { type: RELATED, target: claim-payment }
+    sources:
+      - { title: "Apdrošināšanas līguma likums" }
+    tags: [party, contract-role]
+
+  - slug: customer
+    type: TERM
+    labels:
+      lv: { preferred: "Klients", alt: [], abbrev: [] }
+      en: { preferred: "Customer", alt: ["Client"], abbrev: [] }
+    definition:
+      lv: "Fiziska vai juridiska persona, kas uzņēmuma klientu reģistrā identificēta ar vienu unikālu identifikatoru un kas ir vai ir bijusi apdrošinājuma ņēmējs vismaz vienā uzņēmuma polisē."
+      en: "A natural or legal person, identified by one unique identifier in the company's customer register, who is or has been the policyholder of at least one of the company's policies."
+    examples:
+      lv: "Persona, kurai ir OCTA un mājokļa polises, ir viens klients ar divām polisēm."
+      en: "A person holding an OCTA policy and a home policy is one customer with two policies."
+    notes:
+      lv: "Klients tiek skaitīts personas līmenī (pēc personas koda vai reģistrācijas numura), nevis polises līmenī. Personas, kas ir tikai apdrošinātie, labuma guvēji vai cietušie trešās personas, šajā definīcijā nav klienti. Potenciālais klients, kurš saņēmis tikai piedāvājumu, nav klients."
+      en: "Customers are counted at person level (by personal code or registration number), not at policy level. Persons who are only insureds, beneficiaries or injured third parties are not customers under this definition. A prospect who has only received a quote is not a customer."
+    relations:
+      - { type: RELATED, target: policyholder }
+      - { type: RELATED, target: active-customer }
+      - { type: RELATED, target: customer-segment }
+      - { type: RELATED, target: aml-kyc }
+      - { type: RELATED, target: gdpr }
+    tags: [party, customer]
+
+  - slug: active-customer
+    type: TERM
+    labels:
+      lv: { preferred: "Aktīvs klients", alt: [], abbrev: [] }
+      en: { preferred: "Active customer", alt: [], abbrev: [] }
+    definition:
+      lv: "Klients, kuram noteiktā datumā ir vismaz viena spēkā esoša polise, kurā viņš ir apdrošinājuma ņēmējs."
+      en: "A customer who, at a given date, is the policyholder of at least one policy in force."
+    examples:
+      lv: "Klients, kura vienīgā polise beidzās 31. martā un netika atjaunota, 1. aprīlī vairs nav aktīvs klients."
+      en: "A customer whose only policy expired on 31 March and was not renewed is no longer an active customer on 1 April."
+    notes:
+      lv: "Aktivitāti nosaka spēkā esošas polises, nevis pēdējais kontakts, maksājums vai atlīdzības pieteikums. Polises ar nākotnes sākuma datumu (vēl nav sākušās) netiek ņemtas vērā. Ja tiek lietota cita aktivitātes definīcija (piemēram, „polise pēdējo 12 mēnešu laikā“), tā jāreģistrē kā atsevišķs termins."
+      en: "Activity is determined by policies in force, not by the latest contact, payment or claim. Policies with a future inception date (not yet started) are not counted. If another activity rule is needed (e.g. 'a policy in the last 12 months'), register it as a separate term."
+    relations:
+      - { type: BROADER, target: customer }
+      - { type: RELATED, target: policy-in-force }
+      - { type: RELATED, target: active-customers-count }
+    tags: [party, customer]
+
+  - slug: customer-segment
+    type: TERM
+    labels:
+      lv: { preferred: "Klientu segments", alt: [], abbrev: [] }
+      en: { preferred: "Customer segment", alt: [], abbrev: [] }
+    definition:
+      lv: "Klientu grupa, ko veido pēc vienotiem kritērijiem (piemēram, personas veids, uzņēmuma lielums, apgrozījums vai darbinieku skaits), lai atšķirīgi plānotu pārdošanu, apkalpošanu un cenas."
+      en: "A group of customers formed by uniform criteria (e.g. person type, company size, turnover or headcount) so that sales, service and pricing can be planned differently for each group."
+    examples:
+      lv: "Privātpersonas, mazie un vidējie uzņēmumi (MVU), lielie korporatīvie klienti."
+      en: "Private individuals, small and medium-sized enterprises (SMEs), large corporate customers."
+    notes:
+      lv: "Segmentam jābūt piešķirtam klientam, nevis polisei, un tam jābūt vienam konkrētā datumā. Segmentācijas kritēriju izmaiņas maina vēsturiskos salīdzinājumus, tāpēc segmenta piešķiršanai jāglabā vēsture."
+      en: "The segment is assigned to the customer, not to the policy, and there must be exactly one per customer at a given date. Changes to segmentation criteria alter historical comparisons, so segment assignment must be kept with history."
+    relations:
+      - { type: RELATED, target: customer }
+      - { type: RELATED, target: nace-code }
+    tags: [party, customer, segmentation]
+
+  - slug: active-customers-count
+    type: METRIC
+    labels:
+      lv: { preferred: "Aktīvo klientu skaits", alt: [], abbrev: [] }
+      en: { preferred: "Active customers count", alt: ["Number of active customers"], abbrev: [] }
+    definition:
+      lv: "Unikālo klientu skaits, kuri noteiktā datumā ir apdrošinājuma ņēmēji vismaz vienā spēkā esošā polisē."
+      en: "The number of distinct customers who, at a given date, are the policyholder of at least one policy in force."
+    notes:
+      lv: "Tas ir stāvokļa rādītājs: to nedrīkst summēt pa mēnešiem. To nevar summēt arī pa produktiem vai apdrošināšanas veidiem, jo klients ar KASKO un mājokļa polisi katrā veidā tiek skaitīts vienreiz, bet kopā arī tikai vienreiz."
+      en: "This is a point-in-time measure: do not sum it across months. It cannot be summed across products or lines of business either, because a customer with a KASKO and a home policy counts once in each line but only once in total."
+    relations:
+      - { type: RELATED, target: active-customer }
+      - { type: RELATED, target: policies-in-force-count }
+    tags: [kpi, customer, volume]
+    metric:
+      formula: "Distinct count of customers with ≥ 1 policy in force at the reporting date"
+      unit: COUNT
+      aggregation: DISTINCT_COUNT
+      additivity: NON_ADDITIVE
+      polarity: HIGHER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NOT_APPLICABLE
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: REPORTING_DATE
+        accountingBasis: MANAGEMENT
+      grain: "Month-end × customer segment"
+      dimensions: ["Customer segment", "Region", "Sales channel", "Line of business"]
+      refreshFrequency: MONTHLY
+      example:
+        lv: "31.12.2025. 412 350 klientiem bija vismaz viena spēkā esoša polise."
+        en: "At 31 Dec 2025, 412,350 customers held at least one policy in force."
+
+  - slug: new-customers-count
+    type: METRIC
+    labels:
+      lv: { preferred: "Jauno klientu skaits", alt: [], abbrev: [] }
+      en: { preferred: "New customers count", alt: ["Number of new customers"], abbrev: [] }
+    definition:
+      lv: "Klientu skaits, kuri periodā kļuva par apdrošinājuma ņēmējiem jaunā polisē un kuriem iepriekšējo 12 mēnešu laikā nebija nevienas spēkā esošas polises uzņēmumā."
+      en: "The number of customers who became the policyholder of a new policy in the period and had no policy in force with the company during the preceding 12 months."
+    notes:
+      lv: "Esoša klienta papildu produkta iegāde (šķērspārdošana) ir jaunais bizness, bet nav jauns klients. Klients, kurš atgriežas pēc vairāk nekā 12 mēnešu pārtraukuma, tiek skaitīts kā jauns."
+      en: "An existing customer buying an additional product (cross-sell) is new business but not a new customer. A customer returning after a gap of more than 12 months is counted as new."
+    relations:
+      - { type: RELATED, target: customer }
+      - { type: RELATED, target: new-business }
+    tags: [customer, sales]
+    metric:
+      formula: "Count of customers whose first policy in force in the last 12 months was written in the period"
+      unit: COUNT
+      aggregation: COUNT
+      additivity: ADDITIVE
+      polarity: HIGHER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NOT_APPLICABLE
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Month × sales channel of the first policy"
+      dimensions: ["Sales channel", "Customer segment", "Product", "Region"]
+      refreshFrequency: MONTHLY
+      example:
+        lv: "2025. gada martā piesaistīti 3 240 jauni klienti, no tiem 1 150 digitālajā kanālā."
+        en: "In March 2025, 3,240 new customers were acquired, 1,150 of them through the digital channel."
+
+  - slug: products-per-customer
+    type: METRIC
+    labels:
+      lv: { preferred: "Produktu skaits uz klientu", alt: ["Šķērspārdošanas koeficients"], abbrev: [] }
+      en: { preferred: "Products per customer", alt: ["Cross-sell ratio"], abbrev: [] }
+    definition:
+      lv: "Vidējais dažādu apdrošināšanas produktu skaits, kas noteiktā datumā ir spēkā vienam aktīvam klientam."
+      en: "The average number of different insurance products in force per active customer at a given date."
+    examples:
+      lv: "Klients ar divām KASKO polisēm un vienu mājokļa polisi ir divi produkti, nevis trīs."
+      en: "A customer with two KASKO policies and one home policy counts as two products, not three."
+    notes:
+      lv: "Skaita produktus, nevis polises: vairākas viena produkta polises (piemēram, divu automašīnu OCTA) palielina polišu skaitu, bet ne produktu skaitu. Rādītāja vērtība ir atkarīga no produktu kataloga detalizācijas līmeņa, tāpēc tam jābūt fiksētam."
+      en: "Counts products, not policies: several policies of the same product (e.g. OCTA for two cars) raise the policy count but not the product count. The value depends on how granular the product catalogue is, so that level must be fixed."
+    relations:
+      - { type: RELATED, target: insurance-product }
+      - { type: RELATED, target: active-customer }
+    tags: [kpi, customer, cross-sell]
+    metric:
+      formula: "Σ over active customers of distinct products in force / Active customers count"
+      unit: RATIO
+      aggregation: RATIO
+      additivity: NON_ADDITIVE
+      polarity: HIGHER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NOT_APPLICABLE
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: REPORTING_DATE
+        accountingBasis: MANAGEMENT
+      grain: "Month-end × customer segment"
+      dimensions: ["Customer segment", "Region", "Sales channel"]
+      components:
+        - { role: DENOMINATOR, metric: active-customers-count }
+      refreshFrequency: MONTHLY
+      example:
+        lv: "560 000 klientu un produktu pāru / 412 350 aktīvi klienti = 1,36"
+        en: "560,000 customer-product pairs / 412,350 active customers = 1.36"
+
+  - slug: customer-lifetime-value
+    type: METRIC
+    labels:
+      lv: { preferred: "Klienta mūža vērtība", alt: [], abbrev: ["CLV"] }
+      en: { preferred: "Customer lifetime value", alt: ["Lifetime value"], abbrev: ["CLV", "LTV"] }
+    definition:
+      lv: "Prognozētā diskontētā tehniskā peļņa, ko uzņēmums sagaida no klienta visā paredzamajā attiecību ilgumā, ņemot vērā prēmijas, zaudējumus, izdevumus un klientu noturēšanu."
+      en: "The forecast discounted technical profit the company expects from a customer over the expected duration of the relationship, taking premiums, losses, expenses and customer retention into account."
+    notes:
+      lv: "Tas ir prognozes modelis, nevis uzskaites rādītājs: rezultāts ir atkarīgs no pieņēmumiem (diskonta likme, horizonts, zaudējumu un izdevumu līmenis), kas jāfiksē modeļa dokumentācijā. Klienta piesaistes izmaksas šajā vērtībā nav atskaitītas; lai novērtētu piesaistes rentabilitāti, salīdziniet CLV ar CAC."
+      en: "This is a forecast model, not an accounting measure: the result depends on assumptions (discount rate, horizon, loss and expense levels) that must be fixed in the model documentation. Customer acquisition cost is not deducted; compare CLV with CAC to judge acquisition profitability."
+    relations:
+      - { type: RELATED, target: customer-acquisition-cost }
+      - { type: RELATED, target: customer-segment }
+    tags: [kpi, customer, profitability]
+    metric:
+      formula: "Σ over years t = 1…n of [Average premium × (1 − Gross loss ratio − Expense ratio) × Retention rate^(t−1)] / (1 + discount rate)^t"
+      unit: AMOUNT_EUR
+      aggregation: AVERAGE
+      additivity: NON_ADDITIVE
+      polarity: HIGHER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: GROSS
+        premiumBasis: EARNED
+        timeBasis: REPORTING_DATE
+        accountingBasis: MANAGEMENT
+      grain: "Customer segment × quarter (model run)"
+      dimensions: ["Customer segment", "Sales channel of first policy", "Product"]
+      components:
+        - { role: COMPONENT, metric: average-premium }
+        - { role: COMPONENT, metric: gross-loss-ratio }
+        - { role: COMPONENT, metric: expense-ratio }
+        - { role: COMPONENT, metric: retention-rate }
+      refreshFrequency: QUARTERLY
+      example:
+        lv: "Vidējā prēmija 300 EUR, zaudējumu attiecība 60 %, izdevumu attiecība 25 %, noturēšana 80 %, diskonts 5 %, 10 gadi: CLV ≈ 45 × 3,74 ≈ 168 EUR."
+        en: "Average premium EUR 300, loss ratio 60%, expense ratio 25%, retention 80%, discount 5%, 10 years: CLV ≈ 45 × 3.74 ≈ EUR 168."
+
+  - slug: customer-acquisition-cost
+    type: METRIC
+    labels:
+      lv: { preferred: "Klienta piesaistes izmaksas", alt: [], abbrev: ["CAC"] }
+      en: { preferred: "Customer acquisition cost", alt: [], abbrev: ["CAC"] }
+    definition:
+      lv: "Vidējā summa, ko uzņēmums periodā iztērē viena jauna klienta piesaistei, ietverot komisijas naudu, mārketinga un pārdošanas izdevumus, kas attiecināmi uz jauniem klientiem."
+      en: "The average amount the company spends in a period to acquire one new customer, including commissions, marketing and sales expenses attributable to new customers."
+    notes:
+      lv: "Skaitītājā iekļauj tikai jaunu klientu piesaistei attiecināmos izdevumus; atjaunošanas komisijas un esošo klientu šķērspārdošanas izmaksas nav iekļautas. Nejaukt ar piesaistes izmaksu attiecību (acquisition cost ratio), kas ir izdevumu īpatsvars prēmijās."
+      en: "Only expenses attributable to acquiring new customers are included in the numerator; renewal commissions and cross-sell costs for existing customers are excluded. Do not confuse with the acquisition cost ratio, which expresses acquisition expenses as a share of premium."
+    relations:
+      - { type: RELATED, target: customer-lifetime-value }
+      - { type: RELATED, target: acquisition-costs }
+      - { type: RELATED, target: acquisition-cost-ratio }
+    tags: [kpi, customer, sales, cost]
+    metric:
+      formula: "Acquisition expenses attributable to new customers / New customers count"
+      unit: AMOUNT_EUR
+      aggregation: RATIO
+      additivity: NON_ADDITIVE
+      polarity: LOWER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NOT_APPLICABLE
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Quarter × sales channel"
+      dimensions: ["Sales channel", "Customer segment", "Product"]
+      components:
+        - { role: NUMERATOR, metric: acquisition-expenses }
+        - { role: DENOMINATOR, metric: new-customers-count }
+      refreshFrequency: QUARTERLY
+      example:
+        lv: "1 080 000 EUR piesaistes izdevumi / 9 000 jauni klienti = 120 EUR uz klientu"
+        en: "EUR 1,080,000 acquisition expenses / 9,000 new customers = EUR 120 per customer"

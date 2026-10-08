@@ -1,0 +1,35 @@
+{
+  "name": "insurance-vocabulary",
+  "private": true,
+  "description": "Insurance business vocabulary and metric registry (LV/EN)",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "npm run dev -w @vocab/web",
+    "build": "npm run db:generate && npm run build -w @vocab/web",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "vitest run",
+    "test:e2e": "npm run test:e2e -w @vocab/web",
+    "db:up": "docker compose up -d db",
+    "db:down": "docker compose down",
+    "db:generate": "npm run generate -w @vocab/db",
+    "db:migrate": "npm run migrate -w @vocab/db",
+    "db:deploy": "npm run migrate:deploy -w @vocab/db",
+    "db:seed": "npm run seed -w @vocab/db",
+    "content:validate": "npm run validate -w @vocab/db",
+    "format": "prettier --write .",
+    "test:db:setup": "docker compose exec -T db psql -U vocab -d vocab -c \"DROP DATABASE IF EXISTS vocab_test WITH (FORCE)\" -c \"CREATE DATABASE vocab_test\" && cd packages/db && DATABASE_URL=postgresql://vocab:vocab@localhost:5432/vocab_test prisma migrate deploy && DATABASE_URL=postgresql://vocab:vocab@localhost:5432/vocab_test AUTH_DEV_LOGIN=true tsx src/scripts/seed.ts",
+    "test:db": "TEST_DATABASE_URL=postgresql://vocab:vocab@localhost:5432/vocab_test vitest run packages/db"
+  },
+  "devDependencies": {
+    "prettier": "^3.9.9",
+    "typescript": "^5.9.3",
+    "vitest": "^5.0.3"
+  },
+  "type": "module"
+}

@@ -1,0 +1,6 @@
+node_modules
+.next
+packages/db/src/generated
+packages/db/prisma/migrations
+content/seed/*.yaml
+apps/web/AGENTS.md

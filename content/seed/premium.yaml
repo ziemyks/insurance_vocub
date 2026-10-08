@@ -1,0 +1,340 @@
+domain: premium
+concepts:
+  - slug: insurance-premium
+    type: TERM
+    labels:
+      lv: { preferred: "Apdrošināšanas prēmija", alt: ["Prēmija"], abbrev: [] }
+      en: { preferred: "Insurance premium", alt: ["Premium"], abbrev: [] }
+    definition:
+      lv: "Maksa, kas apdrošinājuma ņēmējam jāmaksā apdrošinātājam par apdrošināšanas aizsardzību polisē noteiktajā apdrošināšanas periodā."
+      en: "The price that the policyholder must pay the insurer for insurance cover during the policy term set out in the policy."
+    notes:
+      lv: "Prēmija ir bruto summa pirms komisijas naudas atskaitīšanas. Vai prēmijā iekļauj kopā ar to iekasētās iemaksas vai nodevas, nosaka grāmatvedības politika. Atkarībā no laika un pārapdrošināšanas bāzes izšķir parakstītās, nopelnītās, nenopelnītās, bruto un neto prēmijas; vārds „prēmija“ bez precizējuma pārskatos nav pietiekams."
+      en: "The premium is a gross amount before deduction of commission. Whether contributions or levies collected together with it are included is set by the accounting policy. Depending on the time and reinsurance basis there are written, earned, unearned, gross and net premiums; the word 'premium' without a qualifier is not sufficient in reports."
+    relations:
+      - { type: RELATED, target: written-premium }
+      - { type: RELATED, target: earned-premium }
+      - { type: RELATED, target: tariff }
+      - { type: RELATED, target: policyholder }
+    sources:
+      - { title: "Apdrošināšanas līguma likums" }
+    tags: [premium]
+
+  - slug: written-premium
+    type: TERM
+    labels:
+      lv: { preferred: "Parakstītās prēmijas", alt: ["Parakstītā prēmija"], abbrev: [] }
+      en: { preferred: "Written premium", alt: ["Premium written"], abbrev: [] }
+    definition:
+      lv: "Visa apdrošināšanas perioda prēmija par polisēm, kas atzīta uzskaites periodā (parasti pēc polises sākuma datuma), ieskaitot grozījumus un atskaitot izbeigšanu pirms termiņa, neatkarīgi no tā, vai prēmija ir samaksāta vai nopelnīta."
+      en: "The premium for the whole policy term of policies recognised in an accounting period (usually by policy inception date), including endorsements and net of cancellations, regardless of whether it has been paid or earned."
+    examples:
+      lv: "Gada polise ar prēmiju 1 200 EUR, kas sākas 1. oktobrī un tiek maksāta 12 daļās: oktobrī parakstīti 1 200 EUR, lai gan samaksāti tikai 100 EUR."
+      en: "An annual policy with a EUR 1,200 premium starting on 1 October and paid in 12 instalments: EUR 1,200 is written in October, although only EUR 100 has been paid."
+    notes:
+      lv: "Nejaukt ar nopelnītajām prēmijām (attiecas uz periodā nodrošināto aizsardzību) un ar iekasētajām prēmijām (naudas plūsma). Atzīšanas brīdi (sākuma datums vai noslēgšanas datums) nosaka grāmatvedības politika, un tas ir jāievēro konsekventi visos ziņojumos."
+      en: "Do not confuse with earned premium (relating to cover provided in the period) or collected premium (cash flow). The recognition point (inception date or conclusion date) is set by the accounting policy and must be applied consistently in all reports."
+    relations:
+      - { type: BROADER, target: insurance-premium }
+      - { type: RELATED, target: earned-premium }
+      - { type: RELATED, target: gross-written-premium }
+      - { type: RELATED, target: endorsement }
+    tags: [premium]
+
+  - slug: earned-premium
+    type: TERM
+    labels:
+      lv: { preferred: "Nopelnītās prēmijas", alt: ["Nopelnītā prēmija"], abbrev: [] }
+      en: { preferred: "Earned premium", alt: ["Premium earned"], abbrev: [] }
+    definition:
+      lv: "Parakstīto prēmiju daļa, kas attiecas uz uzskaites periodā faktiski nodrošināto apdrošināšanas aizsardzību, parasti proporcionāli pagājušajam apdrošināšanas perioda laikam."
+      en: "The part of written premium that relates to the insurance cover actually provided in an accounting period, usually in proportion to the elapsed part of the policy term."
+    examples:
+      lv: "Gada polise ar prēmiju 1 200 EUR, sākums 1. oktobrī: kalendārajā gadā nopelnīti 1 200 × 92/365 ≈ 302 EUR."
+      en: "Annual policy with a EUR 1,200 premium starting on 1 October: earned in the calendar year 1,200 × 92/365 ≈ EUR 302."
+    notes:
+      lv: "Nopelnītās prēmijas ir zaudējumu attiecības un kombinētās attiecības saucējs. Produktiem ar sezonālu risku nopelnīšana var nebūt lineāra. 17. SFPS ietvaros, piemērojot prēmiju sadales pieeju, līdzīgu nozīmi pilda apdrošināšanas ieņēmumi, taču tie nav identiski."
+      en: "Earned premium is the denominator of the loss ratio and the combined ratio. For products with seasonal risk, earning may be non-linear. Under IFRS 17 with the premium allocation approach, insurance revenue plays a similar role, but the two are not identical."
+    relations:
+      - { type: BROADER, target: insurance-premium }
+      - { type: RELATED, target: written-premium }
+      - { type: RELATED, target: unearned-premium }
+      - { type: RELATED, target: insurance-revenue }
+    tags: [premium]
+
+  - slug: unearned-premium
+    type: TERM
+    labels:
+      lv: { preferred: "Nenopelnītās prēmijas", alt: ["Nenopelnītā prēmija"], abbrev: [] }
+      en: { preferred: "Unearned premium", alt: [], abbrev: [] }
+    definition:
+      lv: "Parakstīto prēmiju daļa, kas noteiktā datumā attiecas uz apdrošināšanas perioda vēl neizbeigušos daļu, t. i., uz aizsardzību, kas vēl jānodrošina."
+      en: "The part of written premium that, at a given date, relates to the unexpired part of the policy term, i.e. to cover still to be provided."
+    examples:
+      lv: "Gada polise ar prēmiju 1 200 EUR, sākums 1. oktobrī: 31. decembrī nenopelnītie ir 1 200 × 273/365 ≈ 898 EUR."
+      en: "Annual policy with a EUR 1,200 premium starting on 1 October: at 31 December the unearned part is 1,200 × 273/365 ≈ EUR 898."
+    notes:
+      lv: "Nenopelnītās prēmijas ir polises līmeņa summa noteiktā datumā; to kopsumma bilancē veido nenopelnīto prēmiju rezervi. Prēmija var būt nenopelnīta, pat ja tā jau ir samaksāta."
+      en: "Unearned premium is a policy-level amount at a given date; its total in the balance sheet forms the unearned premium reserve. Premium can be unearned even if it has already been paid."
+    relations:
+      - { type: RELATED, target: earned-premium }
+      - { type: RELATED, target: unearned-premium-reserve }
+    tags: [premium]
+
+  - slug: unearned-premium-reserve
+    type: TERM
+    labels:
+      lv: { preferred: "Nenopelnīto prēmiju rezerve", alt: [], abbrev: [] }
+      en: { preferred: "Unearned premium reserve", alt: ["Unearned premium provision", "Provision for unearned premiums"], abbrev: ["UPR"] }
+    definition:
+      lv: "Tehniskā rezerve, kas pārskata datumā ir vienāda ar visu polišu nenopelnīto prēmiju kopsummu un atspoguļo saistības sniegt aizsardzību atlikušajā apdrošināšanas periodā."
+      en: "A technical provision equal to the total unearned premium of all policies at the reporting date, reflecting the obligation to provide cover for the remaining policy term."
+    examples:
+      lv: "Bruto nenopelnīto prēmiju rezerve 31.12.2025. ir 96 milj. EUR, pārapdrošinātāju daļa – 14 milj. EUR."
+      en: "The gross unearned premium reserve at 31 Dec 2025 is EUR 96m, of which the reinsurers' share is EUR 14m."
+    notes:
+      lv: "Rezerves izmaiņas starp perioda sākumu un beigām ir starpība starp parakstītajām un nopelnītajām prēmijām. 17. SFPS pārskatos atsevišķas nenopelnīto prēmiju rezerves nav – tās vietā ir atlikušā seguma saistības, bet Maksātspējas II bilancē – prēmiju rezerve; nenopelnīto prēmiju rezerve joprojām tiek lietota vadības uzskaitē. Rezerve jāuzrāda gan bruto, gan pārapdrošinātāju daļā."
+      en: "The change in the reserve between the start and end of a period is the difference between written and earned premium. IFRS 17 statements have no separate unearned premium reserve – the liability for remaining coverage takes its place, and the Solvency II balance sheet uses a premium provision; the unearned premium reserve is still used in management accounting. The reserve must be shown both gross and as the reinsurers' share."
+    relations:
+      - { type: PART_OF, target: technical-provisions }
+      - { type: RELATED, target: unearned-premium }
+      - { type: RELATED, target: liability-for-remaining-coverage }
+      - { type: RELATED, target: premium-allocation-approach }
+    tags: [premium, reserving]
+
+  - slug: premium-instalment
+    type: TERM
+    labels:
+      lv: { preferred: "Prēmijas daļmaksājums", alt: ["Prēmijas maksājuma daļa", "Prēmijas iemaksa"], abbrev: [] }
+      en: { preferred: "Premium instalment", alt: ["Instalment", "Premium installment"], abbrev: [] }
+    definition:
+      lv: "Viena no daļām, kurās apdrošināšanas perioda prēmija sadalīta saskaņā ar polisē noteikto maksājumu grafiku."
+      en: "One of the parts into which the premium for a policy term is divided under the payment schedule set out in the policy."
+    examples:
+      lv: "KASKO prēmija 960 EUR, maksājot 4 daļās: četri daļmaksājumi pa 240 EUR ar maksāšanas termiņiem ik pēc 3 mēnešiem."
+      en: "A KASKO premium of EUR 960 paid in 4 instalments: four instalments of EUR 240 due every 3 months."
+    notes:
+      lv: "Maksāšana daļās nemaina parakstītās prēmijas – visa perioda prēmija tiek parakstīta polises sākumā. Daļmaksājuma nesamaksāšana termiņā var izraisīt polises spēka zaudēšanu. Daļmaksājumiem var būt piemērota papildu maksa (sadārdzinājums), kas jāuzskaita konsekventi."
+      en: "Paying in instalments does not change written premium – the premium for the whole term is written at inception. Failure to pay an instalment on time may lead to a lapse. Instalments may carry a surcharge, which must be recorded consistently."
+    relations:
+      - { type: PART_OF, target: insurance-premium }
+      - { type: RELATED, target: premium-receivable }
+      - { type: RELATED, target: lapse }
+    tags: [premium, billing]
+
+  - slug: premium-receivable
+    type: TERM
+    labels:
+      lv: { preferred: "Prēmiju debitoru parādi", alt: ["Debitoru parādi par prēmijām", "Apdrošinājuma ņēmēju parādi"], abbrev: [] }
+      en: { preferred: "Premium receivable", alt: ["Premium receivables", "Premium debtors"], abbrev: [] }
+    definition:
+      lv: "Prēmiju summa, kas pārskata datumā apdrošinājuma ņēmējiem vai starpniekiem ir aprēķināta maksāšanai, bet vēl nav saņemta."
+      en: "The amount of premium that, at the reporting date, has been billed to policyholders or intermediaries but has not yet been received."
+    notes:
+      lv: "Jānošķir termiņā vēl nesamaksātie un kavētie parādi; kavētajiem parasti veido vērtības samazinājuma uzkrājumu. Parakstītās, bet vēl neizrakstītās nākamo daļmaksājumu summas nav šajā rādītājā, ja grāmatvedības politika neparedz citādi. 17. SFPS bilancē prēmiju debitoru parādi tiek ietverti atlikušā seguma saistību novērtējumā, nevis uzrādīti kā atsevišķs aktīvs."
+      en: "Distinguish amounts not yet due from overdue amounts; an impairment allowance is usually made for overdue amounts. Written but not yet billed future instalments are excluded unless the accounting policy states otherwise. In the IFRS 17 balance sheet, premium receivables are included in the measurement of the liability for remaining coverage rather than shown as a separate asset."
+    relations:
+      - { type: RELATED, target: premium-instalment }
+      - { type: RELATED, target: liability-for-remaining-coverage }
+      - { type: RELATED, target: lapse }
+    tags: [premium, billing, finance]
+
+  - slug: premium-refund
+    type: TERM
+    labels:
+      lv: { preferred: "Prēmijas atmaksa", alt: ["Atmaksājamā prēmija"], abbrev: [] }
+      en: { preferred: "Premium refund", alt: ["Return premium", "Refund of premium"], abbrev: [] }
+    definition:
+      lv: "Prēmijas summa, ko apdrošinātājs atmaksā apdrošinājuma ņēmējam, parasti pēc polises izbeigšanas pirms termiņa, prēmiju samazinoša grozījuma vai pārmaksas."
+      en: "An amount of premium that the insurer returns to the policyholder, usually after early cancellation, a premium-reducing endorsement or an overpayment."
+    notes:
+      lv: "Atmaksa ir naudas plūsma; parakstīto prēmiju samazinājums atzīts izbeigšanas vai grozījuma periodā, neatkarīgi no tā, kad atmaksa izmaksāta. Pārmaksas atmaksa nesamazina parakstītās prēmijas. Nejaukt ar bezzaudējumu atlaidi, kas samazina nākamā perioda prēmiju."
+      en: "A refund is a cash flow; the reduction in written premium is recognised in the period of the cancellation or endorsement, regardless of when the refund is paid. Refunding an overpayment does not reduce written premium. Do not confuse with a no-claims discount, which reduces the next term's premium."
+    relations:
+      - { type: RELATED, target: cancellation }
+      - { type: RELATED, target: endorsement }
+      - { type: RELATED, target: written-premium }
+    tags: [premium, billing]
+
+  - slug: gross-written-premium
+    type: METRIC
+    labels:
+      lv: { preferred: "Parakstītās bruto prēmijas", alt: [], abbrev: [] }
+      en: { preferred: "Gross written premium", alt: ["Gross premium written"], abbrev: ["GWP"] }
+    definition:
+      lv: "Periodā parakstīto prēmiju kopsumma tiešajā apdrošināšanā un pieņemtajā pārapdrošināšanā (ja tāda ir), ieskaitot grozījumus un atskaitot izbeigšanu pirms termiņa, pirms pārapdrošinātājiem nodoto prēmiju atskaitīšanas."
+      en: "The total written premium in a period from direct insurance and accepted reinsurance (if any), including endorsements and net of cancellations, before deducting premium ceded to reinsurers."
+    notes:
+      lv: "Vadības pārskatu GWP jāsaskaņo ar Latvijas Bankai sniegto un PZU grupas pārskatos uzrādīto summu; atšķirības (piemēram, atzīšanas datuma dēļ) jādokumentē. 17. SFPS peļņas vai zaudējumu aprēķinā GWP neparādās – tur ir apdrošināšanas ieņēmumi. GWP nav nopelnītās prēmijas un nav neto."
+      en: "Management GWP must be reconciled to the amount reported to Latvijas Banka and in PZU Group reporting; differences (e.g. due to the recognition date) must be documented. GWP does not appear in the IFRS 17 income statement – insurance revenue does. GWP is neither earned nor net."
+    relations:
+      - { type: RELATED, target: written-premium }
+      - { type: RELATED, target: net-written-premium }
+      - { type: RELATED, target: gross-earned-premium }
+      - { type: RELATED, target: insurance-revenue }
+    tags: [kpi, premium, volume]
+    metric:
+      formula: "Σ written premium (new business + renewals + endorsements − cancellations) for direct and accepted business"
+      unit: AMOUNT_EUR
+      aggregation: SUM
+      additivity: ADDITIVE
+      polarity: HIGHER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: GROSS
+        premiumBasis: WRITTEN
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Day × product × sales channel"
+      dimensions: ["Line of business", "Product", "Coverage", "Sales channel", "Intermediary", "Region", "Customer segment", "Business type (new / renewal)"]
+      refreshFrequency: DAILY
+      example:
+        lv: "2025. gada 2. ceturksnī parakstītās bruto prēmijas bija 48,0 milj. EUR."
+        en: "Gross written premium in Q2 2025 was EUR 48.0m."
+
+  - slug: net-written-premium
+    type: METRIC
+    labels:
+      lv: { preferred: "Parakstītās neto prēmijas", alt: ["Parakstītās prēmijas, atskaitot pārapdrošināšanu"], abbrev: [] }
+      en: { preferred: "Net written premium", alt: ["Net premium written"], abbrev: ["NWP"] }
+    definition:
+      lv: "Parakstītās bruto prēmijas, atskaitot pārapdrošinātājiem nodotās parakstītās prēmijas tajā pašā periodā."
+      en: "Gross written premium less written premium ceded to reinsurers in the same period."
+    notes:
+      lv: "Neto šeit nozīmē „pēc pārapdrošināšanas“, nevis „pēc komisijas“ vai „pēc atcelšanas“. Ar ilgtermiņa vai neproporcionāliem līgumiem nodotā prēmija var būt nevienmērīga pa mēnešiem."
+      en: "Net here means 'after reinsurance', not 'after commission' or 'after cancellations'. With non-proportional treaties, ceded premium can be uneven across months."
+    relations:
+      - { type: RELATED, target: gross-written-premium }
+      - { type: RELATED, target: reinsurance }
+      - { type: RELATED, target: net-earned-premium }
+    tags: [kpi, premium, reinsurance]
+    metric:
+      formula: "Gross written premium − Ceded written premium"
+      unit: AMOUNT_EUR
+      aggregation: SUM
+      additivity: ADDITIVE
+      polarity: HIGHER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NET
+        premiumBasis: WRITTEN
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Month × line of business"
+      dimensions: ["Line of business", "Product", "Reinsurance treaty"]
+      components:
+        - { role: COMPONENT, metric: gross-written-premium }
+        - { role: COMPONENT, metric: ceded-written-premium }
+      refreshFrequency: MONTHLY
+      example:
+        lv: "48,0 milj. EUR − 7,2 milj. EUR = 40,8 milj. EUR"
+        en: "EUR 48.0m − EUR 7.2m = EUR 40.8m"
+
+  - slug: gross-earned-premium
+    type: METRIC
+    labels:
+      lv: { preferred: "Nopelnītās bruto prēmijas", alt: [], abbrev: [] }
+      en: { preferred: "Gross earned premium", alt: ["Gross premium earned"], abbrev: ["GEP"] }
+    definition:
+      lv: "Periodā nopelnīto prēmiju kopsumma pirms pārapdrošināšanas, t. i., parakstītās bruto prēmijas, koriģētas ar bruto nenopelnīto prēmiju rezerves izmaiņām."
+      en: "The total premium earned in a period before reinsurance, i.e. gross written premium adjusted for the change in the gross unearned premium reserve."
+    notes:
+      lv: "Bruto zaudējumu attiecības un kombinētās attiecības saucējs. Nejaukt ar 17. SFPS apdrošināšanas ieņēmumiem, kuros var būt papildu korekcijas (piemēram, gaidāmo nesaņemamo prēmiju dēļ)."
+      en: "Denominator of the gross loss ratio and the gross combined ratio. Do not confuse with IFRS 17 insurance revenue, which may include further adjustments (e.g. for premiums not expected to be collected)."
+    relations:
+      - { type: RELATED, target: earned-premium }
+      - { type: RELATED, target: unearned-premium-reserve }
+      - { type: RELATED, target: gross-loss-ratio }
+      - { type: RELATED, target: insurance-revenue }
+    tags: [kpi, premium, volume]
+    metric:
+      formula: "Gross written premium − (Closing gross UPR − Opening gross UPR)"
+      unit: AMOUNT_EUR
+      aggregation: SUM
+      additivity: ADDITIVE
+      polarity: HIGHER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: GROSS
+        premiumBasis: EARNED
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Month × product × coverage"
+      dimensions: ["Line of business", "Product", "Coverage", "Sales channel", "Region", "Underwriting year"]
+      components:
+        - { role: COMPONENT, metric: gross-written-premium }
+      refreshFrequency: MONTHLY
+      example:
+        lv: "48,0 milj. EUR − (99,0 − 96,0) milj. EUR = 45,0 milj. EUR"
+        en: "EUR 48.0m − (EUR 99.0m − EUR 96.0m) = EUR 45.0m"
+
+  - slug: net-earned-premium
+    type: METRIC
+    labels:
+      lv: { preferred: "Nopelnītās neto prēmijas", alt: ["Nopelnītās prēmijas, atskaitot pārapdrošināšanu"], abbrev: [] }
+      en: { preferred: "Net earned premium", alt: ["Net premium earned"], abbrev: ["NEP"] }
+    definition:
+      lv: "Nopelnītās bruto prēmijas, atskaitot pārapdrošinātājiem nodotās nopelnītās prēmijas tajā pašā periodā."
+      en: "Gross earned premium less earned premium ceded to reinsurers in the same period."
+    notes:
+      lv: "Neto zaudējumu attiecības un neto kombinētās attiecības saucējs. Nopelnīto nodoto prēmiju aprēķina ar pārapdrošinātāju daļas nenopelnīto prēmiju rezerves izmaiņām."
+      en: "Denominator of the net loss ratio and the net combined ratio. Ceded earned premium is calculated using the change in the reinsurers' share of the unearned premium reserve."
+    relations:
+      - { type: RELATED, target: gross-earned-premium }
+      - { type: RELATED, target: net-written-premium }
+      - { type: RELATED, target: net-loss-ratio }
+    tags: [kpi, premium, reinsurance]
+    metric:
+      formula: "Gross earned premium − Ceded earned premium"
+      unit: AMOUNT_EUR
+      aggregation: SUM
+      additivity: ADDITIVE
+      polarity: HIGHER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NET
+        premiumBasis: EARNED
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Month × line of business"
+      dimensions: ["Line of business", "Product", "Reinsurance treaty"]
+      components:
+        - { role: COMPONENT, metric: gross-earned-premium }
+        - { role: COMPONENT, metric: ceded-earned-premium }
+      refreshFrequency: MONTHLY
+      example:
+        lv: "45,0 milj. EUR − 6,9 milj. EUR = 38,1 milj. EUR"
+        en: "EUR 45.0m − EUR 6.9m = EUR 38.1m"
+
+  - slug: average-premium
+    type: METRIC
+    labels:
+      lv: { preferred: "Vidējā prēmija", alt: ["Vidējā polises prēmija"], abbrev: [] }
+      en: { preferred: "Average premium", alt: ["Average written premium per policy"], abbrev: [] }
+    definition:
+      lv: "Vidējā parakstītā bruto prēmija vienai periodā noslēgtai jaunai vai atjaunotai polisei."
+      en: "The average gross written premium per new or renewed policy written in a period."
+    notes:
+      lv: "Skaitītājā iekļauj tikai jauno un atjaunoto polišu prēmijas, bez grozījumiem un izbeigšanas, citādi vidējais tiek izkropļots. Īstermiņa polises (piemēram, ceļojumu) būtiski samazina vidējo, tāpēc rādītāju jāskatās pa produktiem. Transportlīdzekļu apdrošināšanā var lietot arī vidējo prēmiju uz vienu objektu – tas ir cits rādītājs. Saucējā atjaunošanas polises skaita pēc to parakstīšanas datuma, tāpēc tas var nedaudz atšķirties no atjaunoto polišu skaita, ko skaita pēc iepriekšējās polises beigu datuma."
+      en: "The numerator includes only premium of new and renewed policies, without endorsements and cancellations, otherwise the average is distorted. Short-term policies (e.g. travel) pull the average down sharply, so analyse it by product. In motor insurance the average premium per risk object may also be used – that is a different measure. In the denominator renewal policies are counted by their written date, so it can differ slightly from the renewed policies count, which is counted by the previous policy's expiry date."
+    relations:
+      - { type: RELATED, target: gross-written-premium }
+      - { type: RELATED, target: tariff }
+    tags: [kpi, premium, pricing]
+    metric:
+      formula: "Gross written premium of new and renewed policies / (New policies count + Renewed policies count)"
+      unit: AMOUNT_EUR
+      aggregation: RATIO
+      additivity: NON_ADDITIVE
+      polarity: NEUTRAL
+      qualifiers:
+        reinsuranceBasis: GROSS
+        premiumBasis: WRITTEN
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Month × product × sales channel"
+      dimensions: ["Product", "Line of business", "Sales channel", "Customer segment", "Region", "Business type (new / renewal)"]
+      components:
+        - { role: NUMERATOR, metric: gross-written-premium }
+        - { role: DENOMINATOR, metric: new-policies-count }
+        - { role: DENOMINATOR, metric: renewed-policies-count }
+      refreshFrequency: MONTHLY
+      example:
+        lv: "44,6 milj. EUR / (52 000 + 58 000) polises ≈ 405 EUR"
+        en: "EUR 44.6m / (52,000 + 58,000) policies ≈ EUR 405"

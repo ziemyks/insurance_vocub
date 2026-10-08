@@ -1,0 +1,117 @@
+domain: reference-data
+concepts:
+  - slug: lob-code-list
+    type: TERM
+    labels:
+      lv: { preferred: "Darbības virzienu klasifikators", alt: ["Apdrošināšanas veidu klasifikators"], abbrev: [] }
+      en: { preferred: "Line-of-business code list", alt: ["LoB code list"], abbrev: [] }
+    definition:
+      lv: "Uzņēmuma vienotais kodu saraksts iekšējiem darbības virzieniem kopā ar to kartējumu uz Maksātspējas II darbības virzieniem, likumā noteiktajiem nedzīvības apdrošināšanas veidiem, 17. SFPS portfeļiem un grupas (PZU) pārskatu segmentiem."
+      en: "The company's single code list of internal lines of business together with their mapping to Solvency II lines of business, statutory classes of non-life insurance, IFRS 17 portfolios and group (PZU) reporting segments."
+    notes:
+      lv: "Kartējums ne vienmēr ir „viens pret vienu“: viens produkts var atbilst vairākiem Maksātspējas II darbības virzieniem (piem., KASKO ar civiltiesiskās atbildības papildsegumu). Izmaiņas klasifikatorā jāsaskaņo ar Finanšu, Aktuāra un Riska vadības funkcijām, jo tās ietekmē vēsturiskos salīdzinājumus."
+      en: "The mapping is not always one-to-one: a product may correspond to several Solvency II lines of business (e.g. motor own damage with a liability add-on). Changes to the code list must be agreed with the Finance, Actuarial and Risk Management functions because they affect historical comparisons."
+    relations:
+      - { type: RELATED, target: line-of-business }
+      - { type: RELATED, target: sii-line-of-business }
+      - { type: RELATED, target: portfolio-of-contracts }
+    sources:
+      - { title: "Directive 2009/138/EC (Solvency II)", reference: "Annex I" }
+    tags: [reference-data, classification]
+
+  - slug: currency-code
+    type: TERM
+    labels:
+      lv: { preferred: "Valūtas kods", alt: [], abbrev: [] }
+      en: { preferred: "Currency code", alt: [], abbrev: [] }
+    definition:
+      lv: "Trīs burtu valūtas apzīmējums saskaņā ar standartu ISO 4217 (piem., EUR, USD, PLN), ko izmanto darījumu, polišu un pārskatu valūtas norādīšanai."
+      en: "A three-letter currency identifier according to ISO 4217 (e.g. EUR, USD, PLN) used to state the currency of transactions, policies and reports."
+    notes:
+      lv: "Latvijas funkcionālā un pārskatu valūta kopš 2014. gada ir eiro; vēsturiskajos datos var būt sastopami lati (LVL). Jānošķir darījuma valūta, polises valūta un pārskatu valūta; grupas (PZU) pārskatiem var būt nepieciešams pārrēķins zlotos (PLN)."
+      en: "Latvia's functional and reporting currency has been the euro since 2014; historical data may contain lats (LVL). Distinguish transaction currency, policy currency and reporting currency; group (PZU) reporting may require translation into zloty (PLN)."
+    sources:
+      - { title: "ISO 4217 Currency codes" }
+    tags: [reference-data, iso]
+
+  - slug: country-code
+    type: TERM
+    labels:
+      lv: { preferred: "Valsts kods", alt: [], abbrev: [] }
+      en: { preferred: "Country code", alt: [], abbrev: [] }
+    definition:
+      lv: "Divu burtu valsts apzīmējums saskaņā ar standartu ISO 3166-1 alpha-2 (piem., LV, LT, EE, PL), ko izmanto adresēm, riska atrašanās vietai un rezidencei."
+      en: "A two-letter country identifier according to ISO 3166-1 alpha-2 (e.g. LV, LT, EE, PL) used for addresses, risk location and residence."
+    notes:
+      lv: "Jānošķir klienta rezidences valsts, riska atrašanās valsts un apdrošināšanas gadījuma valsts. Uzmanību: ES statistikā Grieķijai lieto kodu EL, bet ISO standartā — GR."
+      en: "Distinguish the customer's country of residence, the country where the risk is situated and the country of the insured event. Caution: EU statistics use EL for Greece, whereas ISO uses GR."
+    sources:
+      - { title: "ISO 3166-1 Country codes" }
+    tags: [reference-data, iso]
+
+  - slug: cause-of-loss-code
+    type: TERM
+    labels:
+      lv: { preferred: "Zaudējumu cēloņa kods", alt: ["Zaudējumu cēloņu klasifikators"], abbrev: [] }
+      en: { preferred: "Cause-of-loss code", alt: ["Cause of loss classification"], abbrev: [] }
+    definition:
+      lv: "Klasifikatora kods, kas atlīdzības lietai norāda zaudējumu tiešo cēloni (piem., ceļu satiksmes negadījums, ugunsgrēks, ūdens noplūde, vētra, zādzība), un ko izmanto riska analīzei, cenu noteikšanai un katastrofu notikumu identificēšanai."
+      en: "A code from a classification that records the immediate cause of loss on a claim (e.g. road traffic accident, fire, water leakage, storm, theft) and is used for risk analysis, pricing and identification of catastrophe events."
+    notes:
+      lv: "Zaudējumu cēlonis nav tas pats, kas apdrošināšanas risks polisē: viens risks (piem., „dabas stihija“) var aptvert vairākus cēloņus. Kodu piešķir atlīdzības pieteikšanas brīdī un precizē regulēšanas laikā; nenoteikts kods („cits“) jāizmanto minimāli."
+      en: "The cause of loss is not the same as the peril in the policy: one peril (e.g. 'natural forces') can cover several causes. The code is assigned at notification and refined during claims handling; the unspecified code ('other') should be used sparingly."
+    relations:
+      - { type: RELATED, target: peril }
+      - { type: RELATED, target: claim }
+      - { type: RELATED, target: catastrophe-event }
+    tags: [reference-data, claims, classification]
+
+  - slug: vehicle-class
+    type: TERM
+    labels:
+      lv: { preferred: "Transportlīdzekļa kategorija", alt: ["Transportlīdzekļa klase"], abbrev: [] }
+      en: { preferred: "Vehicle class", alt: ["Vehicle category"], abbrev: [] }
+    definition:
+      lv: "Transportlīdzekļu klasifikācijas kods, kas balstīts uz ES tipa apstiprināšanas kategorijām (piem., M1 vieglais pasažieru automobilis, N1 vieglā kravas automašīna, L motocikli, O piekabes) un ko izmanto motoru apdrošināšanas tarifikācijā un pārskatos."
+      en: "A vehicle classification code based on EU type-approval categories (e.g. M1 passenger car, N1 light commercial vehicle, L motorcycles, O trailers) used in motor insurance pricing and reporting."
+    notes:
+      lv: "Kategorija tiek ņemta no Ceļu satiksmes drošības direkcijas (CSDD) reģistra datiem. Uzņēmuma tarifu grupas var būt detalizētākas par tipa apstiprināšanas kategoriju; abas klasifikācijas jāglabā atsevišķi."
+      en: "The category is taken from the Road Traffic Safety Directorate (CSDD) register data. The company's tariff groups may be more granular than the type-approval category; both classifications must be stored separately."
+    relations:
+      - { type: RELATED, target: risk-object }
+      - { type: RELATED, target: octa }
+      - { type: RELATED, target: tariff }
+    tags: [reference-data, motor, classification]
+
+  - slug: region
+    type: TERM
+    labels:
+      lv: { preferred: "Reģions", alt: [], abbrev: [] }
+      en: { preferred: "Region", alt: [], abbrev: [] }
+    definition:
+      lv: "Ģeogrāfiskas teritorijas grupējums (piem., statistiskie reģioni Rīga, Pierīga, Vidzeme, Kurzeme, Zemgale, Latgale), kam piesaista risku, klientu vai pārdošanas vienību analīzei un pārskatiem."
+      en: "A grouping of geographic territory (e.g. the statistical regions Rīga, Pierīga, Vidzeme, Kurzeme, Zemgale, Latgale) to which a risk, customer or sales unit is assigned for analysis and reporting."
+    notes:
+      lv: "Vienmēr jānorāda, kurš reģions izmantots: riska atrašanās vietas, klienta adreses vai pārdošanas vienības reģions. Pašvaldību robežas mainījās 2021. gada administratīvi teritoriālās reformas rezultātā, tāpēc vēsturiskajiem datiem nepieciešams kartējums."
+      en: "Always state which region is used: risk location, customer address or sales unit region. Municipal boundaries changed with the 2021 administrative-territorial reform, so historical data requires mapping."
+    relations:
+      - { type: RELATED, target: country-code }
+    tags: [reference-data, geography]
+
+  - slug: nace-code
+    type: TERM
+    labels:
+      lv: { preferred: "NACE kods", alt: ["Saimniecisko darbību statistiskās klasifikācijas kods"], abbrev: ["NACE"] }
+      en: { preferred: "NACE code", alt: ["Statistical classification of economic activities code"], abbrev: ["NACE"] }
+    definition:
+      lv: "Juridiskas personas pamatdarbības veida kods saskaņā ar ES saimniecisko darbību statistisko klasifikāciju NACE, ko izmanto komercklientu segmentācijai, parakstīšanā un ilgtspējas pārskatos."
+      en: "A code for a legal entity's main economic activity according to the EU statistical classification of economic activities (NACE), used for commercial customer segmentation, underwriting and sustainability reporting."
+    notes:
+      lv: "Jāglabā klasifikācijas redakcija (NACE 2. red. vai jaunā 2.1. red.), jo kodi starp redakcijām mainās. Uzņēmuma reģistrā norādītā darbība ne vienmēr atbilst faktiski apdrošinātajai darbībai — parakstīšanā noteicošā ir faktiskā darbība."
+      en: "Store the classification version (NACE Rev. 2 or the new Rev. 2.1), because codes change between versions. The activity in the Register of Enterprises does not always match the activity actually insured — for underwriting the actual activity prevails."
+    relations:
+      - { type: RELATED, target: customer-segment }
+      - { type: RELATED, target: csrd }
+    sources:
+      - { title: "Regulation (EC) No 1893/2006 (NACE Rev. 2)" }
+    tags: [reference-data, classification]

@@ -1,0 +1,324 @@
+domain: risk-capital
+concepts:
+  - slug: technical-provisions
+    type: TERM
+    labels:
+      lv: { preferred: "Tehniskās rezerves", alt: ["Maksātspējas II tehniskās rezerves"], abbrev: ["TP"] }
+      en: { preferred: "Technical provisions", alt: ["Solvency II technical provisions"], abbrev: ["TP"] }
+    definition:
+      lv: "Maksātspējas II bilances saistības, kas atbilst summai, kura apdrošinātājam būtu jāsamaksā, lai savas apdrošināšanas saistības nekavējoties nodotu citam apdrošinātājam, un ko aprēķina kā labākās aplēses un riska rezerves summu."
+      en: "Solvency II balance sheet liabilities equal to the amount an insurer would have to pay to transfer its insurance obligations immediately to another insurer, calculated as the sum of the best estimate and the risk margin."
+    notes:
+      lv: "Nedzīvības apdrošināšanā labāko aplēsi iedala prēmiju rezervēs (nākotnes notikumi esošajiem līgumiem) un atlīdzību rezervēs (jau notikuši notikumi). Nejaukt ar 17. SFPS apdrošināšanas līgumu saistībām (atlikušā seguma un radušos prasījumu saistības): atšķiras līgumu robežas, diskonta likmes, korekcija nefinanšu riskam pret riska rezervi un PAA vienkāršojumi. Vecajā vietējā uzskaitē „tehniskās rezerves“ apzīmēja arī nenopelnīto prēmiju un atlīdzību rezerves — vienmēr precizēt bāzi."
+      en: "In non-life the best estimate is split into premium provisions (future events on existing contracts) and claims provisions (events already occurred). Do not confuse with IFRS 17 insurance contract liabilities (LRC and LIC): contract boundaries, discount rates, risk adjustment versus risk margin and PAA simplifications differ. In legacy local accounting 'technical provisions' also meant the unearned premium and claims reserves — always state the basis."
+    relations:
+      - { type: RELATED, target: best-estimate }
+      - { type: RELATED, target: risk-margin }
+      - { type: RELATED, target: liability-for-incurred-claims }
+      - { type: RELATED, target: liability-for-remaining-coverage }
+    sources:
+      - { title: "Directive 2009/138/EC (Solvency II)", reference: "Article 77" }
+    tags: [solvency-ii, reserving, liabilities]
+
+  - slug: risk-margin
+    type: TERM
+    labels:
+      lv: { preferred: "Riska rezerve", alt: ["Riska norma"], abbrev: ["RM"] }
+      en: { preferred: "Risk margin", alt: [], abbrev: ["RM"] }
+    definition:
+      lv: "Maksātspējas II tehnisko rezervju sastāvdaļa, kas nodrošina, ka tehnisko rezervju vērtība atbilst summai, kādu cits apdrošinātājs pieprasītu, lai pārņemtu un izpildītu apdrošināšanas saistības, un ko aprēķina ar kapitāla izmaksu metodi."
+      en: "The component of Solvency II technical provisions that ensures their value equals the amount another insurer would require to take over and meet the insurance obligations, calculated with the cost-of-capital method."
+    notes:
+      lv: "Aprēķina kā normatīvi noteiktas kapitāla izmaksu likmes un nākotnes maksātspējas kapitāla prasību (attiecībā uz nenovēršamiem riskiem) pašreizējās vērtības reizinājumu. Nejaukt ar 17. SFPS korekciju nefinanšu riskam, kuras metodi izvēlas pats uzņēmums. Kapitāla izmaksu likme mainīta Maksātspējas II pārskatīšanas ietvaros — piemērojamo likmi apstiprina Aktuāra funkcija."
+      en: "Calculated as a prescribed cost-of-capital rate multiplied by the present value of future solvency capital requirements (for non-hedgeable risks). Do not confuse with the IFRS 17 risk adjustment for non-financial risk, whose method is chosen by the entity. The cost-of-capital rate was changed by the Solvency II review — the applicable rate is confirmed by the Actuarial Function."
+    relations:
+      - { type: PART_OF, target: technical-provisions }
+      - { type: RELATED, target: risk-adjustment }
+    sources:
+      - { title: "Directive 2009/138/EC (Solvency II)", reference: "Article 77" }
+    tags: [solvency-ii, reserving]
+
+  - slug: own-funds
+    type: TERM
+    labels:
+      lv: { preferred: "Pašu līdzekļi", alt: ["Maksātspējas II pašu līdzekļi"], abbrev: [] }
+      en: { preferred: "Own funds", alt: ["Solvency II own funds"], abbrev: [] }
+    definition:
+      lv: "Maksātspējas II kapitāla resursi, ko veido pamata pašu līdzekļi (aktīvu pārsniegums pār saistībām Maksātspējas II bilancē, koriģēts, un subordinētās saistības) un papildu pašu līdzekļi, un kas klasificēti trīs līmeņos pēc to kvalitātes."
+      en: "Solvency II capital resources consisting of basic own funds (the adjusted excess of assets over liabilities in the Solvency II balance sheet, plus subordinated liabilities) and ancillary own funds, classified into three tiers according to quality."
+    notes:
+      lv: "Pašu līdzekļi nav tas pats, kas pašu kapitāls SFPS bilancē: atšķiras tehnisko rezervju novērtējums, nemateriālie aktīvi tiek novērtēti nullē, atskaita paredzamās dividendes. Dažos latviešu normatīvajos tekstos lieto apzīmējumu „pašu kapitāls“, kas sakrīt ar grāmatvedības terminu — kontekstā vienmēr norādīt „Maksātspējas II“."
+      en: "Own funds are not the same as equity in the IFRS balance sheet: technical provisions are valued differently, intangible assets are valued at nil and foreseeable dividends are deducted. Some Latvian regulatory texts use 'pašu kapitāls', which coincides with the accounting term for equity — always qualify with 'Solvency II' in context."
+    relations:
+      - { type: RELATED, target: eligible-own-funds }
+      - { type: RELATED, target: average-equity }
+    sources:
+      - { title: "Directive 2009/138/EC (Solvency II)", reference: "Article 87" }
+    tags: [solvency-ii, capital]
+
+  - slug: sii-line-of-business
+    type: TERM
+    labels:
+      lv: { preferred: "Maksātspējas II darbības virziens", alt: ["MII darbības virziens"], abbrev: [] }
+      en: { preferred: "Solvency II line of business", alt: ["SII line of business"], abbrev: ["SII LoB"] }
+    definition:
+      lv: "Normatīvi noteikta apdrošināšanas un pārapdrošināšanas saistību segmentācijas kategorija (piem., transportlīdzekļu īpašnieku civiltiesiskās atbildības apdrošināšana, cita transportlīdzekļu apdrošināšana, ugunsgrēka un citu īpašuma bojājumu apdrošināšana), ko izmanto tehnisko rezervju aprēķinā, kapitāla prasību aprēķinā un uzraudzības pārskatos."
+      en: "A regulatory category for segmenting insurance and reinsurance obligations (e.g. motor vehicle liability, other motor, fire and other damage to property), used for technical provisions, capital requirement calculations and supervisory reporting."
+    notes:
+      lv: "Nedzīvības apdrošināšanā ir 12 tiešās un proporcionālās pārapdrošināšanas darbības virzieni un 4 neproporcionālās pārapdrošināšanas darbības virzieni. Segmentāciju nosaka pēc riska būtības, nevis pēc produkta nosaukuma: piem., OCTA pieder transportlīdzekļu īpašnieku civiltiesiskās atbildības virzienam, KASKO — citai transportlīdzekļu apdrošināšanai, bet viens produkts var tikt sadalīts vairākos virzienos. Uzņēmuma iekšējo darbības virzienu kartējumu uztur darbības virzienu klasifikatorā."
+      en: "Non-life has 12 lines of business for direct and proportional reinsurance and 4 for non-proportional reinsurance. Segmentation follows the nature of the risk, not the product name: e.g. MTPL (OCTA) maps to motor vehicle liability, motor own damage (KASKO) to other motor, and one product may be split across several lines. The mapping from internal lines of business is maintained in the line-of-business code list."
+    relations:
+      - { type: RELATED, target: line-of-business }
+      - { type: RELATED, target: lob-code-list }
+    sources:
+      - { title: "Commission Delegated Regulation (EU) 2015/35", reference: "Annex I" }
+    tags: [solvency-ii, reporting, segmentation]
+
+  - slug: qrt
+    type: TERM
+    labels:
+      lv: { preferred: "Kvantitatīvās pārskatu veidnes", alt: ["Kvantitatīvās ziņošanas veidnes"], abbrev: ["QRT"] }
+      en: { preferred: "Quantitative reporting templates", alt: [], abbrev: ["QRT"] }
+    definition:
+      lv: "Standartizētas Maksātspējas II datu veidnes (piem., S.02.01 bilance, S.05.01 prēmijas, atlīdzības un izdevumi, S.17.01 nedzīvības tehniskās rezerves, S.23.01 pašu līdzekļi, S.25.01 maksātspējas kapitāla prasība, S.28.01 minimālā kapitāla prasība), kuras apdrošinātājs reizi ceturksnī un gadā iesniedz uzraudzības iestādei."
+      en: "Standardised Solvency II data templates (e.g. S.02.01 balance sheet, S.05.01 premiums, claims and expenses, S.17.01 non-life technical provisions, S.23.01 own funds, S.25.01 solvency capital requirement, S.28.01 minimum capital requirement) that an insurer submits to the supervisor quarterly and annually."
+    notes:
+      lv: "Latvijā QRT iesniedz Latvijas Bankai XBRL formātā. QRT skaitļi ir Maksātspējas II bāzē un nav tieši salīdzināmi ar 17. SFPS finanšu pārskatiem vai vadības ziņojumiem. Daļa veidņu tiek publiskota maksātspējas un finanšu stāvokļa pārskatā (SFCR)."
+      en: "In Latvia QRTs are submitted to Latvijas Banka in XBRL format. QRT figures are on a Solvency II basis and are not directly comparable with IFRS 17 financial statements or management reports. Some templates are published in the solvency and financial condition report (SFCR)."
+    relations:
+      - { type: RELATED, target: latvijas-banka }
+      - { type: RELATED, target: sii-line-of-business }
+    sources:
+      - { title: "Directive 2009/138/EC (Solvency II)" }
+    tags: [solvency-ii, reporting, regulatory]
+
+  - slug: orsa
+    type: TERM
+    labels:
+      lv: { preferred: "Pašu riska un maksātspējas novērtējums", alt: [], abbrev: ["ORSA"] }
+      en: { preferred: "Own risk and solvency assessment", alt: [], abbrev: ["ORSA"] }
+    definition:
+      lv: "Apdrošinātāja paša veikts process, kurā tas novērtē savu kopējo maksātspējas vajadzību atbilstoši riska profilam, riska apetītei un biznesa stratēģijai, pastāvīgu atbilstību kapitāla prasībām un tehnisko rezervju prasībām, kā arī novirzi no standarta formulas pieņēmumiem."
+      en: "An insurer's own process for assessing its overall solvency needs in light of its risk profile, risk appetite and business strategy, its continuous compliance with capital and technical provisions requirements, and the deviation of its risk profile from the standard formula assumptions."
+    notes:
+      lv: "ORSA veic vismaz reizi gadā un pēc būtiskām riska profila izmaiņām; to apstiprina valde un ziņojumu iesniedz Latvijas Bankai. ORSA nav aprēķina metode, bet vadības process, kas sasaista stratēģiju, plānu un kapitālu (ietver scenāriju un stresa testus)."
+      en: "ORSA is performed at least annually and after any significant change in the risk profile; it is approved by the Management Board and the report is submitted to Latvijas Banka. ORSA is not a calculation method but a management process linking strategy, business plan and capital (including scenario and stress tests)."
+    relations:
+      - { type: RELATED, target: solvency-capital-requirement }
+      - { type: RELATED, target: latvijas-banka }
+    sources:
+      - { title: "Directive 2009/138/EC (Solvency II)", reference: "Article 45" }
+    tags: [solvency-ii, risk-management, regulatory]
+
+  - slug: solvency-capital-requirement
+    type: METRIC
+    labels:
+      lv: { preferred: "Maksātspējas kapitāla prasība", alt: [], abbrev: ["SCR"] }
+      en: { preferred: "Solvency capital requirement", alt: [], abbrev: ["SCR"] }
+    definition:
+      lv: "Maksātspējas II kapitāla apmērs, kas atbilst pamata pašu līdzekļu vērtībai pakļautai riskam (VaR) ar 99,5 % ticamības līmeni viena gada periodā, t. i., apdrošinātājs ar šādu kapitālu ar 99,5 % varbūtību spēj segt neparedzētus zaudējumus nākamajos 12 mēnešos."
+      en: "The Solvency II capital amount corresponding to the value-at-risk of basic own funds at a 99.5% confidence level over one year, i.e. an insurer holding it can absorb unexpected losses over the next 12 months with 99.5% probability."
+    notes:
+      lv: "Aprēķina ar standarta formulu (vai apstiprinātu iekšējo modeli): pamata SCR (tirgus, darījumu partneru, nedzīvības, veselības apdrošināšanas riska moduļi ar diversifikāciju) + operacionālais risks − tehnisko rezervju un atliktā nodokļa zaudējumu absorbcijas korekcija. SCR nav summējama starp moduļiem vai sabiedrībām diversifikācijas dēļ."
+      en: "Calculated with the standard formula (or an approved internal model): basic SCR (market, counterparty default, non-life and health underwriting risk modules with diversification) + operational risk − adjustment for the loss-absorbing capacity of technical provisions and deferred taxes. SCR is not additive across modules or entities because of diversification."
+    relations:
+      - { type: RELATED, target: minimum-capital-requirement }
+      - { type: RELATED, target: orsa }
+    sources:
+      - { title: "Directive 2009/138/EC (Solvency II)", reference: "Article 101" }
+    tags: [kpi, solvency-ii, capital]
+    metric:
+      formula: "Basic SCR + Operational risk SCR − Loss-absorbing capacity of technical provisions and deferred taxes"
+      unit: AMOUNT_EUR
+      aggregation: LAST_VALUE
+      additivity: NON_ADDITIVE
+      polarity: NEUTRAL
+      qualifiers:
+        reinsuranceBasis: NET
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: REPORTING_DATE
+        accountingBasis: SOLVENCY_II
+      grain: "Quarter-end × legal entity"
+      dimensions: ["Legal entity", "Risk module"]
+      refreshFrequency: QUARTERLY
+      example:
+        lv: "Pamata SCR 74,0 milj. EUR + operacionālais risks 6,0 milj. EUR − korekcija 0,0 = 80,0 milj. EUR"
+        en: "Basic SCR EUR 74.0m + operational risk EUR 6.0m − adjustment 0.0 = EUR 80.0m"
+
+  - slug: minimum-capital-requirement
+    type: METRIC
+    labels:
+      lv: { preferred: "Minimālā kapitāla prasība", alt: [], abbrev: ["MCR"] }
+      en: { preferred: "Minimum capital requirement", alt: [], abbrev: ["MCR"] }
+    definition:
+      lv: "Maksātspējas II kapitāla apmērs, zem kura pašu līdzekļu nepietiekamība radītu nepieņemamu risku apdrošinājuma ņēmējiem un pie kura neievērošanas uzraudzības iestāde var atsaukt licenci."
+      en: "The Solvency II capital amount below which a shortfall of own funds would expose policyholders to an unacceptable level of risk, and whose breach can lead the supervisor to withdraw the licence."
+    notes:
+      lv: "Aprēķina ar lineāru formulu no neto tehniskajām rezervēm un parakstītajām prēmijām pa darbības virzieniem; rezultātu ierobežo koridors 25–45 % no SCR un absolūtā minimālā summa (AMCR), kuru periodiski indeksē. MCR ir „pēdējā aizsardzības līnija“, SCR — „agrīnās brīdināšanas“ līmenis."
+      en: "Calculated with a linear formula on net technical provisions and written premium by line of business; the result is bounded by a corridor of 25–45% of SCR and by an absolute floor (AMCR) that is indexed periodically. MCR is the 'last line of defence', SCR the 'early warning' level."
+    relations:
+      - { type: RELATED, target: solvency-capital-requirement }
+      - { type: RELATED, target: sii-line-of-business }
+    sources:
+      - { title: "Directive 2009/138/EC (Solvency II)", reference: "Article 129" }
+    tags: [solvency-ii, capital]
+    metric:
+      formula: "max(min(max(Linear MCR, 25% × SCR), 45% × SCR), Absolute floor)"
+      unit: AMOUNT_EUR
+      aggregation: LAST_VALUE
+      additivity: NON_ADDITIVE
+      polarity: NEUTRAL
+      qualifiers:
+        reinsuranceBasis: NET
+        premiumBasis: WRITTEN
+        timeBasis: REPORTING_DATE
+        accountingBasis: SOLVENCY_II
+      grain: "Quarter-end × legal entity"
+      dimensions: ["Legal entity", "Solvency II line of business"]
+      components:
+        - { role: COMPONENT, metric: solvency-capital-requirement }
+      refreshFrequency: QUARTERLY
+      example:
+        lv: "Lineārā MCR 30,0 milj. EUR; koridors 20,0–36,0 milj. EUR (25–45 % no SCR 80,0 milj. EUR) ⇒ MCR = 30,0 milj. EUR"
+        en: "Linear MCR EUR 30.0m; corridor EUR 20.0–36.0m (25–45% of SCR EUR 80.0m) ⇒ MCR = EUR 30.0m"
+
+  - slug: eligible-own-funds
+    type: METRIC
+    labels:
+      lv: { preferred: "Atbilstīgie pašu līdzekļi SCR segšanai", alt: ["Atbilstīgie pašu līdzekļi"], abbrev: ["EOF"] }
+      en: { preferred: "Eligible own funds to cover the SCR", alt: ["Eligible own funds"], abbrev: ["EOF"] }
+    definition:
+      lv: "Pašu līdzekļu summa, ko pēc līmeņu (Tier 1, 2, 3) kvantitatīvo ierobežojumu piemērošanas drīkst izmantot maksātspējas kapitāla prasības segšanai pārskata datumā."
+      en: "The amount of own funds that, after applying the quantitative limits by tier (Tier 1, 2, 3), may be used to cover the solvency capital requirement at the reporting date."
+    notes:
+      lv: "Minimālās kapitāla prasības segšanai atbilstīgā summa ir mazāka (3. līmeņa līdzekļi nav atbilstīgi un 2. līmeņa līdzekļiem ir stingrāks ierobežojums) — skatīt atsevišķu rādītāju. Nejaukt ar SFPS pašu kapitālu."
+      en: "The amount eligible to cover the minimum capital requirement is smaller (Tier 3 is not eligible and Tier 2 is more strictly limited) — see the separate metric. Do not confuse with IFRS equity."
+    relations:
+      - { type: BROADER, target: own-funds }
+      - { type: RELATED, target: eligible-own-funds-mcr }
+    sources:
+      - { title: "Directive 2009/138/EC (Solvency II)" }
+    tags: [solvency-ii, capital]
+    metric:
+      formula: "Tier 1 own funds + Tier 2 own funds + Tier 3 own funds, after tiering limits for SCR coverage"
+      unit: AMOUNT_EUR
+      aggregation: LAST_VALUE
+      additivity: SEMI_ADDITIVE
+      polarity: HIGHER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NET
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: REPORTING_DATE
+        accountingBasis: SOLVENCY_II
+      grain: "Quarter-end × legal entity"
+      dimensions: ["Legal entity", "Tier"]
+      refreshFrequency: QUARTERLY
+      example:
+        lv: "1. līmenis 150,0 milj. EUR + 2. līmenis 10,0 milj. EUR + 3. līmenis 0,0 = 160,0 milj. EUR"
+        en: "Tier 1 EUR 150.0m + Tier 2 EUR 10.0m + Tier 3 0.0 = EUR 160.0m"
+
+  - slug: eligible-own-funds-mcr
+    type: METRIC
+    labels:
+      lv: { preferred: "Atbilstīgie pašu līdzekļi MCR segšanai", alt: [], abbrev: [] }
+      en: { preferred: "Eligible own funds to cover the MCR", alt: [], abbrev: [] }
+    definition:
+      lv: "Pamata pašu līdzekļu summa, ko pēc līmeņu kvantitatīvo ierobežojumu piemērošanas drīkst izmantot minimālās kapitāla prasības segšanai pārskata datumā; to veido tikai 1. un ierobežotā apmērā 2. līmeņa līdzekļi."
+      en: "The amount of basic own funds that, after applying the tiering limits, may be used to cover the minimum capital requirement at the reporting date; it consists only of Tier 1 and, to a limited extent, Tier 2 items."
+    notes:
+      lv: "Papildu pašu līdzekļi un 3. līmeņa līdzekļi MCR segšanai nav atbilstīgi, tāpēc šī summa parasti ir mazāka vai vienāda ar SCR segšanai atbilstīgajiem pašu līdzekļiem."
+      en: "Ancillary own funds and Tier 3 items are not eligible to cover the MCR, so this amount is usually lower than or equal to the own funds eligible to cover the SCR."
+    relations:
+      - { type: BROADER, target: own-funds }
+      - { type: RELATED, target: eligible-own-funds }
+    sources:
+      - { title: "Directive 2009/138/EC (Solvency II)" }
+    tags: [solvency-ii, capital]
+    metric:
+      formula: "Tier 1 basic own funds + Tier 2 basic own funds, after tiering limits for MCR coverage"
+      unit: AMOUNT_EUR
+      aggregation: LAST_VALUE
+      additivity: SEMI_ADDITIVE
+      polarity: HIGHER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NET
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: REPORTING_DATE
+        accountingBasis: SOLVENCY_II
+      grain: "Quarter-end × legal entity"
+      dimensions: ["Legal entity", "Tier"]
+      refreshFrequency: QUARTERLY
+      example:
+        lv: "1. līmenis 150,0 milj. EUR + atbilstīgā 2. līmeņa daļa 0,0 = 150,0 milj. EUR"
+        en: "Tier 1 EUR 150.0m + eligible Tier 2 0.0 = EUR 150.0m"
+
+  - slug: solvency-ratio
+    type: METRIC
+    labels:
+      lv: { preferred: "Maksātspējas rādītājs", alt: ["SCR seguma rādītājs", "Maksātspējas koeficients"], abbrev: [] }
+      en: { preferred: "Solvency ratio", alt: ["SCR coverage ratio", "Solvency II ratio"], abbrev: [] }
+    definition:
+      lv: "SCR segšanai atbilstīgo pašu līdzekļu attiecība pret maksātspējas kapitāla prasību pārskata datumā."
+      en: "The ratio of own funds eligible to cover the SCR to the solvency capital requirement at the reporting date."
+    notes:
+      lv: "Regulatīvais minimums ir 100 %; mērķa diapazonu nosaka valdes apstiprinātā riska apetīte un kapitāla pārvaldības politika (grupas līmenī — PZU). Ļoti augsts rādītājs var nozīmēt neefektīvi izmantotu kapitālu. Nejaukt ar MCR seguma rādītāju."
+      en: "The regulatory minimum is 100%; the target range is set by the board-approved risk appetite and capital management policy (at group level — PZU). A very high ratio may indicate inefficient use of capital. Do not confuse with the MCR coverage ratio."
+    relations:
+      - { type: RELATED, target: mcr-coverage-ratio }
+      - { type: RELATED, target: orsa }
+    tags: [kpi, solvency-ii, capital]
+    metric:
+      formula: "Eligible own funds to cover the SCR / Solvency capital requirement"
+      unit: PERCENT
+      aggregation: RATIO
+      additivity: NON_ADDITIVE
+      polarity: HIGHER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NET
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: REPORTING_DATE
+        accountingBasis: SOLVENCY_II
+      grain: "Quarter-end × legal entity"
+      dimensions: ["Legal entity"]
+      components:
+        - { role: NUMERATOR, metric: eligible-own-funds }
+        - { role: DENOMINATOR, metric: solvency-capital-requirement }
+      refreshFrequency: QUARTERLY
+      example:
+        lv: "160,0 milj. EUR / 80,0 milj. EUR = 200 %"
+        en: "EUR 160.0m / EUR 80.0m = 200%"
+
+  - slug: mcr-coverage-ratio
+    type: METRIC
+    labels:
+      lv: { preferred: "MCR seguma rādītājs", alt: ["Minimālās kapitāla prasības seguma rādītājs"], abbrev: [] }
+      en: { preferred: "MCR coverage ratio", alt: ["Minimum capital requirement coverage ratio"], abbrev: [] }
+    definition:
+      lv: "MCR segšanai atbilstīgo pašu līdzekļu attiecība pret minimālo kapitāla prasību pārskata datumā."
+      en: "The ratio of own funds eligible to cover the MCR to the minimum capital requirement at the reporting date."
+    notes:
+      lv: "Skaitītājs nav tas pats, kas maksātspējas rādītājā: MCR segšanai atbilstīgi ir tikai 1. un ierobežoti 2. līmeņa pamata pašu līdzekļi. Regulatīvais minimums ir 100 %."
+      en: "The numerator is not the same as in the solvency ratio: only Tier 1 and limited Tier 2 basic own funds are eligible to cover the MCR. The regulatory minimum is 100%."
+    relations:
+      - { type: RELATED, target: solvency-ratio }
+    tags: [solvency-ii, capital]
+    metric:
+      formula: "Eligible own funds to cover the MCR / Minimum capital requirement"
+      unit: PERCENT
+      aggregation: RATIO
+      additivity: NON_ADDITIVE
+      polarity: HIGHER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NET
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: REPORTING_DATE
+        accountingBasis: SOLVENCY_II
+      grain: "Quarter-end × legal entity"
+      dimensions: ["Legal entity"]
+      components:
+        - { role: NUMERATOR, metric: eligible-own-funds-mcr }
+        - { role: DENOMINATOR, metric: minimum-capital-requirement }
+      refreshFrequency: QUARTERLY
+      example:
+        lv: "150,0 milj. EUR / 30,0 milj. EUR = 500 %"
+        en: "EUR 150.0m / EUR 30.0m = 500%"

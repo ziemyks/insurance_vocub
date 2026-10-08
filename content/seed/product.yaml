@@ -1,0 +1,185 @@
+domain: product
+concepts:
+  - slug: line-of-business
+    type: TERM
+    labels:
+      lv: { preferred: "Apdrošināšanas veids", alt: ["Biznesa virziens", "Darbības virziens"], abbrev: [] }
+      en: { preferred: "Line of business", alt: ["Business line"], abbrev: ["LoB"] }
+    definition:
+      lv: "Uzņēmuma iekšējā apdrošināšanas produktu grupa, kas apvieno produktus ar līdzīgu apdrošināto risku un tiek lietota vadības pārskatos, cenu noteikšanā un kā pamats regulatīvajai klasifikācijai."
+      en: "An internal grouping of insurance products that covers similar risks and is used in management reporting, pricing and as the basis for regulatory classification."
+    examples:
+      lv: "OCTA, KASKO, īpašuma apdrošināšana, vispārējā civiltiesiskā atbildība, veselības apdrošināšana, ceļojumu apdrošināšana."
+      en: "OCTA, KASKO, property, general third-party liability, health, travel."
+    notes:
+      lv: "Iekšējais apdrošināšanas veids nav tas pats, kas Maksātspējas II darbības virziens, apdrošināšanas klase likuma izpratnē vai 17. SFPS līgumu portfelis; katrai klasifikācijai ir sava kartēšana. Oficiālais vērtību saraksts tiek uzturēts kā atsauces dati."
+      en: "The internal line of business is not the same as the Solvency II line of business, the statutory class of insurance or the IFRS 17 portfolio of contracts; each classification has its own mapping. The official list of values is maintained as reference data."
+    relations:
+      - { type: RELATED, target: insurance-product }
+      - { type: RELATED, target: sii-line-of-business }
+      - { type: RELATED, target: portfolio-of-contracts }
+      - { type: RELATED, target: lob-code-list }
+    tags: [product, classification]
+
+  - slug: insurance-product
+    type: TERM
+    labels:
+      lv: { preferred: "Apdrošināšanas produkts", alt: ["Produkts"], abbrev: [] }
+      en: { preferred: "Insurance product", alt: ["Product"], abbrev: [] }
+    definition:
+      lv: "Komerciāli noformēts segumu, apdrošināšanas noteikumu un tarifa kopums, ko apdrošinātājs piedāvā klientiem ar vienu nosaukumu."
+      en: "A commercially packaged set of coverages, policy conditions and a tariff that the insurer offers to customers under one name."
+    examples:
+      lv: "„KASKO Plus“ ir produkts KASKO apdrošināšanas veidā; tas ietver pamatsegumu un izvēles papildu segumus."
+      en: "'KASKO Plus' is a product within the KASKO line of business; it contains a base coverage and optional add-on covers."
+    notes:
+      lv: "Produkts ir piedāvājuma veidne, bet polise ir konkrēts līgums, kas noslēgts uz produkta pamata. Viens produkts pieder tieši vienam apdrošināšanas veidam. Produkta versijas (jauni noteikumi vai tarifs) nav jauni produkti, ja nemainās nosaukums un segumu struktūra."
+      en: "A product is the template of an offer, whereas a policy is a specific contract concluded on the basis of a product. Each product belongs to exactly one line of business. Product versions (new conditions or tariff) are not new products if the name and coverage structure do not change."
+    relations:
+      - { type: PART_OF, target: line-of-business }
+      - { type: RELATED, target: coverage }
+      - { type: RELATED, target: tariff }
+      - { type: RELATED, target: insurance-policy }
+    tags: [product]
+
+  - slug: coverage
+    type: TERM
+    labels:
+      lv: { preferred: "Apdrošināšanas segums", alt: ["Segums"], abbrev: [] }
+      en: { preferred: "Coverage", alt: ["Cover"], abbrev: [] }
+    definition:
+      lv: "Noteikts aizsardzības apjoms polisē, kas nosaka, kuri riski un zaudējumi attiecībā uz kuru apdrošināšanas objektu ir apdrošināti, līdz kādai summai un ar kādu pašrisku."
+      en: "A defined scope of protection within a policy that specifies which perils and losses to which risk object are insured, up to what amount and with what deductible."
+    examples:
+      lv: "Mājokļa polisē: ēkas segums (apdrošinājuma summa 150 000 EUR, pašrisks 150 EUR) un civiltiesiskās atbildības segums (limits 20 000 EUR)."
+      en: "In a home policy: buildings cover (sum insured EUR 150,000, deductible EUR 150) and liability cover (limit EUR 20,000)."
+    notes:
+      lv: "Segums ir zemākais līmenis, kurā parasti tiek uzskaitītas prēmijas un atlīdzības un piesaistīts pašrisks un limits. Nejaukt ar risku (zaudējumu cēloni) un apdrošināšanas objektu (to, kas apdrošināts)."
+      en: "Coverage is usually the lowest level at which premiums and claims are recorded and at which deductibles and limits are set. Do not confuse with the peril (cause of loss) or the risk object (what is insured)."
+    relations:
+      - { type: PART_OF, target: insurance-product }
+      - { type: RELATED, target: peril }
+      - { type: RELATED, target: risk-object }
+      - { type: RELATED, target: sum-insured }
+      - { type: RELATED, target: deductible }
+    tags: [product, coverage]
+
+  - slug: peril
+    type: TERM
+    labels:
+      lv: { preferred: "Apdrošināšanas risks", alt: ["Apdrošinātais risks", "Risks"], abbrev: [] }
+      en: { preferred: "Peril", alt: ["Insured peril", "Insured risk"], abbrev: [] }
+    definition:
+      lv: "Notikums vai apstāklis, kas var radīt zaudējumus un pret kuru var tikt sniegts apdrošināšanas segums, piemēram, ugunsgrēks, vētra, zādzība vai sadursme."
+      en: "An event or circumstance that can cause loss and against which insurance cover can be provided, such as fire, storm, theft or collision."
+    notes:
+      lv: "Vārdam „risks“ apdrošināšanā ir vairākas nozīmes: zaudējumu cēlonis (šis termins), apdrošināšanas objekts („risks“ kā automašīna polisē) un zaudējumu iespējamība. Ja risks ir iestājies un uz to attiecas segums, tas ir apdrošināšanas gadījums. Faktiskais zaudējumu cēlonis atlīdzībās tiek kodēts ar zaudējumu cēloņa klasifikatoru."
+      en: "The word 'risk' has several meanings in insurance: cause of loss (this term), the insured object ('a risk' as a car on a policy) and the probability of loss. When a peril occurs and is covered, it is an insured event. The actual cause of loss on claims is coded using the cause-of-loss code list."
+    relations:
+      - { type: RELATED, target: coverage }
+      - { type: RELATED, target: loss-event }
+      - { type: RELATED, target: cause-of-loss-code }
+      - { type: RELATED, target: risk-object }
+    tags: [product, coverage]
+
+  - slug: sum-insured
+    type: TERM
+    labels:
+      lv: { preferred: "Apdrošinājuma summa", alt: [], abbrev: [] }
+      en: { preferred: "Sum insured", alt: ["Insured amount", "Amount insured"], abbrev: ["SI"] }
+    definition:
+      lv: "Polisē noteiktā maksimālā naudas summa, ko apdrošinātājs izmaksā par apdrošinātā objekta vai personas zaudējumiem saskaņā ar konkrēto segumu."
+      en: "The maximum amount of money stated in the policy that the insurer pays for loss of or damage to the insured object or person under a given coverage."
+    examples:
+      lv: "Ēkas apdrošinājuma summa 150 000 EUR: pilnīgas bojāejas gadījumā izmaksa nepārsniedz 150 000 EUR (atskaitot pašrisku)."
+      en: "Building sum insured EUR 150,000: in case of total loss the payment does not exceed EUR 150,000 (less the deductible)."
+    notes:
+      lv: "Īpašuma apdrošināšanā apdrošinājuma summu salīdzina ar objekta vērtību: ja tā ir zemāka (zemapdrošināšana), atlīdzību var samazināt proporcionāli. Atbildības apdrošināšanā tā vietā lieto atbildības limitu. Apdrošinājuma summu summa portfelī raksturo kopējo ekspozīciju (uzkrājumu), nevis gaidāmos zaudējumus."
+      en: "In property insurance the sum insured is compared with the value of the object: if it is lower (underinsurance) the indemnity may be reduced proportionally. Liability insurance uses a limit of liability instead. The total of sums insured in a portfolio describes aggregate exposure (accumulation), not expected losses."
+    relations:
+      - { type: RELATED, target: limit-of-liability }
+      - { type: RELATED, target: coverage }
+      - { type: RELATED, target: deductible }
+    sources:
+      - { title: "Apdrošināšanas līguma likums" }
+    tags: [product, coverage, underwriting]
+
+  - slug: limit-of-liability
+    type: TERM
+    labels:
+      lv: { preferred: "Atbildības limits", alt: ["Apdrošinātāja atbildības limits"], abbrev: [] }
+      en: { preferred: "Limit of liability", alt: ["Liability limit", "Limit of indemnity"], abbrev: [] }
+    definition:
+      lv: "Maksimālā summa, ko apdrošinātājs izmaksā saskaņā ar atbildības vai cita veida segumu par vienu apdrošināšanas gadījumu un/vai kopā par visiem gadījumiem apdrošināšanas periodā."
+      en: "The maximum amount the insurer pays under a liability or other coverage for one insured event and/or in aggregate for all events in the policy term."
+    examples:
+      lv: "OCTA atbildības limitus mantai un personām nosaka likums; vispārējās civiltiesiskās atbildības polisē limits var būt 50 000 EUR vienam gadījumam un 100 000 EUR periodā."
+      en: "OCTA limits for property damage and bodily injury are set by law; a general liability policy might have a limit of EUR 50,000 per event and EUR 100,000 in aggregate."
+    notes:
+      lv: "Nejaukt ar apdrošinājuma summu, kas parasti attiecas uz konkrēta objekta vērtību. Jānorāda, vai limits ir „vienam gadījumam“ vai „kopējais“ (agregātais), jo tas būtiski maina risku. Nejaukt arī ar pārapdrošināšanas līguma limitu vai pašieturējumu."
+      en: "Do not confuse with sum insured, which usually refers to the value of a specific object. State whether the limit is per event or aggregate, as this materially changes the risk. Also do not confuse with a reinsurance treaty limit or retention."
+    relations:
+      - { type: RELATED, target: sum-insured }
+      - { type: RELATED, target: coverage }
+      - { type: RELATED, target: octa }
+    tags: [product, coverage, liability]
+
+  - slug: deductible
+    type: TERM
+    labels:
+      lv: { preferred: "Pašrisks", alt: [], abbrev: [] }
+      en: { preferred: "Deductible", alt: ["Excess"], abbrev: [] }
+    definition:
+      lv: "Polisē noteikta zaudējumu daļa, kas izteikta summā vai procentos un ko sedz pats apdrošinātais, jo apdrošinātājs to atskaita no katras atlīdzības."
+      en: "A part of each loss, stated in the policy as a fixed amount or a percentage, that the insured bears because the insurer deducts it from each claim payment."
+    examples:
+      lv: "KASKO pašrisks 200 EUR: ja remonts maksā 1 000 EUR, apdrošinātājs izmaksā 800 EUR; ja 150 EUR, atlīdzība netiek izmaksāta."
+      en: "KASKO deductible EUR 200: if the repair costs EUR 1,000 the insurer pays EUR 800; if it costs EUR 150 nothing is paid."
+    notes:
+      lv: "Zaudējumi, kas mazāki par pašrisku, bieži netiek pieteikti, tāpēc pašriska izmaiņas ietekmē atlīdzību biežumu un salīdzināmību laikā. Nejaukt ar pārapdrošināšanas pašieturējumu, kas ir apdrošinātāja, nevis klienta paturētā daļa."
+      en: "Losses below the deductible are often not reported, so deductible changes affect claim frequency and comparability over time. Do not confuse with reinsurance retention, which is the part kept by the insurer, not by the customer."
+    relations:
+      - { type: PART_OF, target: coverage }
+      - { type: RELATED, target: claim-frequency }
+      - { type: RELATED, target: retention }
+    tags: [product, coverage]
+
+  - slug: tariff
+    type: TERM
+    labels:
+      lv: { preferred: "Tarifs", alt: ["Apdrošināšanas tarifs", "Tarifu struktūra"], abbrev: [] }
+      en: { preferred: "Tariff", alt: ["Rating structure", "Rate table"], abbrev: [] }
+    definition:
+      lv: "Apdrošinātāja apstiprināts bāzes likmju un riska faktoru kopums, ko izmanto produkta apdrošināšanas prēmijas aprēķinam."
+      en: "A set of base rates and rating factors approved by the insurer and used to calculate the insurance premium for a product."
+    examples:
+      lv: "KASKO tarifs: bāzes likme no transportlīdzekļa vērtības, koriģēta ar vadītāja vecuma, reģiona, transportlīdzekļa klases un bezzaudējumu vēstures koeficientiem."
+      en: "KASKO tariff: a base rate on vehicle value, adjusted by factors for driver age, region, vehicle class and claims-free history."
+    notes:
+      lv: "Tarifa prēmija nav vienāda ar faktisko prēmiju: pārdošanas atlaides, parakstītāja korekcijas un kampaņas to maina. Nejaukt ar tīro prēmiju vai zaudējumu izmaksām uz vienību (burning cost), kas ir tarifa aprēķina ievaddati."
+      en: "The tariff premium is not the same as the actual premium: sales discounts, underwriter adjustments and campaigns change it. Do not confuse with pure premium or burning cost, which are inputs to the tariff calculation."
+    relations:
+      - { type: RELATED, target: insurance-premium }
+      - { type: RELATED, target: pure-premium }
+      - { type: RELATED, target: underwriting }
+      - { type: PART_OF, target: insurance-product }
+    tags: [product, pricing]
+
+  - slug: add-on-cover
+    type: TERM
+    labels:
+      lv: { preferred: "Papildu segums", alt: ["Papildsegums", "Papildrisks"], abbrev: [] }
+      en: { preferred: "Add-on cover", alt: ["Optional cover", "Rider"], abbrev: [] }
+    definition:
+      lv: "Izvēles segums, ko apdrošinājuma ņēmējs var pievienot produkta pamatsegumam par papildu prēmiju."
+      en: "An optional coverage that the policyholder can add to a product's base coverage for an additional premium."
+    examples:
+      lv: "KASKO produktā: maiņas automašīna, stiklu apdrošināšana bez pašriska, palīdzība uz ceļa."
+      en: "In a KASKO product: replacement car, glass cover without deductible, roadside assistance."
+    notes:
+      lv: "Papildu segums nevar tikt iegādāts atsevišķi bez pamatseguma, un tā prēmija ir daļa no polises parakstītās prēmijas. Analizējot šķērspārdošanu, papildu segumi nav atsevišķi produkti."
+      en: "An add-on cover cannot be bought without the base coverage, and its premium is part of the policy's written premium. In cross-sell analysis, add-on covers are not separate products."
+    relations:
+      - { type: BROADER, target: coverage }
+      - { type: RELATED, target: insurance-product }
+    tags: [product, coverage, sales]

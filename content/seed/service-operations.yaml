@@ -1,0 +1,333 @@
+domain: service-operations
+concepts:
+  - slug: complaint
+    type: TERM
+    labels:
+      lv: { preferred: "Sūdzība", alt: [], abbrev: [] }
+      en: { preferred: "Complaint", alt: [], abbrev: [] }
+    definition:
+      lv: "Klienta vai citas ieinteresētās personas izteikta neapmierinātība ar apdrošinātāja pakalpojumu, lēmumu vai rīcību, kas iesniegta jebkurā kanālā un kas prasa apdrošinātāja atbildi vai risinājumu."
+      en: "An expression of dissatisfaction by a customer or other interested party with an insurer's service, decision or conduct, submitted through any channel and requiring a response or resolution from the insurer."
+    notes:
+      lv: "Nejaukt ar jautājumu, informācijas pieprasījumu vai atlīdzības pieteikumu: sūdzība ir neapmierinātības izpausme. Strīds par atlīdzības apmēru ir sūdzība, ja klients apstrīd jau pieņemtu lēmumu. Sūdzību izskatīšanai jāatbilst Latvijas Bankas prasībām un EIOPA vadlīnijām par sūdzību izskatīšanu."
+      en: "Not to be confused with a question, information request or claim notification: a complaint is an expression of dissatisfaction. A dispute about the claim amount is a complaint when the customer challenges a decision already made. Complaint handling must follow Latvijas Banka requirements and the EIOPA guidelines on complaints handling."
+    relations:
+      - { type: RELATED, target: customer-contact }
+      - { type: RELATED, target: complaints-count }
+      - { type: RELATED, target: latvijas-banka }
+    tags: [service, conduct]
+
+  - slug: service-level-agreement
+    type: TERM
+    labels:
+      lv: { preferred: "Pakalpojuma līmeņa līgums", alt: ["Pakalpojuma līmeņa vienošanās"], abbrev: ["SLA"] }
+      en: { preferred: "Service level agreement", alt: [], abbrev: ["SLA"] }
+    definition:
+      lv: "Vienošanās starp pakalpojuma sniedzēju un saņēmēju (ārēju vai iekšēju), kas nosaka izmērāmus pakalpojuma kvalitātes mērķus, piemēram, atbildes vai apstrādes laiku, un to uzraudzības kārtību."
+      en: "An agreement between a service provider and a recipient (external or internal) that sets measurable service quality targets, such as response or processing time, and how they are monitored."
+    notes:
+      lv: "SLA mērķa lielumu (piem., „80 % zvanu atbildēti 20 sekundēs“) jāreģistrē kā konkrēta rādītāja mērķi, nevis kā atsevišķu rādītāju. Ārpakalpojumu un IKT pakalpojumu SLA ir arī DORA un ārpakalpojumu prasību priekšmets."
+      en: "An SLA target value (e.g. '80% of calls answered within 20 seconds') should be recorded as the target of a specific metric, not as a separate metric. SLAs with outsourcing and ICT providers are also subject to DORA and outsourcing requirements."
+    relations:
+      - { type: RELATED, target: dora }
+      - { type: RELATED, target: average-settlement-time }
+    tags: [service, operations]
+
+  - slug: straight-through-processing
+    type: TERM
+    labels:
+      lv: { preferred: "Pilnībā automatizēta apstrāde", alt: ["Automātiskā apstrāde bez manuālas iejaukšanās"], abbrev: ["STP"] }
+      en: { preferred: "Straight-through processing", alt: ["Touchless processing"], abbrev: ["STP"] }
+    definition:
+      lv: "Darījuma (piem., polises izsniegšanas, atjaunošanas vai atlīdzības izmaksas) apstrāde no sākuma līdz beigām informācijas sistēmās bez darbinieka manuālas iejaukšanās."
+      en: "The end-to-end processing of a transaction (e.g. policy issuance, renewal or claim payment) in information systems without manual intervention by an employee."
+    notes:
+      lv: "Darījums nav STP, ja tajā bijusi jebkāda manuāla darbība (pārbaude, labojums, apstiprinājums), pat ja lielākā daļa soļu automatizēti. Automātiska maršrutēšana pie darbinieka nav STP."
+      en: "A transaction is not STP if it involved any manual action (review, correction, approval), even if most steps were automated. Automatic routing to an employee is not STP."
+    relations:
+      - { type: RELATED, target: stp-rate }
+      - { type: RELATED, target: digital-channel }
+    tags: [operations, automation]
+
+  - slug: customer-contact
+    type: TERM
+    labels:
+      lv: { preferred: "Klienta kontakts", alt: ["Klienta saskarsme"], abbrev: [] }
+      en: { preferred: "Customer contact", alt: ["Customer interaction"], abbrev: [] }
+    definition:
+      lv: "Viena atsevišķa mijiedarbība starp klientu un apdrošinātāju jebkurā kanālā (tālrunis, e-pasts, tērzēšana, klientu portāls, klātienē), kas reģistrēta klientu apkalpošanas sistēmā."
+      en: "A single interaction between a customer and the insurer through any channel (phone, e-mail, chat, customer portal, in person), recorded in the customer service system."
+    notes:
+      lv: "Vienam jautājumam var būt vairāki kontakti; kontaktu skaits nav tas pats, kas pieprasījumu vai lietu skaits. Automātiski ziņojumi (piem., atgādinājumi par maksājumu) netiek uzskatīti par klienta kontaktu."
+      en: "One issue can involve several contacts; the number of contacts is not the same as the number of requests or cases. Automated messages (e.g. payment reminders) are not counted as customer contacts."
+    relations:
+      - { type: RELATED, target: customer }
+      - { type: RELATED, target: complaint }
+    tags: [service, customer]
+
+  - slug: net-promoter-score
+    type: METRIC
+    labels:
+      lv: { preferred: "Neto ieteikšanas indekss", alt: ["Klientu lojalitātes indekss"], abbrev: ["NPS"] }
+      en: { preferred: "Net Promoter Score", alt: [], abbrev: ["NPS"] }
+    definition:
+      lv: "Klientu lojalitātes rādītājs, ko aprēķina kā starpību starp to respondentu īpatsvaru, kuri ieteikšanas varbūtību 0–10 skalā novērtē ar 9–10 (atbalstītāji), un to īpatsvaru, kuri novērtē ar 0–6 (kritizētāji)."
+      en: "A customer loyalty measure calculated as the share of respondents who rate their likelihood to recommend on a 0–10 scale at 9–10 (promoters) minus the share who rate it at 0–6 (detractors)."
+    notes:
+      lv: "Vērtība ir no −100 līdz +100 un tiek izteikta punktos, nevis procentos. Jāatšķir attiecību NPS (periodiska aptauja par uzņēmumu kopumā) no darījuma NPS (aptauja pēc konkrēta notikuma, piem., atlīdzības izmaksas); tie nav salīdzināmi. NPS nav summējams — kopējo vērtību aprēķina no visām atbildēm."
+      en: "The value ranges from −100 to +100 and is expressed in points, not percent. Distinguish relationship NPS (periodic survey about the company overall) from transactional NPS (survey after a specific event, e.g. a claim payment); they are not comparable. NPS is not additive — the total is recalculated from all responses."
+    relations:
+      - { type: RELATED, target: customer-satisfaction-score }
+    tags: [kpi, customer, service]
+    metric:
+      formula: "% of respondents scoring 9–10 − % of respondents scoring 0–6"
+      unit: SCORE
+      aggregation: CUSTOM
+      additivity: NON_ADDITIVE
+      polarity: HIGHER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NOT_APPLICABLE
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Month × survey type × touchpoint"
+      dimensions: ["Survey type", "Touchpoint", "Line of business", "Sales channel", "Customer segment"]
+      refreshFrequency: MONTHLY
+      example:
+        lv: "55 % atbalstītāju − 15 % kritizētāju = +40"
+        en: "55% promoters − 15% detractors = +40"
+
+  - slug: customer-satisfaction-score
+    type: METRIC
+    labels:
+      lv: { preferred: "Klientu apmierinātības rādītājs", alt: ["Klientu apmierinātības indekss"], abbrev: ["CSAT"] }
+      en: { preferred: "Customer satisfaction score", alt: [], abbrev: ["CSAT"] }
+    definition:
+      lv: "Apmierināto respondentu (vērtējums 4 vai 5 piecu ballu skalā) īpatsvars visās apmierinātības aptaujas atbildēs pārskata periodā."
+      en: "The share of satisfied respondents (rating 4 or 5 on a five-point scale) in all satisfaction survey responses in the reporting period."
+    notes:
+      lv: "Dažās nodaļās CSAT izsaka kā vidējo vērtējumu (piem., 4,3 no 5); šis rādītājs ir procentos. CSAT mēra apmierinātību ar konkrētu saskarsmi, NPS — vispārējo lojalitāti."
+      en: "Some departments express CSAT as an average rating (e.g. 4.3 out of 5); this metric is a percentage. CSAT measures satisfaction with a specific interaction, NPS measures overall loyalty."
+    relations:
+      - { type: RELATED, target: net-promoter-score }
+      - { type: RELATED, target: customer-contact }
+    tags: [kpi, customer, service]
+    metric:
+      formula: "Number of responses rated 4 or 5 / Total number of responses"
+      unit: PERCENT
+      aggregation: RATIO
+      additivity: NON_ADDITIVE
+      polarity: HIGHER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NOT_APPLICABLE
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Month × touchpoint"
+      dimensions: ["Touchpoint", "Channel", "Line of business", "Team"]
+      refreshFrequency: MONTHLY
+      example:
+        lv: "870 / 1 000 atbilžu = 87 %"
+        en: "870 / 1,000 responses = 87%"
+
+  - slug: complaints-count
+    type: METRIC
+    labels:
+      lv: { preferred: "Sūdzību skaits", alt: ["Saņemto sūdzību skaits"], abbrev: [] }
+      en: { preferred: "Complaints count", alt: ["Number of complaints received"], abbrev: [] }
+    definition:
+      lv: "Pārskata periodā saņemto un reģistrēto sūdzību skaits."
+      en: "The number of complaints received and registered in the reporting period."
+    notes:
+      lv: "Skaita saņemtās sūdzības pēc saņemšanas datuma, neatkarīgi no tā, vai tās atzītas par pamatotām. Atkārtota sūdzība par to pašu jautājumu tiek skaitīta atsevišķi tikai tad, ja tā reģistrēta kā jauna lieta. Pamatoto sūdzību skaits ir atsevišķs griezums."
+      en: "Counts complaints received by receipt date, regardless of whether they are upheld. A repeat complaint on the same issue is counted separately only if it is registered as a new case. The number of upheld complaints is a separate breakdown."
+    relations:
+      - { type: RELATED, target: complaint }
+    tags: [service, conduct]
+    metric:
+      formula: "Count of complaints with receipt date in the period"
+      unit: COUNT
+      aggregation: COUNT
+      additivity: ADDITIVE
+      polarity: LOWER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NOT_APPLICABLE
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Day × complaint category"
+      dimensions: ["Complaint category", "Line of business", "Channel", "Outcome (upheld / rejected)"]
+      refreshFrequency: MONTHLY
+      example:
+        lv: "Gadā saņemtas 240 sūdzības"
+        en: "240 complaints received in the year"
+
+  - slug: complaint-ratio
+    type: METRIC
+    labels:
+      lv: { preferred: "Sūdzību rādītājs", alt: ["Sūdzības uz 1 000 polisēm"], abbrev: [] }
+      en: { preferred: "Complaint ratio", alt: ["Complaints per 1,000 policies"], abbrev: [] }
+    definition:
+      lv: "Pārskata periodā saņemto sūdzību skaits uz 1 000 spēkā esošām polisēm."
+      en: "The number of complaints received in the reporting period per 1,000 policies in force."
+    notes:
+      lv: "Saucējā izmanto vidējo spēkā esošo polišu skaitu periodā, nevis perioda beigu skaitu. Rādītāju nedrīkst salīdzināt ar citu tirgus dalībnieku publicētajiem rādītājiem bez saucēja pārbaudes (daži izmanto atlīdzību skaitu vai klientu skaitu)."
+      en: "The denominator is the average number of policies in force over the period, not the period-end count. Do not compare with figures published by other market participants without checking the denominator (some use claims count or customer count)."
+    relations:
+      - { type: RELATED, target: complaint }
+    tags: [kpi, service, conduct]
+    metric:
+      formula: "Complaints count / Average policies in force count × 1,000"
+      unit: RATIO
+      aggregation: RATIO
+      additivity: NON_ADDITIVE
+      polarity: LOWER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NOT_APPLICABLE
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Month × line of business"
+      dimensions: ["Line of business", "Complaint category", "Channel"]
+      components:
+        - { role: NUMERATOR, metric: complaints-count }
+        - { role: DENOMINATOR, metric: policies-in-force-count }
+      refreshFrequency: MONTHLY
+      example:
+        lv: "240 / 400 000 × 1 000 = 0,6 sūdzības uz 1 000 polisēm"
+        en: "240 / 400,000 × 1,000 = 0.6 complaints per 1,000 policies"
+
+  - slug: stp-rate
+    type: METRIC
+    labels:
+      lv: { preferred: "Automatizētās apstrādes īpatsvars", alt: ["STP īpatsvars"], abbrev: [] }
+      en: { preferred: "STP rate", alt: ["Straight-through processing rate", "Touchless rate"], abbrev: [] }
+    definition:
+      lv: "Pilnībā automatizēti (bez manuālas iejaukšanās) apstrādāto darījumu īpatsvars visos attiecīgā procesa darījumos pārskata periodā."
+      en: "The share of transactions processed fully automatically (without manual intervention) in all transactions of the given process in the reporting period."
+    notes:
+      lv: "Rādītājam vienmēr jānorāda process (piem., polišu izsniegšana tiešsaistē, atjaunošana, atlīdzību izmaksa) — dažādu procesu STP īpatsvari nav salīdzināmi un tos nedrīkst vidējot. Darījumi, kas atcelti pirms pabeigšanas, netiek skaitīti."
+      en: "The process must always be specified (e.g. online policy issuance, renewal, claim payment) — STP rates of different processes are not comparable and must not be averaged. Transactions cancelled before completion are not counted."
+    relations:
+      - { type: RELATED, target: straight-through-processing }
+    tags: [kpi, operations, automation]
+    metric:
+      formula: "Number of transactions completed without manual intervention / Total number of completed transactions in the process"
+      unit: PERCENT
+      aggregation: RATIO
+      additivity: NON_ADDITIVE
+      polarity: HIGHER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NOT_APPLICABLE
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Day × process × channel"
+      dimensions: ["Process", "Channel", "Line of business", "Product"]
+      refreshFrequency: WEEKLY
+      example:
+        lv: "6 300 / 9 000 tiešsaistē izsniegto OCTA polišu = 70 %"
+        en: "6,300 / 9,000 MTPL policies issued online = 70%"
+
+  - slug: claims-handler-fte
+    type: METRIC
+    labels:
+      lv: { preferred: "Atlīdzību regulētāju skaits (PLE)", alt: ["Atlīdzību regulētāju pilna laika ekvivalents"], abbrev: ["FTE"] }
+      en: { preferred: "Claims handler FTE", alt: ["Claims handling full-time equivalents"], abbrev: ["FTE"] }
+    definition:
+      lv: "Atlīdzību regulēšanā nodarbināto darbinieku vidējais skaits pārskata periodā, izteikts pilna laika ekvivalentos (PLE)."
+      en: "The average number of employees working on claims handling in the reporting period, expressed in full-time equivalents (FTE)."
+    notes:
+      lv: "Ietver tikai darbiniekus, kas tieši strādā ar atlīdzību lietām; vadītāju un atbalsta funkciju (piem., IT, analītika) slodzi ieskaita tikai tad, ja tā tieši saistīta ar lietu apstrādi. Ārpakalpojumu sniedzēju (piem., ārējo ekspertu) slodze netiek iekļauta. Ilgstošā prombūtnē esošie netiek skaitīti."
+      en: "Includes only staff who work directly on claim files; managers and support functions (e.g. IT, analytics) count only to the extent they work directly on files. Outsourced capacity (e.g. external loss adjusters) is excluded. Staff on long-term leave are not counted."
+    relations:
+      - { type: RELATED, target: claim-handler }
+    tags: [operations, claims]
+    metric:
+      formula: "Average of monthly FTE of staff assigned to claims handling"
+      unit: COUNT
+      aggregation: AVERAGE
+      additivity: SEMI_ADDITIVE
+      polarity: NEUTRAL
+      qualifiers:
+        reinsuranceBasis: NOT_APPLICABLE
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Month × claims team"
+      dimensions: ["Claims team", "Line of business", "Region"]
+      refreshFrequency: MONTHLY
+      example:
+        lv: "Vidēji 75,0 PLE atlīdzību regulēšanā"
+        en: "On average 75.0 FTE in claims handling"
+
+  - slug: claims-per-handler
+    type: METRIC
+    labels:
+      lv: { preferred: "Atlīdzību lietu skaits uz vienu regulētāju", alt: ["Atlīdzību skaits uz regulētāju"], abbrev: [] }
+      en: { preferred: "Claims per handler", alt: ["Claims per claims handler FTE"], abbrev: [] }
+    definition:
+      lv: "Pārskata periodā pieteikto atlīdzību skaita attiecība pret vidējo atlīdzību regulētāju skaitu pilna laika ekvivalentos."
+      en: "The ratio of the number of claims reported in the reporting period to the average number of claims handlers in full-time equivalents."
+    notes:
+      lv: "Produktivitātes rādītājs; augstāka vērtība nozīmē lielāku noslodzi, bet ne obligāti labāku kvalitāti, tāpēc to vērtē kopā ar izskatīšanas ilgumu un atkārtoti atvērto lietu īpatsvaru. Salīdzināt tikai līdzīgas sarežģītības darbības virzienus (piem., OCTA un īpašuma lielās atlīdzības nav salīdzināmas). Īsākiem periodiem rezultātu pārrēķina gada izteiksmē."
+      en: "A productivity measure; a higher value means a heavier workload but not necessarily better quality, so it is assessed together with settlement time and reopen rate. Only compare lines of similar complexity (e.g. MTPL and large property claims are not comparable). For shorter periods the result is annualised."
+    relations:
+      - { type: RELATED, target: average-settlement-time }
+      - { type: RELATED, target: reopen-rate }
+    tags: [kpi, operations, claims]
+    metric:
+      formula: "Reported claims count / Claims handler FTE"
+      unit: RATIO
+      aggregation: RATIO
+      additivity: NON_ADDITIVE
+      polarity: HIGHER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NOT_APPLICABLE
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Month × claims team"
+      dimensions: ["Claims team", "Line of business", "Region"]
+      components:
+        - { role: NUMERATOR, metric: reported-claims-count }
+        - { role: DENOMINATOR, metric: claims-handler-fte }
+      refreshFrequency: MONTHLY
+      example:
+        lv: "60 000 pieteiktās atlīdzības / 75 PLE = 800 lietas uz vienu regulētāju gadā"
+        en: "60,000 reported claims / 75 FTE = 800 claims per handler per year"
+
+  - slug: cost-per-policy
+    type: METRIC
+    labels:
+      lv: { preferred: "Izmaksas uz vienu polisi", alt: ["Administratīvās izmaksas uz polisi"], abbrev: [] }
+      en: { preferred: "Cost per policy", alt: ["Administrative cost per policy"], abbrev: [] }
+    definition:
+      lv: "Administratīvo izdevumu attiecība pret vidējo spēkā esošo polišu skaitu pārskata periodā."
+      en: "The ratio of administrative expenses to the average number of policies in force over the reporting period."
+    notes:
+      lv: "Ietver tikai administratīvos izdevumus; klientu piesaistīšanas un atlīdzību regulēšanas izdevumi nav iekļauti. Saucējā izmanto vidējo spēkā esošo polišu skaitu. Rādītājs ir jutīgs pret produktu struktūru (daudz mazu polišu samazina vērtību)."
+      en: "Includes administrative expenses only; acquisition and claims handling expenses are excluded. The denominator is the average number of policies in force. The metric is sensitive to product mix (many small policies lower the value)."
+    relations:
+      - { type: RELATED, target: expense-ratio }
+    tags: [kpi, operations, expenses]
+    metric:
+      formula: "Administrative expenses / Average policies in force count"
+      unit: AMOUNT_EUR
+      aggregation: RATIO
+      additivity: NON_ADDITIVE
+      polarity: LOWER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NOT_APPLICABLE
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Quarter × line of business"
+      dimensions: ["Line of business", "Product"]
+      components:
+        - { role: NUMERATOR, metric: administrative-expenses }
+        - { role: DENOMINATOR, metric: policies-in-force-count }
+      refreshFrequency: QUARTERLY
+      example:
+        lv: "8 500 000 EUR / 400 000 polišu = 21,25 EUR uz polisi"
+        en: "EUR 8,500,000 / 400,000 policies = EUR 21.25 per policy"

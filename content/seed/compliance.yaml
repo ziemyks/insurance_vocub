@@ -1,0 +1,156 @@
+domain: compliance
+concepts:
+  - slug: idd
+    type: TERM
+    labels:
+      lv: { preferred: "Apdrošināšanas izplatīšanas direktīva", alt: [], abbrev: ["IDD"] }
+      en: { preferred: "Insurance Distribution Directive", alt: [], abbrev: ["IDD"] }
+    definition:
+      lv: "ES direktīva, kas nosaka prasības apdrošināšanas un pārapdrošināšanas produktu izplatīšanai: starpnieku reģistrāciju, profesionālās zināšanas, darījumdarbības noteikumus, produktu pārraudzību un pārvaldību (POG) un pirmslīguma informāciju, nedzīvības apdrošināšanā — apdrošināšanas produkta informācijas dokumentu (IPID)."
+      en: "An EU directive setting requirements for the distribution of insurance and reinsurance products: registration of intermediaries, professional knowledge, conduct of business rules, product oversight and governance (POG) and pre-contractual information, in non-life the insurance product information document (IPID)."
+    notes:
+      lv: "Latvijā direktīva pārņemta Apdrošināšanas un pārapdrošināšanas izplatīšanas likumā; uzraudzību veic Latvijas Banka. Prasības attiecas gan uz apdrošinātāja darbiniekiem, gan starpniekiem, tostarp uz digitālajiem kanāliem."
+      en: "In Latvia the directive is transposed by the Insurance and Reinsurance Distribution Law; supervision is carried out by Latvijas Banka. The requirements apply to the insurer's own staff and to intermediaries, including digital channels."
+    relations:
+      - { type: RELATED, target: intermediary }
+      - { type: RELATED, target: insurance-product }
+      - { type: RELATED, target: latvijas-banka }
+    sources:
+      - { title: "Directive (EU) 2016/97 (IDD)" }
+    tags: [regulation, distribution, conduct]
+
+  - slug: gdpr
+    type: TERM
+    labels:
+      lv: { preferred: "Vispārīgā datu aizsardzības regula", alt: [], abbrev: ["VDAR", "GDPR"] }
+      en: { preferred: "General Data Protection Regulation", alt: [], abbrev: ["GDPR"] }
+    definition:
+      lv: "ES regula, kas nosaka fizisko personu datu apstrādes principus, tiesisko pamatu, datu subjektu tiesības un pārziņu un apstrādātāju pienākumus."
+      en: "An EU regulation setting the principles and legal bases for processing personal data of natural persons, the rights of data subjects and the obligations of controllers and processors."
+    notes:
+      lv: "Apdrošināšanā īpaši svarīga ir veselības datu (īpašas kategorijas dati) apstrāde veselības un nelaimes gadījumu apdrošināšanā un atlīdzību regulēšanā. Latvijā uzraudzību veic Datu valsts inspekcija, nevis Latvijas Banka. Juridiskām personām (uzņēmumu klientiem) VDAR neattiecas, bet attiecas uz to kontaktpersonu datiem."
+      en: "In insurance the processing of health data (special category data) in health and accident insurance and in claims handling is particularly important. In Latvia supervision is carried out by the Data State Inspectorate, not Latvijas Banka. GDPR does not apply to legal entities (corporate customers) as such, but does apply to their contact persons' data."
+    relations:
+      - { type: RELATED, target: customer }
+      - { type: RELATED, target: insured-person }
+    sources:
+      - { title: "Regulation (EU) 2016/679 (GDPR)" }
+    tags: [regulation, data-protection]
+
+  - slug: aml-kyc
+    type: TERM
+    labels:
+      lv: { preferred: "Noziedzīgi iegūtu līdzekļu legalizācijas novēršana un klienta izpēte", alt: ["NILLTPFN un klienta izpēte", "Pazīsti savu klientu"], abbrev: ["AML/KYC", "NILLTPFN"] }
+      en: { preferred: "Anti-money laundering and know your customer", alt: ["AML/CFT and customer due diligence"], abbrev: ["AML/KYC"] }
+    definition:
+      lv: "Prasību un procesu kopums noziedzīgi iegūtu līdzekļu legalizācijas, terorisma un proliferācijas finansēšanas novēršanai un sankciju ievērošanai, kas ietver klienta un patiesā labuma guvēja identifikāciju, klienta izpēti, darījumu uzraudzību un ziņošanu par aizdomīgiem darījumiem."
+      en: "A set of requirements and processes for preventing money laundering, terrorist and proliferation financing and for complying with sanctions, including identification of the customer and beneficial owner, customer due diligence, transaction monitoring and reporting of suspicious transactions."
+    notes:
+      lv: "Latvijas Noziedzīgi iegūtu līdzekļu legalizācijas un terorisma un proliferācijas finansēšanas novēršanas likums attiecas galvenokārt uz dzīvības apdrošināšanu un ar ieguldījumiem saistītu apdrošināšanu; nedzīvības apdrošinātājam pilnā apmērā saistošas ir sankciju prasības (Starptautisko un Latvijas Republikas nacionālo sankciju likums), bet klienta izpēti var piemērot arī grupas politikas dēļ. Konkrēto tvērumu jāapstiprina Atbilstības funkcijai. „Patiesā labuma guvējs“ AML nozīmē nav apdrošināšanas labuma guvējs."
+      en: "The Latvian Law on the Prevention of Money Laundering and Terrorism and Proliferation Financing applies mainly to life and investment-related insurance; for a non-life insurer sanctions requirements (Law on International Sanctions and National Sanctions of the Republic of Latvia) apply in full, while customer due diligence may also be applied under group policy. The exact scope must be confirmed by the Compliance function. A 'beneficial owner' in the AML sense is not an insurance beneficiary."
+    relations:
+      - { type: RELATED, target: customer }
+      - { type: RELATED, target: beneficiary }
+      - { type: RELATED, target: fraud-suspicion }
+    tags: [regulation, aml, sanctions]
+
+  - slug: dora
+    type: TERM
+    labels:
+      lv: { preferred: "Digitālās darbības noturības akts", alt: ["Regula par finanšu nozares digitālo darbības noturību"], abbrev: ["DORA"] }
+      en: { preferred: "Digital Operational Resilience Act", alt: [], abbrev: ["DORA"] }
+    definition:
+      lv: "ES regula, kas finanšu sabiedrībām, tostarp apdrošinātājiem, nosaka vienotas prasības IKT riska pārvaldībai, IKT incidentu klasificēšanai un ziņošanai, digitālās darbības noturības testēšanai un IKT trešo personu pakalpojumu sniedzēju riska pārvaldībai."
+      en: "An EU regulation setting uniform requirements for financial entities, including insurers, on ICT risk management, classification and reporting of ICT incidents, digital operational resilience testing and management of ICT third-party service provider risk."
+    notes:
+      lv: "Piemērojama no 2025. gada 17. janvāra. Būtiskus IKT incidentus ziņo Latvijas Bankai. Ietver pienākumu uzturēt IKT pakalpojumu līgumu reģistru; līgumos ar IKT pakalpojumu sniedzējiem jāiekļauj DORA prasītie noteikumi."
+      en: "Applies from 17 January 2025. Major ICT incidents are reported to Latvijas Banka. Includes the obligation to maintain a register of information on ICT service contracts; contracts with ICT providers must include the clauses required by DORA."
+    relations:
+      - { type: RELATED, target: latvijas-banka }
+      - { type: RELATED, target: service-level-agreement }
+    sources:
+      - { title: "Regulation (EU) 2022/2554 (DORA)" }
+    tags: [regulation, ict, operational-risk]
+
+  - slug: latvijas-banka
+    type: TERM
+    labels:
+      lv: { preferred: "Latvijas Banka", alt: [], abbrev: ["LB"] }
+      en: { preferred: "Latvijas Banka", alt: ["Bank of Latvia"], abbrev: [] }
+    definition:
+      lv: "Latvijas centrālā banka, kas kopš 2023. gada 1. janvāra ir arī vienotā finanšu un kapitāla tirgus uzraudzības iestāde, tostarp licencē un uzrauga apdrošināšanas sabiedrības un apdrošināšanas starpniekus."
+      en: "The central bank of Latvia, which since 1 January 2023 is also the single financial and capital market supervisor, including licensing and supervising insurance undertakings and insurance intermediaries."
+    notes:
+      lv: "Pārņēma Finanšu un kapitāla tirgus komisijas (FKTK) funkcijas; dokumentos un sistēmās līdz 2022. gadam minētā FKTK tagad jāsaprot kā Latvijas Banka. Tai iesniedz Maksātspējas II pārskatus (QRT, RSR, ORSA) un statistikas pārskatus."
+      en: "It took over the functions of the Financial and Capital Market Commission (FKTK); references to FKTK in documents and systems up to 2022 should now be read as Latvijas Banka. Solvency II reports (QRT, RSR, ORSA) and statistical reports are submitted to it."
+    relations:
+      - { type: RELATED, target: qrt }
+      - { type: RELATED, target: orsa }
+    tags: [regulator, supervision]
+
+  - slug: octa
+    type: TERM
+    labels:
+      lv: { preferred: "OCTA", alt: ["Sauszemes transportlīdzekļu īpašnieku civiltiesiskās atbildības obligātā apdrošināšana", "Transportlīdzekļu īpašnieku civiltiesiskās atbildības obligātā apdrošināšana"], abbrev: ["OCTA"] }
+      en: { preferred: "Compulsory motor third-party liability insurance", alt: ["Motor TPL insurance", "OCTA"], abbrev: ["MTPL", "OCTA"] }
+    definition:
+      lv: "Ar likumu noteikts obligāts apdrošināšanas veids, kas sedz sauszemes transportlīdzekļa īpašnieka vai likumīgā lietotāja civiltiesisko atbildību par zaudējumiem, kas transportlīdzekļa izmantošanas rezultātā nodarīti trešo personu dzīvībai, veselībai un mantai."
+      en: "A statutory compulsory class of insurance covering the civil liability of the owner or lawful user of a land vehicle for damage caused to third parties' life, health and property through the use of the vehicle."
+    notes:
+      lv: "Regulē Sauszemes transportlīdzekļu īpašnieku civiltiesiskās atbildības obligātās apdrošināšanas likums. Nejaukt ar KASKO (brīvprātīga transportlīdzekļa bojājumu apdrošināšana). Maksātspējas II segmentācijā OCTA pieder transportlīdzekļu īpašnieku civiltiesiskās atbildības darbības virzienam. Dalību OCTA tirgū, informācijas sistēmu un garantijas fondu koordinē LTAB."
+      en: "Governed by the Law on Compulsory Civil Liability Insurance of Owners of Land Vehicles. Not to be confused with KASKO (voluntary motor own-damage insurance). In Solvency II segmentation MTPL belongs to the motor vehicle liability line of business. Market participation, the information system and the guarantee fund are coordinated by LTAB."
+    relations:
+      - { type: RELATED, target: ltab }
+      - { type: RELATED, target: green-card }
+      - { type: RELATED, target: line-of-business }
+      - { type: RELATED, target: sii-line-of-business }
+    tags: [regulation, motor, compulsory-insurance]
+
+  - slug: ltab
+    type: TERM
+    labels:
+      lv: { preferred: "Latvijas Transportlīdzekļu apdrošinātāju birojs", alt: [], abbrev: ["LTAB"] }
+      en: { preferred: "Motor Insurers' Bureau of Latvia", alt: ["Latvian Motor Insurers' Bureau"], abbrev: ["LTAB"] }
+    definition:
+      lv: "Apdrošinātāju, kas Latvijā veic OCTA, apvienība, kura darbojas kā Zaļās kartes nacionālais birojs un kompensācijas iestāde, uztur OCTA informācijas sistēmu un pārvalda garantijas fondu zaudējumu atlīdzināšanai, ja vainīgais transportlīdzeklis nav apdrošināts vai nav identificēts."
+      en: "The association of insurers writing MTPL (OCTA) in Latvia, which acts as the national Green Card bureau and compensation body, maintains the MTPL information system and manages the guarantee fund for compensating damage when the liable vehicle is uninsured or unidentified."
+    notes:
+      lv: "OCTA apdrošinātāji veic iemaksas LTAB garantijas fondā; tās ir daļa no OCTA izdevumiem un jāuzskaita atsevišķi no atlīdzībām. LTAB datus izmanto arī tirgus statistikai un bonus-malus klasēm."
+      en: "MTPL insurers contribute to the LTAB guarantee fund; these contributions are part of MTPL costs and must be recorded separately from claims. LTAB data is also used for market statistics and bonus-malus classes."
+    relations:
+      - { type: RELATED, target: octa }
+      - { type: RELATED, target: green-card }
+    tags: [motor, market-body]
+
+  - slug: green-card
+    type: TERM
+    labels:
+      lv: { preferred: "Zaļā karte", alt: ["Starptautiskais transportlīdzekļu apdrošināšanas sertifikāts"], abbrev: [] }
+      en: { preferred: "Green Card", alt: ["International motor insurance certificate"], abbrev: [] }
+    definition:
+      lv: "Starptautisks apdrošināšanas sertifikāts, kas apliecina, ka transportlīdzeklim ir spēkā obligātā civiltiesiskās atbildības apdrošināšana, braucot uz Zaļās kartes sistēmas valstīm."
+      en: "An international insurance certificate proving that a vehicle has valid compulsory motor third-party liability cover when travelling to Green Card system countries."
+    notes:
+      lv: "Eiropas Ekonomikas zonā un dažās citās valstīs transportlīdzekļa reģistrācijas numurs ir pietiekams apdrošināšanas pierādījums, tāpēc Zaļā karte vajadzīga galvenokārt braucieniem ārpus šīs zonas. Zaļā karte nav atsevišķs apdrošināšanas produkts, bet OCTA seguma apliecinājums."
+      en: "In the European Economic Area and some other countries the vehicle registration plate is sufficient proof of insurance, so a Green Card is needed mainly for travel outside this area. A Green Card is not a separate insurance product but evidence of MTPL cover."
+    relations:
+      - { type: RELATED, target: octa }
+      - { type: RELATED, target: ltab }
+    tags: [motor, compulsory-insurance]
+
+  - slug: csrd
+    type: TERM
+    labels:
+      lv: { preferred: "Korporatīvās ilgtspējas ziņu sniegšanas direktīva", alt: ["Direktīva par korporatīvo ilgtspējas ziņu sniegšanu"], abbrev: ["CSRD"] }
+      en: { preferred: "Corporate Sustainability Reporting Directive", alt: [], abbrev: ["CSRD"] }
+    definition:
+      lv: "ES direktīva, kas nosaka uzņēmumiem pienākumu vadības ziņojumā sniegt ilgtspējas informāciju saskaņā ar Eiropas ilgtspējas ziņu sniegšanas standartiem (ESRS), balstoties uz dubultā būtiskuma novērtējumu, un nodrošināt šīs informācijas apliecinājumu."
+      en: "An EU directive requiring companies to report sustainability information in the management report in accordance with the European Sustainability Reporting Standards (ESRS), based on a double materiality assessment, and to obtain assurance on that information."
+    notes:
+      lv: "Direktīvas tvērums un piemērošanas termiņi tika grozīti ES 2025. gada vienkāršošanas („Omnibus“) pasākumu ietvaros; uzņēmuma pienākumus (individuāli vai PZU grupas konsolidētajā ziņojumā) jāapstiprina Atbilstības un Finanšu funkcijām. Apdrošinātājam būtiski ir ar parakstīšanu un ieguldījumiem saistītie klimata riski."
+      en: "The directive's scope and timelines were amended by the EU 2025 simplification ('Omnibus') measures; the company's obligations (individually or within the PZU Group consolidated report) must be confirmed by the Compliance and Finance functions. For an insurer, climate risks related to underwriting and investments are material."
+    relations:
+      - { type: RELATED, target: nace-code }
+    sources:
+      - { title: "Directive (EU) 2022/2464 (CSRD)" }
+    tags: [regulation, sustainability, reporting]

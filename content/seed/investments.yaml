@@ -1,0 +1,135 @@
+domain: investments
+concepts:
+  - slug: investment-portfolio
+    type: TERM
+    labels:
+      lv: { preferred: "Ieguldījumu portfelis", alt: [], abbrev: [] }
+      en: { preferred: "Investment portfolio", alt: [], abbrev: [] }
+    definition:
+      lv: "Finanšu aktīvu un ieguldījumu īpašumu kopums (piem., parāda vērtspapīri, akcijas un fondi, termiņnoguldījumi), ko apdrošinātājs tur, lai segtu apdrošināšanas saistības un kapitālu un gūtu ienākumus."
+      en: "The set of financial assets and investment property (e.g. debt securities, equities and funds, term deposits) that an insurer holds to back insurance liabilities and capital and to earn income."
+    notes:
+      lv: "Ikdienas norēķinu naudas līdzekļi parasti nav daļa no ieguldījumu portfeļa; pārapdrošinātāju daļa tehniskajās rezervēs un prēmiju debitori arī nav ieguldījumi. Portfeli pārvalda saskaņā ar valdes apstiprinātu ieguldījumu politiku un piesardzīga ieguldītāja principu (Maksātspēja II)."
+      en: "Operating cash is usually not part of the investment portfolio; reinsurers' share of technical provisions and premium receivables are not investments either. The portfolio is managed under a board-approved investment policy and the Solvency II prudent person principle."
+    relations:
+      - { type: RELATED, target: asset-class }
+      - { type: RELATED, target: average-invested-assets }
+    sources:
+      - { title: "Directive 2009/138/EC (Solvency II)" }
+    tags: [investments]
+
+  - slug: asset-class
+    type: TERM
+    labels:
+      lv: { preferred: "Aktīvu klase", alt: ["Aktīvu kategorija"], abbrev: [] }
+      en: { preferred: "Asset class", alt: ["Asset category"], abbrev: [] }
+    definition:
+      lv: "Ieguldījumu grupa ar līdzīgām riska, ienesīguma un likviditātes īpašībām, piemēram, valdības obligācijas, uzņēmumu obligācijas, akcijas, ieguldījumu fondi, nekustamais īpašums un termiņnoguldījumi."
+      en: "A group of investments with similar risk, return and liquidity characteristics, such as government bonds, corporate bonds, equities, investment funds, real estate and term deposits."
+    notes:
+      lv: "Iekšējā aktīvu klašu klasifikācija jākartē uz Maksātspējas II CIC kodiem (aktīvu uzskaites QRT) un uz 9. SFPS novērtēšanas kategorijām; šīs klasifikācijas nav savstarpēji aizvietojamas."
+      en: "The internal asset class classification must be mapped to Solvency II CIC codes (asset-listing QRT) and to IFRS 9 measurement categories; these classifications are not interchangeable."
+    relations:
+      - { type: PART_OF, target: investment-portfolio }
+      - { type: RELATED, target: qrt }
+    tags: [investments, classification]
+
+  - slug: investment-income
+    type: METRIC
+    labels:
+      lv: { preferred: "Ieguldījumu ienākumi", alt: ["Neto ieguldījumu ienākumi", "Ieguldījumu rezultāts"], abbrev: [] }
+      en: { preferred: "Investment income", alt: ["Net investment income", "Investment result"], abbrev: [] }
+    definition:
+      lv: "Ieguldījumu portfeļa neto ienākumi pārskata periodā: procentu un dividenžu ienākumi, nomas ienākumi, realizētie peļņa un zaudējumi, patiesās vērtības izmaiņas, kas atzītas peļņā vai zaudējumos, un sagaidāmo kredītzaudējumu izmaiņas, atskaitot ieguldījumu pārvaldības izdevumus."
+      en: "The net income from the investment portfolio in the reporting period: interest and dividend income, rental income, realised gains and losses, fair value changes recognised in profit or loss and changes in expected credit losses, less investment management expenses."
+    notes:
+      lv: "Vadības definīcija, balstīta uz 9. SFPS uzskaiti. Neietver patiesās vērtības izmaiņas, kas atzītas citos visaptverošajos ienākumos, un neietver 17. SFPS apdrošināšanas finanšu ieņēmumus vai izdevumus (diskonta atritināšanu); neto finanšu rezultāts = ieguldījumu ienākumi − apdrošināšanas finanšu izdevumi."
+      en: "Management definition based on IFRS 9 accounting. It excludes fair value changes recognised in other comprehensive income and excludes IFRS 17 insurance finance income or expenses (unwinding of discount); net financial result = investment income − insurance finance expenses."
+    relations:
+      - { type: RELATED, target: investment-portfolio }
+      - { type: RELATED, target: net-profit }
+    tags: [kpi, investments]
+    metric:
+      formula: "Interest income + Dividend income + Rental income + Realised gains/losses + Fair value changes through profit or loss − Change in expected credit losses − Investment management expenses"
+      unit: AMOUNT_EUR
+      aggregation: SUM
+      additivity: ADDITIVE
+      polarity: HIGHER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NOT_APPLICABLE
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Month × asset class"
+      dimensions: ["Asset class", "Portfolio", "Currency", "IFRS 9 category"]
+      refreshFrequency: MONTHLY
+      example:
+        lv: "Procenti 7,8 + dividendes 0,6 + realizētā peļņa 0,9 − pārvaldības izdevumi 0,3 = 9,0 milj. EUR"
+        en: "Interest 7.8 + dividends 0.6 + realised gains 0.9 − management expenses 0.3 = EUR 9.0m"
+
+  - slug: average-invested-assets
+    type: METRIC
+    labels:
+      lv: { preferred: "Vidējie ieguldītie aktīvi", alt: ["Vidējais ieguldījumu portfelis"], abbrev: [] }
+      en: { preferred: "Average invested assets", alt: ["Average investment portfolio"], abbrev: [] }
+    definition:
+      lv: "Ieguldījumu portfeļa uzskaites vērtības vidējā vērtība pārskata periodā, aprēķināta no mēneša beigu atlikumiem (vai no perioda sākuma un beigu atlikumiem)."
+      en: "The average carrying amount of the investment portfolio over the reporting period, calculated from month-end balances (or from opening and closing balances)."
+    notes:
+      lv: "Jāizmanto tāds pats portfeļa tvērums kā ieguldījumu ienākumu aprēķinā; pretējā gadījumā ienesīgums tiek izkropļots. Mēneša vidējais ir precīzāks, ja periodā bijušas lielas naudas plūsmas (piem., dividenžu izmaksa)."
+      en: "Use the same portfolio scope as for investment income, otherwise the yield is distorted. A monthly average is more accurate when the period had large cash flows (e.g. a dividend payment)."
+    relations:
+      - { type: RELATED, target: investment-portfolio }
+    tags: [investments]
+    metric:
+      formula: "Average of month-end carrying amounts of the investment portfolio over the period"
+      unit: AMOUNT_EUR
+      aggregation: AVERAGE
+      additivity: SEMI_ADDITIVE
+      polarity: NEUTRAL
+      qualifiers:
+        reinsuranceBasis: NOT_APPLICABLE
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Month × asset class"
+      dimensions: ["Asset class", "Portfolio", "Currency"]
+      refreshFrequency: MONTHLY
+      example:
+        lv: "13 mēneša beigu atlikumu vidējais = 300,0 milj. EUR"
+        en: "Average of 13 month-end balances = EUR 300.0m"
+
+  - slug: investment-yield
+    type: METRIC
+    labels:
+      lv: { preferred: "Ieguldījumu ienesīgums", alt: ["Ieguldījumu atdeve"], abbrev: [] }
+      en: { preferred: "Investment yield", alt: ["Investment return"], abbrev: [] }
+    definition:
+      lv: "Ieguldījumu ienākumu (gada izteiksmē) attiecība pret vidējiem ieguldītajiem aktīviem pārskata periodā."
+      en: "The ratio of investment income (annualised) to average invested assets over the reporting period."
+    notes:
+      lv: "Tā kā ieguldījumu ienākumi neietver citos visaptverošajos ienākumos atzītās patiesās vērtības izmaiņas, šis rādītājs nav kopējais ienesīgums (total return). Īsākiem periodiem ienākumus pārrēķina gada izteiksmē."
+      en: "Because investment income excludes fair value changes recognised in other comprehensive income, this is not a total return. For shorter periods income is annualised."
+    relations:
+      - { type: RELATED, target: return-on-equity }
+    tags: [kpi, investments]
+    metric:
+      formula: "Investment income (annualised) / Average invested assets"
+      unit: PERCENT
+      aggregation: RATIO
+      additivity: NON_ADDITIVE
+      polarity: HIGHER_IS_BETTER
+      qualifiers:
+        reinsuranceBasis: NOT_APPLICABLE
+        premiumBasis: NOT_APPLICABLE
+        timeBasis: CALENDAR_YEAR
+        accountingBasis: MANAGEMENT
+      grain: "Month × asset class"
+      dimensions: ["Asset class", "Portfolio", "Currency"]
+      components:
+        - { role: NUMERATOR, metric: investment-income }
+        - { role: DENOMINATOR, metric: average-invested-assets }
+      refreshFrequency: MONTHLY
+      example:
+        lv: "9,0 milj. EUR / 300,0 milj. EUR = 3,0 %"
+        en: "EUR 9.0m / EUR 300.0m = 3.0%"
