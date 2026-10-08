@@ -10,6 +10,9 @@ const nextConfig: NextConfig = {
   // (node apps/web/server.js) for Azure App Service or containers.
   output: process.env.BUILD_STANDALONE === "true" ? "standalone" : undefined,
   outputFileTracingRoot: fileURLToPath(new URL("../../", import.meta.url)),
+  // The production build type-checks app code only; tests are checked by `npm run typecheck`
+  // and need test tooling (vitest, Playwright) that deployments don't install.
+  typescript: { tsconfigPath: "tsconfig.build.json" },
   transpilePackages: ["@vocab/core", "@vocab/db"],
   serverExternalPackages: ["exceljs", "pg", "@prisma/client", "@prisma/adapter-pg"],
   poweredByHeader: false,
