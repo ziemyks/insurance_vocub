@@ -1,6 +1,6 @@
 # Deploying the proof of concept: Vercel + Supabase
 
-The proof of concept runs on **Vercel** (the Next.js app) with **Supabase** (managed PostgreSQL). Both should be in the EU: Supabase region *Central EU (Frankfurt)*, and the Vercel functions are pinned to `fra1` in [apps/web/vercel.json](../apps/web/vercel.json).
+The proof of concept runs on **Vercel** (the Next.js app) with **Supabase** (managed PostgreSQL). Both should be in the EU, in the same region. The test project runs in Supabase *West EU (Paris)*, so the Vercel functions are pinned to `cdg1` (Paris) in [apps/web/vercel.json](../apps/web/vercel.json). If you create a project in another region, change `regions` to the nearest Vercel region (e.g. `fra1` for Frankfurt).
 
 The setup takes about 15 minutes. This page sets up a single environment. For a separate **test** environment and Entra ID sign-in, continue with [environments.md](environments.md).
 
