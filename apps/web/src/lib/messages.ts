@@ -219,10 +219,12 @@ const lv = {
     dev: "Izstrādes režīms: pieteikties kā demo lietotājam",
     demoHosted:
       "Koncepcijas pārbaudes vide: ievadiet piekļuves kodu un izvēlieties demo lietotāju.",
+    demoOpen:
+      "Demo vide: izvēlieties demo lietotāju. Visi dati ir testa dati; neievadiet konfidenciālu informāciju.",
     code: "Piekļuves kods",
     badCode: "Nepareizs piekļuves kods.",
     noProviders:
-      "Nav konfigurēta neviena pieteikšanās metode. Iestatiet Entra ID, AUTH_DEV_LOGIN vai DEMO_ACCESS_CODE.",
+      "Nav konfigurēta neviena pieteikšanās metode. Iestatiet Entra ID, DEMO_ACCESS_CODE vai DEMO_LOGIN=open.",
   },
   common: {
     lv: "LV",
@@ -449,10 +451,12 @@ const en: Messages = {
     entra: "Sign in with your company account (Microsoft)",
     dev: "Development mode: sign in as a demo user",
     demoHosted: "Proof-of-concept environment: enter the access code and pick a demo user.",
+    demoOpen:
+      "Demo environment: pick a demo user. All data is test data; do not enter confidential information.",
     code: "Access code",
     badCode: "Wrong access code.",
     noProviders:
-      "No sign-in method is configured. Set up Entra ID, AUTH_DEV_LOGIN or DEMO_ACCESS_CODE.",
+      "No sign-in method is configured. Set up Entra ID, DEMO_ACCESS_CODE or DEMO_LOGIN=open.",
   },
   common: {
     lv: "LV",

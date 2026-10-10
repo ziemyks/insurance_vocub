@@ -50,6 +50,7 @@ SEED_DEMO_USERS=true npm run db:seed       # 14 domains, 212 starter concepts, d
 ## 4. Signing in
 
 - **Demo access.** The sign-in page asks for the access code, then lets the tester pick a demo user. There is one demo user per role: admin, claims owner, claims steward, finance owner, contributor and viewer. Anyone who has the code and the URL can sign in, even as admin, so treat the code like a password. For an extra layer, turn on **Vercel → Settings → Deployment Protection**.
+- **Open demo access (no code).** Set `DEMO_LOGIN=open` instead of `DEMO_ACCESS_CODE`. The sign-in page then lists the demo users directly, as on localhost. Anyone who finds the URL can sign in, even as admin, so use it only while the site holds test data. If both are set, the access code wins.
 - **Company accounts (optional).** Register an Entra ID app with redirect URI `https://<your-vercel-domain>/api/auth/callback/microsoft-entra-id`, and add `AUTH_MICROSOFT_ENTRA_ID_ID`, `AUTH_MICROSOFT_ENTRA_ID_SECRET` and `AUTH_MICROSOFT_ENTRA_ID_ISSUER`. See the README for the groups claim and `ROLE_GROUP_MAP`. Once real accounts work, remove `DEMO_ACCESS_CODE` to switch demo access off.
 
 ## Limits of this setup (fine for a proof of concept)

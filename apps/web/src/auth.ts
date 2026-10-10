@@ -3,6 +3,7 @@ import { db, upsertUserFromLogin } from "@vocab/db";
 import NextAuth, { type NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import MicrosoftEntraID from "next-auth/providers/microsoft-entra-id";
+import { demoLoginMode } from "@/lib/demo-login";
 
 declare module "next-auth" {
   interface Session {
@@ -10,18 +11,11 @@ declare module "next-auth" {
   }
 }
 
-/**
- * Demo login as a seeded demo user:
- * - local development: AUTH_DEV_LOGIN=true (never honoured in production builds);
- * - hosted proof of concept (e.g. Vercel): DEMO_ACCESS_CODE set (min. 12 characters), and every
- *   sign-in must present that code.
- */
-const localDevLogin =
-  process.env.AUTH_DEV_LOGIN === "true" && process.env.NODE_ENV !== "production";
+/** Demo-user sign-in mode for this deployment; see lib/demo-login.ts. */
+export const demoMode = demoLoginMode();
+export const devLoginEnabled = demoMode !== "off";
+export const demoCodeRequired = demoMode === "code";
 const demoAccessCode = process.env.DEMO_ACCESS_CODE?.trim() ?? "";
-const hostedDemo = demoAccessCode.length >= 12;
-export const devLoginEnabled = localDevLogin || hostedDemo;
-export const demoCodeRequired = !localDevLogin && hostedDemo;
 
 const digest = (value: string) => createHash("sha256").update(value).digest();
 function validDemoCode(code: unknown): boolean {

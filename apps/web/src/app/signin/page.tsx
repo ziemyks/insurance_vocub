@@ -2,7 +2,7 @@ import { ROLE } from "@vocab/core";
 import { db } from "@vocab/db";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
-import { auth, demoCodeRequired, devLoginEnabled, entraEnabled } from "@/auth";
+import { auth, demoCodeRequired, demoMode, devLoginEnabled, entraEnabled } from "@/auth";
 import { devSignInAction, entraSignInAction } from "@/app/actions";
 import { label } from "@/lib/format";
 import { getI18n } from "@/lib/i18n";
@@ -35,7 +35,13 @@ export default async function SignInPage({
       )}
       {devLoginEnabled && (
         <form action={devSignInAction} className="stack" style={{ marginTop: "1.5rem" }}>
-          <p className="banner">{demoCodeRequired ? t.signin.demoHosted : t.signin.dev}</p>
+          <p className="banner">
+            {demoMode === "code"
+              ? t.signin.demoHosted
+              : demoMode === "open"
+                ? t.signin.demoOpen
+                : t.signin.dev}
+          </p>
           {error && (
             <p className="banner error" role="alert">
               {t.signin.badCode}

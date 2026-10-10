@@ -8,7 +8,7 @@ The proof of concept runs in two hosted environments, each with its own database
 | Vercel environment | — | Preview, branch `test` | Production |
 | URL | localhost:3000 | stable test URL (see step 3) | production URL / custom domain |
 | Supabase project | Docker | `vocab-test` | `vocab-prod` |
-| Sign-in | demo users | Entra ID (TEST app) + demo access code | Entra ID (PROD app); demo code only until Entra works |
+| Sign-in | demo users | Entra ID (TEST app) + demo access code | Entra ID (PROD app); until then demo users via `DEMO_ACCESS_CODE` or `DEMO_LOGIN=open` |
 | Visual marker | — | yellow **TEST ENVIRONMENT** bar, "[TEST]" in tab titles | none |
 | Migrations | `npm run db:deploy` | automatic on push to `test` | automatic on push to `main` |
 | Seed content | `npm run db:seed` | automatic, with demo users | only when run manually |
